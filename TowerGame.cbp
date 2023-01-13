@@ -44,6 +44,7 @@
 		<Unit filename="Circle.h" />
 		<Unit filename="GameWindow.cpp" />
 		<Unit filename="GameWindow.h" />
+		<Unit filename="Item.h" />
 		<Unit filename="Level.cpp" />
 		<Unit filename="Level.h" />
 		<Unit filename="Main.cpp" />
@@ -63,6 +64,7 @@
 		<Unit filename="global.cpp" />
 		<Unit filename="global.h" />
 		<Unit filename="knight.h" />
+		<Unit filename="mushroom.h" />
 		<Unit filename="ninja.h" />
 		<Unit filename="trap.h" />
 		<Unit filename="turret.h" />
