@@ -90,6 +90,18 @@ GameWindow::isOnRoad()
     }
     return false;
 }*/
+/*Player*/
+/*Character*
+GameWindow::create_player(std::string type){
+    Character* p=NULL;
+    if(type=="ninja"){
+        p = new Ninja(100,100);
+    }else if(type=="knight"){
+        p = new Knight(100,100);
+    }
+    return p;
+}*/
+
 
 /*Tower*
 GameWindow::create_tower(int type)
@@ -312,6 +324,7 @@ GameWindow::game_reset()
     }*/
     //towerSet.clear();
     monsterSet.clear();
+    //delete Player;
 
 
     selectedTower = -1;
@@ -510,7 +523,7 @@ GameWindow::draw_running_map()
         monsterSet[i]->Draw();
     }
 
-
+    //Player->Draw();
     /*for(std::list<Tower*>::iterator it = towerSet.begin(); it != towerSet.end(); it++)
         (*it)->Draw();*/
 

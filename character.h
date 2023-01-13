@@ -50,6 +50,7 @@ protected:
     int direction_count[4];
     int width;
     int height;
+    int pos[2];
     std::string type;
     int attack_frequency;
     //int attack_counter;

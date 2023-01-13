@@ -61,6 +61,7 @@ public:
 
     //Tower* create_tower(int);
     Monster* create_monster();
+    Character* create_player(std::string);
 
 public:
     bool initial = true;
@@ -92,6 +93,7 @@ private:
     std::vector<Monster*> monsterSet;
     Character *Player;
     std::list<Tower*> towerSet;
+    std::string role;
 
     int Monster_Pro_Count = 0;
     int Coin_Inc_Count = 0;
