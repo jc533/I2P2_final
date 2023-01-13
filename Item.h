@@ -1,5 +1,5 @@
-#ifndef CHARACTER_H_INCLUDED
-#define CHARACTER_H_INCLUDED
+#ifndef ITEM_H_INCLUDED
+#define ITEM_H_INCLUDED
 
 #include <stdio.h>
 #include <string>
@@ -15,12 +15,10 @@
 #include "Monster.h"
 
 
-class Monster;
-
-class Character : public Object{
+class Item : public Object{
 public:
-    Character(int, int);
-    ~Character();
+    Item(int, int);
+    ~Item();
 
     // override virtual function "Object::Draw"
     void Draw();
@@ -29,10 +27,7 @@ public:
     // update whole attack set
     // if any attack goes out of the range of tower, delete it
     // process if some of attack in set touches monster
-    bool Update();
     bool Move();
-    int Detect(Monster*);
-    bool Subtract_HP(int);
 
     int getWidth() { return 40; }
     int getHeight() { return 40; }
@@ -42,22 +37,16 @@ public:
 
 protected:
 
-    enum class Type {ATTACK,DODGE,MOVE};
-    Type state;
-    int defense;
-    int speed;
-    int direction;
-    int direction_count[4];
     int width;
     int height;
+    int time;
+    int amount;
     std::string type;
-    int attack_frequency;
     //int attack_counter;
-    int attack_harm_point;
     //ALLEGRO_BITMAP *attack_img;
 
     // information of tower
-    //ALLEGRO_BITMAP std::vector<*img>;
+    ALLEGRO_BITMAP *img;
 };
 
 #endif // CHARACTER_H_INCLUDED
