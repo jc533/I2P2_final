@@ -17,22 +17,22 @@
 class Character : public Object{
 public:
     Character(int, int);
-    virtual ~Character();
+    ~Character();
 
     // override virtual function "Object::Draw"
-    virtual void Draw();
+    void Draw();
     //void resetAttackCounter() { attack_counter = 0; }
 
     // update whole attack set
     // if any attack goes out of the range of tower, delete it
     // process if some of attack in set touches monster
-    virtual bool Update();
-    virtual bool Move();
+    bool Update();
+    bool Move();
     //virtual int Detect(Monster*);
-    virtual  bool Subtract_HP(int);
+    bool Subtract_HP(int);
 
-    virtual int getWidth() { return 40; }
-    virtual int getHeight() { return 40; }
+    int getWidth() { return 40; }
+    int getHeight() { return 40; }
 
     // show selected tower image on cursor position
     //static void SelectedTower(int, int, int);

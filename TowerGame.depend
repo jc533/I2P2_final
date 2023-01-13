@@ -487,8 +487,12 @@
 	<vector>
 	"global.h"
 
-1672159288 c:\users\yub612\desktop\data\code\i2p2_final\global.h
+1673587756 c:\users\yub612\desktop\data\code\i2p2_final\global.h
 	<allegro5/allegro_font.h>
+	<vector>
+	<string>
+	<algorithm>
+	<math.h>
 
 1671209809 source:c:\users\yub612\desktop\data\code\i2p2_final\menu.cpp
 	"Menu.h"
@@ -1259,4 +1263,109 @@
 	"Circle.h"
 	"global.h"
 	"Monster.h"
+
+1672159288 source:c:\users\yub612\desktop\data\code\i2p2_final\attack.cpp
+	"Attack.h"
+
+1672159288 c:\users\yub612\desktop\data\code\i2p2_final\attack.h
+	<stdio.h>
+	<math.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_primitives.h>
+	<allegro5/allegro_audio.h>
+	"Object.h"
+	"Circle.h"
+
+1671244642 c:\users\yub612\desktop\data\code\i2p2_final\allegro-x86_64-w64-mingw32-gcc-10.2.0-posix-seh-static-5.2.7.0\allegro\include\allegro5\allegro_image.h
+	"allegro5/base.h"
+
+1671244642 c:\users\yub612\desktop\data\code\i2p2_final\allegro-x86_64-w64-mingw32-gcc-10.2.0-posix-seh-static-5.2.7.0\allegro\include\allegro5\allegro_audio.h
+	"allegro5/allegro.h"
+
+1673599699 source:c:\users\yub612\desktop\data\code\i2p2_final\gamewindow.cpp
+	"GameWindow.h"
+	"global.h"
+	<iostream>
+
+1673599699 c:\users\yub612\desktop\data\code\i2p2_final\gamewindow.h
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<vector>
+	<list>
+	<time.h>
+	"Menu.h"
+	"Level.h"
+	"Poison.h"
+	"Attack.h"
+	"Slider.h"
+
+1671244642 c:\users\yub612\desktop\data\code\i2p2_final\allegro-x86_64-w64-mingw32-gcc-10.2.0-posix-seh-static-5.2.7.0\allegro\include\allegro5\allegro_acodec.h
+	"allegro5/allegro.h"
+	"allegro5/allegro_audio.h"
+
+1672159288 c:\users\yub612\desktop\data\code\i2p2_final\poison.h
+	"Tower.h"
+
+1672159288 c:\users\yub612\desktop\data\code\i2p2_final\tower.h
+	<stdio.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_primitives.h>
+	"Object.h"
+	"Attack.h"
+	"Circle.h"
+	"Monster.h"
+	"global.h"
+
+1673599699 c:\users\yub612\desktop\data\code\i2p2_final\monster.h
+	<stdio.h>
+	<string.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_primitives.h>
+	<vector>
+	"Object.h"
+	"Circle.h"
+	"global.h"
+	"character.h"
+
+1673599699 c:\users\yub612\desktop\data\code\i2p2_final\character.h
+	<stdio.h>
+	<string>
+	<vector>
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_primitives.h>
+	"Object.h"
+	"Circle.h"
+	"global.h"
+	"Monster.h"
+
+1672159288 c:\users\yub612\desktop\data\code\i2p2_final\slider.h
+	<allegro5/allegro.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_primitives.h>
+	"Object.h"
+
+1672159288 source:c:\users\yub612\desktop\data\code\i2p2_final\global.cpp
+	"global.h"
+
+1672161508 source:c:\users\yub612\desktop\data\code\i2p2_final\main.cpp
+	"GameWindow.h"
+
+1673599699 source:c:\users\yub612\desktop\data\code\i2p2_final\monster.cpp
+	"Monster.h"
+
+1672159288 source:c:\users\yub612\desktop\data\code\i2p2_final\slider.cpp
+	<stdio.h>
+	<string.h>
+	"Slider.h"
+
+1672159288 source:c:\users\yub612\desktop\data\code\i2p2_final\tower.cpp
+	"Tower.h"
 
