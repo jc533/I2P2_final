@@ -114,14 +114,31 @@ Monster*
 GameWindow::create_monster()
 {
     Monster *m = NULL;
-    if(m){
-        int hi;
+    /*if(level->MonsterNum[WOLF])
+    {
+        level->MonsterNum[WOLF]--;
+        m = new Wolf(level->ReturnPath());
+    }
+    else if(level->MonsterNum[WOLFKNIGHT])
+    {
+        level->MonsterNum[WOLFKNIGHT]--;
+        m = new WolfKnight(level->ReturnPath());
+    }
+    else if(level->MonsterNum[DEMONNIJIA])
+    {
+        level->MonsterNum[DEMONNIJIA]--;
+        m = new DemonNijia(level->ReturnPath());
+    }
+    else if(level->MonsterNum[CAVEMAN])
+    {
+        level->MonsterNum[CAVEMAN]--;
+        m = new CaveMan(level->ReturnPath());
     }
     else
     {
         al_stop_timer(monster_pro);
     }
-
+    */
     return m;
 }
 

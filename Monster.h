@@ -23,18 +23,15 @@ public:
     void  Draw();
     // Load bitmaps of animation image into container "moveImg"
     void  Load_Move();
-
     // Update monster position per frame
     // And detect if it reaches end point but not destroyed
     bool  Move();
-
     // functions that return informations of monster
     int  getDir() { return direction; }
-
     bool  Subtract_HP(int);
     // update whole attack set
     // detect if tower needs to attack some monster
-    //bool virtual DetectAttack(character*);
+    bool DetectAttack(Character*);
     // process if some of attack in set touches monster
     bool  TriggerAttack();
 
@@ -60,8 +57,8 @@ private:
     int sprite_pos;
 
     // set of animation images
-    //std::vector<ALLEGRO_BITMAP*> moveImg;
-    // path on map
+    std::vector<ALLEGRO_BITMAP*> moveImg;
+    //path on map
 
 };
 

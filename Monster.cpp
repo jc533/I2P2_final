@@ -31,7 +31,7 @@ Monster::Monster(int pos_x, int pos_y)
 
 Monster::~Monster()
 {
-    /*
+
     for(unsigned int i=0; i<moveImg.size(); i++)
     {
         ALLEGRO_BITMAP *img = moveImg[i];
@@ -43,9 +43,9 @@ Monster::~Monster()
     }
     moveImg.clear();
 
-    delete circle;*/
+    delete circle;
 }
-/*
+
 void Monster::Load_Move()
 {
     char buffer[50];

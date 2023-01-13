@@ -14,6 +14,9 @@
 #include "global.h"
 #include "Monster.h"
 
+
+class Monster;
+
 class Character : public Object{
 public:
     Character(int, int);
@@ -28,7 +31,7 @@ public:
     // process if some of attack in set touches monster
     bool Update();
     bool Move();
-    //virtual int Detect(Monster*);
+    int Detect(Monster*);
     bool Subtract_HP(int);
 
     int getWidth() { return 40; }
