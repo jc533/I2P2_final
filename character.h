@@ -18,7 +18,7 @@ public:
     virtual ~Character();
 
     // override virtual function "Object::Draw"
-    void Draw();
+    virtual void Draw();
     //void resetAttackCounter() { attack_counter = 0; }
 
     // update whole attack set
@@ -26,7 +26,7 @@ public:
     // process if some of attack in set touches monster
     virtual bool Update();
     virtual bool Move();
-    virtual int Detect(Monster*);
+    virtual int Detect(Enemy*);
     virtual  bool Subtract_HP(int);
 
     virtual int getWidth() { return 40; }
