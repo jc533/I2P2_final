@@ -1,5 +1,5 @@
-#ifndef GRENADE_H_INCLUDED
-#define GRENADE_H_INCLUDED
+#ifndef MINE_H_INCLUDED
+#define MINE_H_INCLUDED
 
 #include <stdio.h>
 #include <string>
@@ -15,12 +15,12 @@
 #include "Item.h"
 
 
-class Grenade : public Item{
+class Mine : public Item{
     public:
-    Grenade(int pos_x,int pos_y):Item(pos_x,pos_y){
+    Mine(int pos_x,int pos_y):Item(pos_x,pos_y){
         time=0;
         amount=1;
-        type="grenade";
+        type="mine"
     }
 };
 
