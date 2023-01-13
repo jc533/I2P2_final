@@ -18,7 +18,7 @@ class Player : public Character{
     void Draw();
     bool Update();
     bool Move();
-    int Detect(Enemy*);
+    int Detect(Monster*);
     bool Subtract_HP(int);
 
 public:
