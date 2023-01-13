@@ -2,6 +2,10 @@
 #define GLOBAL_H_INCLUDED
 
 #include <allegro5/allegro_font.h>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <math.h>
 
 #define font_size 12
 #define grid_width 40
