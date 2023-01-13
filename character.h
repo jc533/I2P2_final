@@ -43,7 +43,7 @@ protected:
     int speed;
     int direction;
     int direction_count[4];
-    int type;
+    string type;
     int attack_frequency;
     //int attack_counter;
     int attack_harm_point;
