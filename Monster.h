@@ -31,7 +31,7 @@ public:
     bool  Subtract_HP(int);
     // update whole attack set
     // detect if tower needs to attack some monster
-    bool DetectAttack(Character*);
+    //bool DetectAttack(Character*);
     // process if some of attack in set touches monster
     bool  TriggerAttack();
 

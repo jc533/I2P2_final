@@ -51,14 +51,16 @@ protected:
     int width;
     int height;
     int pos[2];
-    std::string type;
+    int type;
     int attack_frequency;
     //int attack_counter;
     int attack_harm_point;
     //ALLEGRO_BITMAP *attack_img;
 
     // information of tower
-    //ALLEGRO_BITMAP std::vector<*img>;
+    ALLEGRO_BITMAP* img;
+    std::vector<ALLEGRO_BITMAP*> moveImg;
+
 };
 
 #endif // CHARACTER_H_INCLUDED

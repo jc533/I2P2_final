@@ -11,6 +11,8 @@
 #include "Poison.h"
 #include "Attack.h"
 #include "Slider.h"
+#include "knight.h"
+#include "ninja.h"
 
 #define GAME_INIT -1
 #define GAME_SETTING 0

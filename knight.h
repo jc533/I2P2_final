@@ -20,7 +20,7 @@ public:
         speed=5;
         attack_frequency=5;
         attack_harm_point=10;
-        type="Knight";
+        type=1;//"Knight";
     };
 };
 

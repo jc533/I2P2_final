@@ -33,11 +33,11 @@ GameWindow::game_init()
     icon = al_load_bitmap("./icon.png");
     background = al_load_bitmap("./StartBackground.jpg");
 
-    /*for(int i = 0; i < Num_TowerType; i++)
+    for(int i = 0; i < Num_TowerType; i++)
     {
         sprintf(buffer, "./Tower/%s.png", TowerClass[i]);
         tower[i] = al_load_bitmap(buffer);
-    }*/
+    }
 
     al_set_display_icon(display, icon);
     al_reserve_samples(3);
@@ -54,9 +54,11 @@ GameWindow::game_init()
 
     level = new LEVEL(1);
     menu = new Menu();
+    Player = create_player("ninja");
 }
 
 bool
+
 GameWindow::mouse_hover(int startx, int starty, int width, int height)
 {
     if(mouse_x >= startx && mouse_x <= startx + width)
@@ -91,7 +93,7 @@ GameWindow::isOnRoad()
     return false;
 }*/
 /*Player*/
-/*Character*
+Character*
 GameWindow::create_player(std::string type){
     Character* p=NULL;
     if(type=="ninja"){
@@ -100,7 +102,7 @@ GameWindow::create_player(std::string type){
         p = new Knight(100,100);
     }
     return p;
-}*/
+}
 
 
 /*Tower*
@@ -523,7 +525,7 @@ GameWindow::draw_running_map()
         monsterSet[i]->Draw();
     }
 
-    //Player->Draw();
+    Player->Draw();
     /*for(std::list<Tower*>::iterator it = towerSet.begin(); it != towerSet.end(); it++)
         (*it)->Draw();*/
 
