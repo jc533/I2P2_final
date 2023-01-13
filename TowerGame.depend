@@ -1283,7 +1283,7 @@
 1671244642 c:\users\yub612\desktop\data\code\i2p2_final\allegro-x86_64-w64-mingw32-gcc-10.2.0-posix-seh-static-5.2.7.0\allegro\include\allegro5\allegro_audio.h
 	"allegro5/allegro.h"
 
-1673618554 source:c:\users\yub612\desktop\data\code\i2p2_final\gamewindow.cpp
+1673619030 source:c:\users\yub612\desktop\data\code\i2p2_final\gamewindow.cpp
 	"GameWindow.h"
 	"global.h"
 	<iostream>

@@ -20,12 +20,13 @@ Character::~Character()
 }
 
 void
-Character::Draw()
-{
-    fprintf(stderr, "fuccccccccccccccck");
+Character::Draw(){
+    
     int draw_x = circle->x - (TowerWidth[this->type]/2);
     int draw_y = circle->y - (TowerHeight[this->type] - (TowerWidth[this->type]/2));
-
+    char filename[50];
+    sprintf(filename, "./Tower/%s.png", TowerClass[this->type]);
+    img = al_load_bitmap(filename);
     al_draw_bitmap(img, draw_x, draw_y, 0);
 }
 
