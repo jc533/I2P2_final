@@ -14,9 +14,9 @@
 #include "Monster.h"
 
 
-class turret : public Monster{
+class Turret : public Monster{
 public:
-    turret(int pos_x, int pos_y):Monster(pos_x,pos_y){
+    Turret(int pos_x, int pos_y):Monster(pos_x,pos_y){
         defense=5;
         speed=10;
         attack_frequency=10;

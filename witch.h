@@ -14,9 +14,9 @@
 #include "Monster.h"
 
 
-class witch : public Monster{
+class Witch : public Monster{
 public:
-    witch(int pos_x, int pos_y):Monster(pos_x,pos_y){
+    Witch(int pos_x, int pos_y):Monster(pos_x,pos_y){
         defense=5;
         speed=10;
         attack_frequency=10;
