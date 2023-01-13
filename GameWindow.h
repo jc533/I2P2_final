@@ -59,7 +59,7 @@ public:
     // detect if a tower will be constructed on road
     bool isOnRoad();
 
-    Tower* create_tower(int);
+    //Tower* create_tower(int);
     Monster* create_monster();
 
 public:
@@ -90,6 +90,7 @@ private:
     Menu *menu = NULL;
 
     std::vector<Monster*> monsterSet;
+    Character *Player;
     std::list<Tower*> towerSet;
 
     int Monster_Pro_Count = 0;

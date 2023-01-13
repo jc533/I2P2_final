@@ -33,11 +33,11 @@ GameWindow::game_init()
     icon = al_load_bitmap("./icon.png");
     background = al_load_bitmap("./StartBackground.jpg");
 
-    for(int i = 0; i < Num_TowerType; i++)
+    /*for(int i = 0; i < Num_TowerType; i++)
     {
         sprintf(buffer, "./Tower/%s.png", TowerClass[i]);
         tower[i] = al_load_bitmap(buffer);
-    }
+    }*/
 
     al_set_display_icon(display, icon);
     al_reserve_samples(3);
@@ -66,7 +66,7 @@ GameWindow::mouse_hover(int startx, int starty, int width, int height)
     return false;
 }
 
-bool
+/*bool
 GameWindow::isOnRoad()
 {
     int startx, starty;
@@ -89,9 +89,9 @@ GameWindow::isOnRoad()
         }
     }
     return false;
-}
+}*/
 
-Tower*
+/*Tower*
 GameWindow::create_tower(int type)
 {
     Tower *t = NULL;
@@ -109,7 +109,7 @@ GameWindow::create_tower(int type)
 
     return t;
 }
-
+*/
 Monster*
 GameWindow::create_monster()
 {
@@ -246,28 +246,23 @@ int
 GameWindow::game_update()
 {
     unsigned int i, j;
-    std::list<Tower*>::iterator it;
+    //std::list<Tower*>::iterator it;
 
     /*TODO:*/
     /*Allow towers to detect if monster enters its range*/
     /*Hint: Tower::DetectAttack*/
-    for(auto tow : towerSet){
+    /*for(auto tow : towerSet){
         for(auto mon : monsterSet){
             tow->DetectAttack(mon);
         }
 
-    }
+    }*/
     // update every monster
     // check if it is destroyed or reaches end point
-    for(i=0; i < monsterSet.size(); i++)
+    /*for(i=0; i < monsterSet.size(); i++)
     {
         bool isDestroyed = false, isReachEnd = false;
 
-        /*TODO:*/
-        /*1. For each tower, traverse its attack set*/
-        /*2. If the monster collide with any attack, reduce the HP of the monster*/
-        /*3. Remember to set isDestroyed to "true" if monster is killed*/
-        /*Hint: Tower::TriggerAttack*/
         for(auto tow:towerSet){
             isDestroyed = tow->TriggerAttack(monsterSet[i]);
         }
@@ -295,14 +290,14 @@ GameWindow::game_update()
             i--;
             delete m;
         }
-    }
+    }*/
 
     /*TODO:*/
     /*1. Update the attack set of each tower*/
     /*Hint: Tower::UpdateAttack*/
-    for(auto tow : towerSet){
+    /*for(auto tow : towerSet){
         tow->UpdateAttack();
-    }
+    }*/
 
 
     return GAME_CONTINUE;
@@ -312,10 +307,10 @@ void
 GameWindow::game_reset()
 {
     // reset game and begin
-    for(auto&& child : towerSet) {
+    /*for(auto&& child : towerSet) {
         delete child;
-    }
-    towerSet.clear();
+    }*/
+    //towerSet.clear();
     monsterSet.clear();
 
 
@@ -350,8 +345,8 @@ GameWindow::game_destroy()
     al_destroy_timer(timer);
     al_destroy_timer(monster_pro);
 
-    for(int i=0;i<5; i++)
-        al_destroy_bitmap(tower[i]);
+    /*for(int i=0;i<5; i++)
+        al_destroy_bitmap(tower[i]);*/
 
     al_destroy_bitmap(icon);
     al_destroy_bitmap(background);
@@ -431,7 +426,7 @@ GameWindow::process_event()
         }
     }
     else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-        if(event.mouse.button == 1) {
+        /*if(event.mouse.button == 1) {
             if(selectedTower != -1 && mouse_hover(0, 0, field_width, field_height)) {
                 Tower *t = create_tower(selectedTower);
 
@@ -467,8 +462,8 @@ GameWindow::process_event()
             // check if user wants to create some kind of tower
             // if so, show tower image attached to cursor
             selectedTower = menu->MouseIn(mouse_x, mouse_y);
-
-        }
+            */
+        //}
     }
     else if(event.type == ALLEGRO_EVENT_MOUSE_AXES){
         mouse_x = event.mouse.x;
@@ -516,8 +511,8 @@ GameWindow::draw_running_map()
     }
 
 
-    for(std::list<Tower*>::iterator it = towerSet.begin(); it != towerSet.end(); it++)
-        (*it)->Draw();
+    /*for(std::list<Tower*>::iterator it = towerSet.begin(); it != towerSet.end(); it++)
+        (*it)->Draw();*/
 
     if(selectedTower != -1)
         Tower::SelectedTower(mouse_x, mouse_y, selectedTower);

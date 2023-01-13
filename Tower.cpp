@@ -96,7 +96,7 @@ Tower::TriggerAttack(Monster *monster)
             /*1. Reduce the monster HP by the harm point*/
             /*2. Erase and delete the attack from attack set*/
             /*3. Return true if the monster's HP is reduced to zero*/
-            isDestroyed = monster->Subtract_HP(attack_set[i]->getHarmPoint());
+            isDestroyed = 0;//monster->Subtract_HP(attack_set[i]->getHarmPoint());
             attack_set.erase(attack_set.begin()+i);
             if(isDestroyed)
                 return true;
