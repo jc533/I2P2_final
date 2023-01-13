@@ -54,7 +54,7 @@ GameWindow::game_init()
 
     level = new LEVEL(1);
     menu = new Menu();
-    Player = create_player("ninja");
+    Player = create_player("knight");
 }
 
 bool

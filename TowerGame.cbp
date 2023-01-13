@@ -60,6 +60,7 @@
 		<Unit filename="Tower.h" />
 		<Unit filename="assassin.h" />
 		<Unit filename="bomb.h" />
+		<Unit filename="character.cpp" />
 		<Unit filename="character.h" />
 		<Unit filename="global.cpp" />
 		<Unit filename="global.h" />
