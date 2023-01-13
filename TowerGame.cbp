@@ -38,15 +38,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Arcane.h" />
-		<Unit filename="Archer.h" />
 		<Unit filename="Attack.cpp" />
 		<Unit filename="Attack.h" />
-		<Unit filename="Canon.h" />
-		<Unit filename="CaveMan.h" />
 		<Unit filename="Circle.cpp" />
 		<Unit filename="Circle.h" />
-		<Unit filename="DemonNijia.h" />
 		<Unit filename="GameWindow.cpp" />
 		<Unit filename="GameWindow.h" />
 		<Unit filename="Level.cpp" />
@@ -60,13 +55,17 @@
 		<Unit filename="Poison.h" />
 		<Unit filename="Slider.cpp" />
 		<Unit filename="Slider.h" />
-		<Unit filename="Storm.h" />
 		<Unit filename="Tower.cpp" />
-		<Unit filename="Tower.h" />
-		<Unit filename="Wolf.h" />
-		<Unit filename="WolfKnight.h" />
+		<Unit filename="assassin.h" />
+		<Unit filename="bomb.h" />
+		<Unit filename="character.h" />
 		<Unit filename="global.cpp" />
 		<Unit filename="global.h" />
+		<Unit filename="knight.h" />
+		<Unit filename="ninja.h" />
+		<Unit filename="turret.h" />
+		<Unit filename="witch.h" />
+		<Unit filename="zombie.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
