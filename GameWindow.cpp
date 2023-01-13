@@ -101,22 +101,7 @@ GameWindow::create_tower(int type)
 
     switch(type)
     {
-    case ARCANE:
-        t = new Arcane(mouse_x, mouse_y);
-        break;
-    case ARCHER:
-        t = new Archer(mouse_x, mouse_y);
-        break;
-    case CANON:
-        t = new Canon(mouse_x, mouse_y);
-        break;
-    case POISON:
-        t = new Poison(mouse_x, mouse_y);
-        break;
-    case STORM:
-        t = new Storm(mouse_x, mouse_y);
-        break;
-    default:
+
         break;
     }
 
@@ -129,26 +114,8 @@ Monster*
 GameWindow::create_monster()
 {
     Monster *m = NULL;
-
-    if(level->MonsterNum[WOLF])
-    {
-        level->MonsterNum[WOLF]--;
-        m = new Wolf(level->ReturnPath());
-    }
-    else if(level->MonsterNum[WOLFKNIGHT])
-    {
-        level->MonsterNum[WOLFKNIGHT]--;
-        m = new WolfKnight(level->ReturnPath());
-    }
-    else if(level->MonsterNum[DEMONNIJIA])
-    {
-        level->MonsterNum[DEMONNIJIA]--;
-        m = new DemonNijia(level->ReturnPath());
-    }
-    else if(level->MonsterNum[CAVEMAN])
-    {
-        level->MonsterNum[CAVEMAN]--;
-        m = new CaveMan(level->ReturnPath());
+    if(m){
+        int hi;
     }
     else
     {
@@ -293,8 +260,8 @@ GameWindow::game_update()
         {
             Monster *m = monsterSet[i];
 
-            menu->Change_Coin(m->getWorth());
-            menu->Gain_Score(m->getScore());
+            //menu->Change_Coin(m->getWorth());
+            //menu->Gain_Score(m->getScore());
             monsterSet.erase(monsterSet.begin() + i);
             i--;
             delete m;

@@ -2,6 +2,7 @@
 #define CHARACTER_H_INCLUDED
 
 #include <stdio.h>
+#include <string>
 #include <vector>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
@@ -11,6 +12,7 @@
 #include "Object.h"
 #include "Circle.h"
 #include "global.h"
+#include "Monster.h"
 
 class Character : public Object{
 public:
@@ -26,7 +28,7 @@ public:
     // process if some of attack in set touches monster
     virtual bool Update();
     virtual bool Move();
-    virtual int Detect(Enemy*);
+    //virtual int Detect(Monster*);
     virtual  bool Subtract_HP(int);
 
     virtual int getWidth() { return 40; }
@@ -43,14 +45,14 @@ protected:
     int speed;
     int direction;
     int direction_count[4];
-    string type;
+    std::string type;
     int attack_frequency;
     //int attack_counter;
     int attack_harm_point;
     //ALLEGRO_BITMAP *attack_img;
 
     // information of tower
-    ALLEGRO_BITMAP std::vector<*img>;
+    //ALLEGRO_BITMAP std::vector<*img>;
 };
 
 #endif // CHARACTER_H_INCLUDED

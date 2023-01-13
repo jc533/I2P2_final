@@ -8,15 +8,7 @@
 #include <time.h>
 #include "Menu.h"
 #include "Level.h"
-#include "WolfKnight.h"
-#include "CaveMan.h"
-#include "Wolf.h"
-#include "DemonNijia.h"
-#include "Arcane.h"
-#include "Archer.h"
-#include "Canon.h"
 #include "Poison.h"
-#include "Storm.h"
 #include "Attack.h"
 #include "Slider.h"
 

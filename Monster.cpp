@@ -7,17 +7,16 @@ const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
 // set counter frequency of drawing moving animation
 const int draw_frequency = 10;
 
-Monster::Monster(std::vector<int> path)
+Monster::Monster(int pos_x, int pos_y)
 {
-    this->path = path;
     this->step = 0;
 
     // default direction is right
     direction = RIGHT;
 
     circle = new Circle;
-    circle->x = (path.front() % 15) * grid_width + grid_width/2;
-    circle->y = (path.front() / 15) * grid_height + grid_height/2;
+    //circle->x = (path.front() % 15) * grid_width + grid_width/2;
+    //circle->y = (path.front() / 15) * grid_height + grid_height/2;
     circle->r = grid_width/2;
 
     direction_count[LEFT] = 1;
@@ -32,6 +31,7 @@ Monster::Monster(std::vector<int> path)
 
 Monster::~Monster()
 {
+    /*
     for(unsigned int i=0; i<moveImg.size(); i++)
     {
         ALLEGRO_BITMAP *img = moveImg[i];
@@ -43,11 +43,10 @@ Monster::~Monster()
     }
     moveImg.clear();
 
-    delete circle;
+    delete circle;*/
 }
-
-void
-Monster::Load_Move()
+/*
+void Monster::Load_Move()
 {
     char buffer[50];
 
@@ -163,4 +162,4 @@ Monster::Subtract_HP(int harm_point)
 
     return (HealthPoint <= 0);
 }
-
+*/

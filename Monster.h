@@ -9,41 +9,42 @@
 #include "Object.h"
 #include "Circle.h"
 #include "global.h"
+#include "character.h"
 
 enum {LEFT=0, RIGHT, UP, DOWN};
 
 class Monster: public Object {
 public:
-    Monster(std::vector<int> path);
+    Monster(int, int);
     virtual ~Monster();
 
     // Draw image per frame
     // override virtual function "Object::Draw"
-    void virtual Draw();
+    void  Draw();
     // Load bitmaps of animation image into container "moveImg"
-    void virtual Load_Move();
+    void  Load_Move();
 
     // Update monster position per frame
     // And detect if it reaches end point but not destroyed
-    bool virtual Move();
+    bool  Move();
 
     // functions that return informations of monster
-    int virtual getDir() { return direction; }
-    int virtual getWorth() { return worth; }
-    int virtual getScore() { return score; }
-    bool virtual Subtract_HP(int);
+    int  getDir() { return direction; }
+
+    bool  Subtract_HP(int);
     // update whole attack set
     // detect if tower needs to attack some monster
-    bool virtual DetectAttack(Player*);
+    //bool virtual DetectAttack(character*);
     // process if some of attack in set touches monster
-    bool virtual TriggerAttack();
-    int virtual State();
+    bool  TriggerAttack();
 
 protected:
     int direction_count[4];
     int HealthPoint;
     int speed;
     int defense;
+    int attack_frequency;
+    int attack_harm_point;
     //int worth = 10;
     //int score = 100;
     char class_name[20];
@@ -59,9 +60,8 @@ private:
     int sprite_pos;
 
     // set of animation images
-    std::vector<ALLEGRO_BITMAP*> moveImg;
+    //std::vector<ALLEGRO_BITMAP*> moveImg;
     // path on map
-    std::vector<int> path;
 
 };
 
