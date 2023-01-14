@@ -15,12 +15,13 @@
 
 class Ninja : public Character{
 public:
-    Ninja(int pos_x, int pos_y):Character(pos_x,pos_y){
+    Ninja(int pos_x, int pos_y):Character(pos_x,pos_y,100){
         defense=5;
         speed=10;
         attack_frequency=10;
         attack_harm_point=5;
         type=0;//"ninja";
+        attack_range = 100;
     };
 };
 

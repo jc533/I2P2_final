@@ -21,7 +21,7 @@ enum class Type {ATTACK,DODGE,MOVE,IDLE};
 enum class Buff {Enlarge,Shrink,Invisible};
 class Character : public Object{
 public:
-    Character(int, int);
+    Character(int, int, int);
     virtual ~Character();
 
     // override virtual function "Object::Draw"
@@ -44,6 +44,7 @@ public:
 
     int getWidth() { return 40; }
     int getHeight() { return 40; }
+    Type GetState(){ return state;}
     Circle* get_player_pos();
     // show selected tower image on cursor position
     //static void SelectedTower(int, int, int);
@@ -59,13 +60,15 @@ protected:
     int size=1;
     int pos[2];
     int type;
-    int attack_frequency;
+    int attack_frequency=60;
     int dodge_fequency=60;
     bool dodged=0;
     bool attacked=0;
-    int counter;
+    unsigned int counter;
+    int attack_range=40;
     //int attack_counter;
     int attack_harm_point;
+    Circle *weapon_range;
     //ALLEGRO_BITMAP *attack_img;
 
     // information of tower

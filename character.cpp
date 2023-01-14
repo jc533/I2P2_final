@@ -1,9 +1,10 @@
 #include "character.h"
 
 
-Character::Character(int pos_x = 0, int pos_y = 0)
+Character::Character(int pos_x = 0, int pos_y = 0,int range=100)
 {
     this->circle = new Circle(pos_x, pos_y, 70);
+    this->weapon_range = new Circle(pos_x, pos_y, range);
 }
 
 Character::~Character()
@@ -15,14 +16,19 @@ Character::~Character()
 
 void
 Character::Update(){
+    counter+=1;
     if(Count(dodge_fequency)){
         dodged = 0;
+    }
+    if(Count(attack_frequency)){
+        attacked = 0;
     }
     switch(state){
         case Type::MOVE:
         Move();
         break;
         case Type::ATTACK:
+        if(!attacked)
         Attack();
         break;
         case Type::DODGE:
@@ -47,9 +53,8 @@ Character::Move(){
 
 }
 void
-Character::Attack(){
+Character::Attack(){attacked=1;}
 
-}
 void
 Character::Dodge(){
     circle->x += 15 * speed * axis_x[direction];
@@ -76,8 +81,7 @@ Character::get_player_pos(){
 
 bool
 Character::Count(int timer){
-    counter = (counter + 1) % timer;
-    if(counter==0)return 1;
+    if(counter%timer==0)return 1;
     return 0;
 }
 
