@@ -35,6 +35,7 @@ public:
     void Move();
     void Dodge();
     void Attack();
+    bool Count(int timer);
     void SetState(Type,int dir=-1);
 
     int Detect(Monster*);
@@ -59,6 +60,10 @@ protected:
     int pos[2];
     int type;
     int attack_frequency;
+    int dodge_fequency=15;
+    bool dodged=0;
+    bool attacked=0;
+    int counter;
     //int attack_counter;
     int attack_harm_point;
     //ALLEGRO_BITMAP *attack_img;

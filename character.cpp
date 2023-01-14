@@ -15,6 +15,9 @@ Character::~Character()
 
 void
 Character::Update(){
+    if(Count(dodge_fequency)){
+        dodged = 0;
+    }
     switch(state){
         case Type::MOVE:
         Move();
@@ -23,7 +26,9 @@ Character::Update(){
         Attack();
         break;
         case Type::DODGE:
-        Dodge();
+        if(!dodged){ 
+            Dodge();
+        }
         break;
         case Type::IDLE:
         break;
@@ -47,8 +52,9 @@ Character::Attack(){
 }
 void
 Character::Dodge(){
-    circle->x += 10 * speed * axis_x[direction];
-    circle->y += 10 * speed * axis_y[direction];
+    circle->x += 15 * speed * axis_x[direction];
+    circle->y += 15 * speed * axis_y[direction];
+    dodged = 1;
 }
 void
 Character::Draw(){
@@ -65,6 +71,13 @@ Character::Draw(){
 Circle*
 Character::get_player_pos(){
     return circle;
+}
+
+bool
+Character::Count(int timer){
+    counter = (counter + 1) % timer;
+    if(counter==0)return 1;
+    return 0;
 }
 
 
