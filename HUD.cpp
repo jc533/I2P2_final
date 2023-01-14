@@ -8,6 +8,11 @@ HUD::HUD(){
     hudFont = al_load_ttf_font("pirulen.ttf", 12, 0);
 }
 
+HUD::~HUD()
+{
+    al_destroy_font(hudFont);
+}
+
 void HUD::Draw(){
 
     al_draw_filled_rectangle(300, 20, 1300, 60, al_map_rgb(139, 0, 0));

@@ -99,7 +99,6 @@ Monster::Update(Character *player){
     if(circle->r * circle->r *300 >= player_distance(player->get_player_pos(), circle)){
         return true;
     }
-
     return false;
 
 }
@@ -108,8 +107,9 @@ Monster::Move(Character *player)
 {
     int target_x, target_y;
     int self_x, self_y;
+    self_x = circle->x;
+    self_y = circle->y;
     counter = (counter + 1) % draw_frequency;
-
     if(counter == 0)
         sprite_pos = (sprite_pos + 1) % direction_count[direction];
     if(Update(player)){
@@ -120,11 +120,9 @@ Monster::Move(Character *player)
                 direction = RIGHT;
             }
 
-
             else{
                 direction = LEFT;
             }
-
         }
         else if(abs(target_x - self_x) < abs(target_y - self_y)){
             if(target_y - self_y > 0){
