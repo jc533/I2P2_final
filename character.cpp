@@ -37,26 +37,21 @@ Character::SetState(Type next_state,int dir){
 
 void
 Character::Move(){
-    switch (direction){
-        case UP:
-        circle->y -= speed;
-        break;
-        case DOWN:
-        circle->y += speed;
-        break;
-    }
+    circle->x += speed * axis_x[direction];
+    circle->y += speed * axis_y[direction];
+
 }
 void
 Character::Attack(){
-    
+
 }
 void
 Character::Dodge(){
-    
+
 }
 void
 Character::Draw(){
-    
+
     int draw_x = circle->x - (TowerWidth[this->type]/2);
     int draw_y = circle->y - (TowerHeight[this->type] - (TowerWidth[this->type]/2));
     char filename[50];

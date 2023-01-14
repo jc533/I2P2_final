@@ -312,7 +312,7 @@ GameWindow::game_update()
     /*for(auto tow : towerSet){
         tow->UpdateAttack();
     }*/
-
+    Player->Update();
 
     return GAME_CONTINUE;
 }
@@ -451,6 +451,20 @@ GameWindow::process_event()
             case ALLEGRO_KEY_E:
                 Player->SetState(Type::ATTACK);
                 break;
+            case ALLEGRO_KEY_SPACE:
+                Player->SetState(Type::DODGE);
+                break;
+        }
+    }
+    else if(event.type == ALLEGRO_EVENT_KEY_UP) {
+        switch(event.keyboard.keycode) {
+            case ALLEGRO_KEY_W:
+            case ALLEGRO_KEY_A:
+            case ALLEGRO_KEY_S:
+            case ALLEGRO_KEY_D:
+            case ALLEGRO_KEY_E:
+            case ALLEGRO_KEY_SPACE:
+            Player->SetState(Type::IDLE);
         }
     }
 
