@@ -383,7 +383,7 @@ GameWindow::process_event()
     // offset for pause window
     int offsetX = field_width/2 - 200;
     int offsetY = field_height/2 - 200;
-    bool key_state[ALLEGRO_KEY_MAX];
+    static bool key_state[ALLEGRO_KEY_MAX];
     al_wait_for_event(event_queue, &event);
     redraw = false;
 
