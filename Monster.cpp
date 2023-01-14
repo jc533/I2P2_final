@@ -104,15 +104,36 @@ Monster::Update(Character *player){
 
 }
 bool
-Monster::Move()
+Monster::Move(Character *player)
 {
-    int target_grid_x, target_grid_y;
-
+    int target_x, target_y;
+    int self_x, self_y;
     counter = (counter + 1) % draw_frequency;
 
     if(counter == 0)
         sprite_pos = (sprite_pos + 1) % direction_count[direction];
+    if(Update(player)){
+        target_x = player->get_player_pos()->x;
+        target_y = player->get_player_pos()->y;
+        if(abs(target_x - self_x) > abs(target_y - self_y) ){
+            if(target_x - self_x > 0)
+                direction = RIGHT;
+            else
+                direction = LEFT;
+        }
+        else{
+            if(target_y - self_y > 0){
+                direction = UP;
+            }
+            else
+                direction = DOWN;
+        }
 
+
+
+        circle->x += speed * axis_x[direction];
+        circle->y += speed * axis_y[direction];
+    }
     //if(step + 1 < path.size())
     //{
         // coordinate of next grid

@@ -24,7 +24,7 @@ public:
     void  Load_Move();
     // Update monster position per frame
     // And detect if it reaches end point but not destroyed
-    bool  Move();
+    bool  Move(Character*);
     // functions that return informations of monster
     int  getDir() { return direction; }
     bool  Subtract_HP(int);
