@@ -60,7 +60,7 @@ protected:
     int pos[2];
     int type;
     int attack_frequency;
-    int dodge_fequency=15;
+    int dodge_fequency=60;
     bool dodged=0;
     bool attacked=0;
     int counter;

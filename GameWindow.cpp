@@ -384,7 +384,6 @@ GameWindow::process_event()
     int offsetX = field_width/2 - 200;
     int offsetY = field_height/2 - 200;
     static bool key_state[ALLEGRO_KEY_MAX];
-    key_state[ALLEGRO_KEY_SPACE]=0;
     al_wait_for_event(event_queue, &event);
     redraw = false;
 
@@ -453,8 +452,7 @@ GameWindow::process_event()
                 key_state[ALLEGRO_KEY_E]=1;
                 break;
             case ALLEGRO_KEY_SPACE:
-                if(!key_state[ALLEGRO_KEY_SPACE])
-                key_state[ALLEGRO_KEY_SPACE]=0;
+                key_state[ALLEGRO_KEY_SPACE]=1;
                 break;
         }
     }else if(event.type == ALLEGRO_EVENT_KEY_UP) {
@@ -481,15 +479,13 @@ GameWindow::process_event()
                 Player->SetState(Type::IDLE);
                 break;
             case ALLEGRO_KEY_SPACE:
-                key_state[ALLEGRO_KEY_SPACE]=1;
-                Player->SetState(Type::DODGE);
+                key_state[ALLEGRO_KEY_SPACE]=0;
                 break;
         }
     }
     if(key_state[ALLEGRO_KEY_SPACE]){
-        fprintf(stderr,"fuckkkkkkkkkk %d\n",key_state[ALLEGRO_KEY_W]);
-    }
-    else if(key_state[ALLEGRO_KEY_W]){
+        Player->SetState(Type::DODGE);
+    }else if(key_state[ALLEGRO_KEY_W]){
         Player->SetState(Type::MOVE,UP);
     }else if(key_state[ALLEGRO_KEY_S])Player->SetState(Type::MOVE,DOWN);
     else if(key_state[ALLEGRO_KEY_A])Player->SetState(Type::MOVE,LEFT);
@@ -497,7 +493,7 @@ GameWindow::process_event()
     else if(key_state[ALLEGRO_KEY_E])Player->SetState(Type::ATTACK);
 
 
-    
+
     if(redraw) {
         // update each object in game
         instruction = game_update();
