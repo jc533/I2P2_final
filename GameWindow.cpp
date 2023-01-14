@@ -69,30 +69,6 @@ GameWindow::mouse_hover(int startx, int starty, int width, int height)
     return false;
 }
 
-/*bool
-GameWindow::isOnRoad()
-{
-    int startx, starty;
-    int widthOfTower;
-
-    widthOfTower = TowerWidth[selectedTower];
-
-    for(int i=0; i < NumOfGrid; i++)
-    {
-        startx = (i % 15) * 40;
-        starty = (i / 15) * 40;
-
-        if(level->isRoad(i)) {
-            if((mouse_x + (widthOfTower/2) < startx) || (mouse_x - (widthOfTower/2) > startx + grid_width))
-                continue;
-            else if((mouse_y + (widthOfTower/2) < starty) || (mouse_y > starty + grid_height))
-                continue;
-            else
-                return true;
-        }
-    }
-    return false;
-}*/
 /*Player*/
 Character*
 GameWindow::create_player(std::string type){
@@ -105,55 +81,10 @@ GameWindow::create_player(std::string type){
     return p;
 }
 
-
-/*Tower*
-GameWindow::create_tower(int type)
-{
-    Tower *t = NULL;
-
-    if(isOnRoad())
-        return t;
-
-    switch(type)
-    {
-
-        break;
-    }
-
-    menu->Change_Coin(menu->getTowerCoin(type));
-
-    return t;
-}
-*/
 Monster*
 GameWindow::create_monster()
 {
     Monster *m = NULL;
-    /*if(level->MonsterNum[WOLF])
-    {
-        level->MonsterNum[WOLF]--;
-        m = new Wolf(level->ReturnPath());
-    }
-    else if(level->MonsterNum[WOLFKNIGHT])
-    {
-        level->MonsterNum[WOLFKNIGHT]--;
-        m = new WolfKnight(level->ReturnPath());
-    }
-    else if(level->MonsterNum[DEMONNIJIA])
-    {
-        level->MonsterNum[DEMONNIJIA]--;
-        m = new DemonNijia(level->ReturnPath());
-    }
-    else if(level->MonsterNum[CAVEMAN])
-    {
-        level->MonsterNum[CAVEMAN]--;
-        m = new CaveMan(level->ReturnPath());
-    }
-    else
-    {
-        al_stop_timer(monster_pro);
-    }
-    */
     return m;
 }
 
@@ -261,58 +192,6 @@ int
 GameWindow::game_update()
 {
     unsigned int i, j;
-    //std::list<Tower*>::iterator it;
-
-    /*TODO:*/
-    /*Allow towers to detect if monster enters its range*/
-    /*Hint: Tower::DetectAttack*/
-    /*for(auto tow : towerSet){
-        for(auto mon : monsterSet){
-            tow->DetectAttack(mon);
-        }
-
-    }*/
-    // update every monster
-    // check if it is destroyed or reaches end point
-    /*for(i=0; i < monsterSet.size(); i++)
-    {
-        bool isDestroyed = false, isReachEnd = false;
-
-        for(auto tow:towerSet){
-            isDestroyed = tow->TriggerAttack(monsterSet[i]);
-        }
-        isReachEnd = monsterSet[i]->Move();
-
-        if(isDestroyed)
-        {
-            Monster *m = monsterSet[i];
-
-            //menu->Change_Coin(m->getWorth());
-            //menu->Gain_Score(m->getScore());
-            monsterSet.erase(monsterSet.begin() + i);
-            i--;
-            delete m;
-
-        }
-        else if(isReachEnd)
-        {
-            Monster *m = monsterSet[i];
-
-            if(menu->Subtract_HP())
-                return GAME_EXIT;
-
-            monsterSet.erase(monsterSet.begin() + i);
-            i--;
-            delete m;
-        }
-    }*/
-
-    /*TODO:*/
-    /*1. Update the attack set of each tower*/
-    /*Hint: Tower::UpdateAttack*/
-    /*for(auto tow : towerSet){
-        tow->UpdateAttack();
-    }*/
     Player->Update();
 
     return GAME_CONTINUE;
@@ -327,7 +206,6 @@ GameWindow::game_reset()
     }*/
     //towerSet.clear();
     monsterSet.clear();
-    //delete Player;
 
 
     selectedTower = -1;
@@ -361,8 +239,8 @@ GameWindow::game_destroy()
     al_destroy_timer(timer);
     al_destroy_timer(monster_pro);
 
-    /*for(int i=0;i<5; i++)
-        al_destroy_bitmap(tower[i]);*/
+    for(int i=0;i<5; i++)
+        al_destroy_bitmap(tower[i]);
 
     al_destroy_bitmap(icon);
     al_destroy_bitmap(background);
@@ -373,6 +251,8 @@ GameWindow::game_destroy()
 
     delete level;
     delete menu;
+    delete hud;
+    delete Player;
 }
 
 int
@@ -393,10 +273,8 @@ GameWindow::process_event()
             redraw = true;
 
 
-            Coin_Inc_Count = (Coin_Inc_Count + 1) % CoinSpeed;
 
-            if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro))
-            {
+            if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro)){
                 al_stop_timer(timer);
                 return GAME_EXIT;
             }
@@ -515,18 +393,6 @@ GameWindow::draw_running_map()
     al_clear_to_color(al_map_rgb(100, 100, 100));
     al_draw_bitmap(background, 0, 0, 0);
 
-    for(i = 0; i < field_height/40; i++)
-    {
-        for(j = 0; j < field_width/40; j++)
-        {
-            char buffer[50];
-            sprintf(buffer, "%d", i*15 + j);
-            if(level->isRoad(i*15 + j)) {
-                al_draw_filled_rectangle(j*40, i*40, j*40+40, i*40+40, al_map_rgb(255, 244, 173));
-            }
-            //al_draw_text(font, al_map_rgb(0, 0, 0), j*40, i*40, ALLEGRO_ALIGN_CENTER, buffer);
-        }
-    }
     for(i=0; i<monsterSet.size(); i++)
     {
         monsterSet[i]->Draw();
@@ -536,12 +402,8 @@ GameWindow::draw_running_map()
     /*for(std::list<Tower*>::iterator it = towerSet.begin(); it != towerSet.end(); it++)
         (*it)->Draw();*/
 
-    if(selectedTower != -1)
-        Tower::SelectedTower(mouse_x, mouse_y, selectedTower);
+    //al_draw_filled_rectangle(field_width, 0, window_width, window_height, al_map_rgb(100, 100, 100));
 
-    al_draw_filled_rectangle(field_width, 0, window_width, window_height, al_map_rgb(100, 100, 100));
-
-    menu->Draw();
     hud->Draw();
     al_flip_display();
 }
