@@ -17,6 +17,8 @@
 
 class Monster;
 
+enum class Type {ATTACK,DODGE,MOVE,IDLE};
+enum class Buff {Enlarge,Shrink,Invisible};
 class Character : public Object{
 public:
     Character(int, int);
@@ -33,6 +35,7 @@ public:
     void Move();
     void Dodge();
     void Attack();
+    void SetState(Type,int);
 
     int Detect(Monster*);
     void Subtract_HP(int);
@@ -46,13 +49,11 @@ public:
 
 protected:
 
-    enum class Type {ATTACK,DODGE,MOVE,IDLE};
-    enum class Buff {Enlarge,Shrink,Invisible};
     Type state;
     Buff buff_state;
     int defense;
     int speed;
-    int direction;
+    int direction=0;
     int direction_count[4];
     int size=1;
     int pos[2];

@@ -11,7 +11,6 @@
 #include "global.h"
 #include "character.h"
 
-enum {LEFT=0, RIGHT, UP, DOWN};
 class Character;
 class Monster: public Object {
 public:

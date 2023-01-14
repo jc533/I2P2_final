@@ -29,6 +29,12 @@ Character::Update(){
         break;
     }
 }
+void
+Character::SetState(Type next_state,int dir=-1){
+    state = next_state;
+    
+    direction = dir==-1?direction:dir;
+}
 
 void
 Character::Move(){

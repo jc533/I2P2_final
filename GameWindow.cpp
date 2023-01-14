@@ -391,8 +391,6 @@ GameWindow::process_event()
         if(event.timer.source == timer) {
             redraw = true;
 
-            if(Coin_Inc_Count == 0)
-                menu->Change_Coin(Coin_Time_Gain);
 
             Coin_Inc_Count = (Coin_Inc_Count + 1) % CoinSpeed;
 
@@ -438,54 +436,19 @@ GameWindow::process_event()
                 else
                     al_play_sample_instance(backgroundSound);
                 break;
+            case ALLEGRO_KEY_W:
+                Player->SetState(Type::MOVE,UP);
+                break;
+            case ALLEGRO_KEY_A:
+                Player->SetState(Type::MOVE,LEFT);
+                break;
+            case ALLEGRO_KEY_S:
+                Player->SetState(Type::MOVE,DOWN);
+                break;
+            case ALLEGRO_KEY_D:
+                Player->SetState(Type::MOVE,RIGHT);
+                break;
         }
-    }
-    else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-        /*if(event.mouse.button == 1) {
-            if(selectedTower != -1 && mouse_hover(0, 0, field_width, field_height)) {
-                Tower *t = create_tower(selectedTower);
-
-                if(t == NULL)
-                    printf("Wrong place\n");
-                else {
-                    towerSet.push_back(t);
-                    towerSet.sort(compare);
-                }
-            } else if(selectedTower == -1){
-                std::list<Tower*>::iterator it = towerSet.begin();
-                if(lastClicked != -1)
-                {
-                    std::advance(it, lastClicked);
-                    (*it)->ToggleClicked();
-                }
-                for(i=0, it = towerSet.begin(); it != towerSet.end(); it++, i++)
-                {
-                    Circle *circle = (*it)->getCircle();
-                    int t_width = (*it)->getWidth();
-
-                    if(mouse_hover(circle->x - t_width/2, circle->y, t_width, t_width/2))
-                    {
-                        (*it)->ToggleClicked();
-                        lastClicked = i;
-                        break;
-                    } else {
-                        lastClicked = -1;
-                    }
-                }
-
-            }
-            // check if user wants to create some kind of tower
-            // if so, show tower image attached to cursor
-            selectedTower = menu->MouseIn(mouse_x, mouse_y);
-            */
-        //}
-    }
-    else if(event.type == ALLEGRO_EVENT_MOUSE_AXES){
-        mouse_x = event.mouse.x;
-        mouse_y = event.mouse.y;
-
-        menu->MouseIn(mouse_x, mouse_y);
-
     }
 
     if(redraw) {
