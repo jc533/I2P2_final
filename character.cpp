@@ -30,15 +30,21 @@ Character::Update(){
     }
 }
 void
-Character::SetState(Type next_state,int dir=-1){
+Character::SetState(Type next_state,int dir){
     state = next_state;
-    
     direction = dir==-1?direction:dir;
 }
 
 void
 Character::Move(){
-    
+    switch (direction){
+        case UP:
+        circle->y -= speed;
+        break;
+        case DOWN:
+        circle->y += speed;
+        break;
+    }
 }
 void
 Character::Attack(){
@@ -60,8 +66,10 @@ Character::Draw(){
 }
 
 
-
-
+Circle*
+Character::get_player_pos(){
+    return circle;
+}
 
 
 

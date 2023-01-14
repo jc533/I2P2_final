@@ -35,7 +35,7 @@ public:
     void Move();
     void Dodge();
     void Attack();
-    void SetState(Type,int);
+    void SetState(Type,int dir=-1);
 
     int Detect(Monster*);
     void Subtract_HP(int);
@@ -43,7 +43,7 @@ public:
 
     int getWidth() { return 40; }
     int getHeight() { return 40; }
-
+    Circle* get_player_pos();
     // show selected tower image on cursor position
     //static void SelectedTower(int, int, int);
 

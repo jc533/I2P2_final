@@ -448,6 +448,9 @@ GameWindow::process_event()
             case ALLEGRO_KEY_D:
                 Player->SetState(Type::MOVE,RIGHT);
                 break;
+            case ALLEGRO_KEY_E:
+                Player->SetState(Type::ATTACK);
+                break;
         }
     }
 
