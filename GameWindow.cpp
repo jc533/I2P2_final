@@ -414,7 +414,20 @@ GameWindow::process_event()
     else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
         return GAME_EXIT;
     }
-    else if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
+    else if(event.type == ALLEGRO_EVENT_KEY_UP) {
+        fprintf(stderr,"up %d\n",event.keyboard.keycode);
+        switch(event.keyboard.keycode) {
+            case ALLEGRO_KEY_W:
+            case ALLEGRO_KEY_A:
+            case ALLEGRO_KEY_S:
+            case ALLEGRO_KEY_D:
+            case ALLEGRO_KEY_E:
+            case ALLEGRO_KEY_SPACE:
+            Player->SetState(Type::IDLE);
+            break;
+        }
+    }else if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
+        fprintf(stderr,"pressed %d\n",event.keyboard.keycode);
         switch(event.keyboard.keycode) {
 
             case ALLEGRO_KEY_P:
@@ -454,17 +467,6 @@ GameWindow::process_event()
             case ALLEGRO_KEY_SPACE:
                 Player->SetState(Type::DODGE);
                 break;
-        }
-    }
-    else if(event.type == ALLEGRO_EVENT_KEY_UP) {
-        switch(event.keyboard.keycode) {
-            case ALLEGRO_KEY_W:
-            case ALLEGRO_KEY_A:
-            case ALLEGRO_KEY_S:
-            case ALLEGRO_KEY_D:
-            case ALLEGRO_KEY_E:
-            case ALLEGRO_KEY_SPACE:
-            Player->SetState(Type::IDLE);
         }
     }
 

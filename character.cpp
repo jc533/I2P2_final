@@ -47,7 +47,8 @@ Character::Attack(){
 }
 void
 Character::Dodge(){
-
+    circle->x += 10 * speed * axis_x[direction];
+    circle->y += 10 * speed * axis_y[direction];
 }
 void
 Character::Draw(){
