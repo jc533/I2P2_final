@@ -193,12 +193,15 @@ GameWindow::game_run()
 int
 GameWindow::game_update(){
     Player->Update();
+    int i = 0;
     for(auto mon: monsterSet){
         if(mon->TriggerAttack(Player)){
             Player->Subtract_HP(mon->get_damage());
         }
         if(mon->DetectAttack(Player)){
-            mon->Subtract_HP(Player);
+            if(mon->Subtract_HP(Player)){
+                monsterSet.erase(monsterSet.begin() + i++);
+            }
         }
         mon->Move(Player);
     }

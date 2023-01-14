@@ -34,7 +34,7 @@ public:
     // process if some of attack in set touches monster
     bool TriggerAttack(Character*);
     bool Update(Character*);
-
+    bool is_dead();
 protected:
     int direction_count[4];
     int HealthPoint;
