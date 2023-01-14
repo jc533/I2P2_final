@@ -33,7 +33,8 @@ public:
     // detect if tower needs to attack some monster
     bool DetectAttack(Character*);
     // process if some of attack in set touches monster
-    bool  TriggerAttack();
+    bool TriggerAttack();
+    bool Update();
 
 protected:
     int direction_count[4];

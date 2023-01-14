@@ -89,6 +89,17 @@ Monster::Draw()
 }
 
 bool
+Monster::Update(){
+
+
+
+
+
+
+
+
+}
+bool
 Monster::Move()
 {
     int target_grid_x, target_grid_y;
