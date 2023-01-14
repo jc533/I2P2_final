@@ -55,6 +55,7 @@ Character::Dodge(){
     circle->x += 15 * speed * axis_x[direction];
     circle->y += 15 * speed * axis_y[direction];
     dodged = 1;
+    SetState(Type::IDLE);
 }
 void
 Character::Draw(){
