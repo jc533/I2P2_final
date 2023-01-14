@@ -33,7 +33,7 @@ public:
     bool DetectAttack(Character*);
     // process if some of attack in set touches monster
     bool TriggerAttack();
-    bool Update();
+    bool Update(Character*);
 
 protected:
     int direction_count[4];

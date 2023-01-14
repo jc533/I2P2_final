@@ -1,12 +1,12 @@
 #include "Monster.h"
 
-//const int axis_x[] = {-1, 1, 0, 0};
-//const int axis_y[] = {0, 0, -1, 1};
 const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
 
 // set counter frequency of drawing moving animation
 const int draw_frequency = 10;
-
+int player_distance(Circle *player_pos, Circle *monster_pos){
+    return (player_pos->x - monster_pos->x)*(player_pos->x - monster_pos->x) + (player_pos->y - monster_pos->y) * (player_pos->y - monster_pos->y);
+}
 Monster::Monster(int pos_x, int pos_y)
 {
     this->step = 0;
@@ -15,6 +15,7 @@ Monster::Monster(int pos_x, int pos_y)
     direction = RIGHT;
 
     circle = new Circle;
+
     //circle->x = (path.front() % 15) * grid_width + grid_width/2;
     //circle->y = (path.front() / 15) * grid_height + grid_height/2;
     circle->r = grid_width/2;
@@ -89,17 +90,17 @@ Monster::Draw()
 }
 
 bool
-Monster::Update(){
+Monster::Update(Character *player){
     int target_x, target_y;
     counter = (counter + 1) % draw_frequency;
     if(counter == 0)
         sprite_pos = (sprite_pos + 1) % direction_count[direction];
 
-    if(circle){
-
+    if(circle->r * circle->r *400 >= player_distance(player->get_player_pos(), circle)){
+        return true;
     }
 
-
+    return false;
 
 }
 bool

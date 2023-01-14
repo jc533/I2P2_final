@@ -3,3 +3,12 @@ obj/
 allegro.log
 *.log
 bin/Debug/TowerGame.exe
+allegro.log
+obj/Debug/Tower.o
+obj/Debug/Monster.o
+obj/Debug/Main.o
+obj/Debug/GameWindow.o
+allegro.log
+bin/Debug/TowerGame.exe
+TowerGame.depend
+*.layout
