@@ -13,7 +13,7 @@ class Assassin : public Monster{
 public:
     Assassin(int pos_x, int pos_y):Monster(pos_x,pos_y){
         defense=5;
-        speed=10;
+        speed=5;
         attack_frequency=10;
         attack_harm_point=5;
         strncpy(class_name, "Wolf", 20);

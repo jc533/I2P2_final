@@ -55,7 +55,7 @@ private:
     int counter;
     // animation image of current direction
     int sprite_pos;
-
+    int move_delay;
     // set of animation images
     std::vector<ALLEGRO_BITMAP*> moveImg;
     //path on map
