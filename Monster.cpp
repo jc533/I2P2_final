@@ -68,8 +68,7 @@ void Monster::Load_Move()
 }
 
 void
-Monster::Draw()
-{
+Monster::Draw(){
     int w, h;
     int offset = 0;
 
@@ -97,17 +96,14 @@ Monster::Update(Character *player){
     counter = (counter + 1) % draw_frequency;
     if(counter == 0)
         sprite_pos = (sprite_pos + 1) % direction_count[direction];
-
-    if(circle->r * circle->r *300 >= player_distance(player->get_player_pos(), circle) && circle->r * circle->r *20 <= player_distance(player->get_player_pos(), circle)){
+    if(circle->r * circle->r *300 >= player_distance(player->get_player_pos(), circle) && circle->r * circle->r * 10 <= player_distance(player->get_player_pos(), circle)){
         return true;
     }
     return false;
 
 }
 void
-Monster::Move(Character *player)
-{
-
+Monster::Move(Character *player){
     int target_x, target_y;
     int self_x, self_y;
     self_x = circle->x;
@@ -126,7 +122,6 @@ Monster::Move(Character *player)
                 if(target_x - self_x > 0){
                     direction = RIGHT;
                 }
-
                 else{
                     direction = LEFT;
                 }
@@ -134,83 +129,57 @@ Monster::Move(Character *player)
             else if(abs(target_x - self_x) < abs(target_y - self_y)){
                 if(target_y - self_y > 0){
                     direction = DOWN;
-
                 }
                 else{
                     direction = UP;
-
                 }
-
             }
             move_delay %= 5;
         }
-
-
-
-
     }
-    //if(step + 1 < path.size())
-    //{
-        // coordinate of next grid
-        //target_grid_x = (path[step] % 15) * grid_width + grid_width/2;
-        //target_grid_y = (path[step] / 15) * grid_height + grid_height/2;
-
-        /*if(circle->x == target_grid_x && circle->y == target_grid_y)
+}
+/*void
+Monster::TriggerAttack(){
+    bool isDestroyed = false;
+    for(unsigned int i = 0; i < this->attack_set.size(); i++)
+    {
+        if(Circle::isOverlap(attack_set[i]->getCircle(), monster->getCircle()))
         {
-            int cur_grid = path[step];
-            int next_grid = path[step+1];
-            int prev_direction = direction;
+            /*TODO:*/
+            /*1. Reduce the monster HP by the harm point*/
+            /*2. Erase and delete the attack from attack set*/
+            /*3. Return true if the monster's HP is reduced to zero*/
+            //isDestroyed = 0;//monster->Subtract_HP(attack_set[i]->getHarmPoint());
+            //attack_set.erase(attack_set.begin()+i);
+            //if(isDestroyed)
+                //return true;
 
-            switch(direction)
-            {
-                case LEFT:
-                case RIGHT:
-                    if(next_grid == cur_grid - 15)
-                        direction = UP;
-                    else if(next_grid == cur_grid + 15)
-                        direction = DOWN;
-
-                    break;
-                case UP:
-                case DOWN:
-                    if(next_grid == cur_grid - 1)
-                        direction = LEFT;
-                    else if(next_grid == cur_grid + 1)
-                        direction = RIGHT;
-
-                    break;
-
-            }
-
-            step++;
-
-            if(prev_direction != direction)
-                sprite_pos = 0;
-
-            // reach final grid and set end point
-            if(step == path.size() - 1){
-                end_x = circle->x + axis_x[direction] * (2 * grid_width);
-                end_y = circle->y + axis_y[direction] * (2 * grid_height);
-            }*/
         //}
     //}
+    //return false;
+//}
 
-    // when getting to end point, return true
-    /*if(circle->x == end_x && circle->y == end_y)
-        return true;*/
+bool
+Monster::TriggerAttack(Character *player){
+    if(Update(player)){
+        return true;
+    }
+    return false;
+}
 
-    //circle->x += speed * axis_x[direction];
-    //circle->y += speed * axis_y[direction];
-
-    // if not reaching end point, return false
+bool
+Monster::DetectAttack(Character *player){
+    if(player->GetState() == Type::ATTACK && Circle::isOverlap(player->get_attack_range(),this->getCircle())){
+        fprintf(stderr, "wtf");
+        return true;
+    }
+    return false;
 
 }
 
-/*bool
-Monster::Subtract_HP(int harm_point)
-{
-    HealthPoint -= harm_point;
-
+bool
+Monster::Subtract_HP(Character *player){
+    HealthPoint -= player->get_damage();
     return (HealthPoint <= 0);
 }
-*/
+

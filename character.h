@@ -45,7 +45,9 @@ public:
     int getWidth() { return 40; }
     int getHeight() { return 40; }
     Type GetState(){ return state;}
+    int get_damage(){return damage;}
     Circle* get_player_pos();
+    Circle* get_attack_range();
     // show selected tower image on cursor position
     //static void SelectedTower(int, int, int);
 
@@ -53,6 +55,7 @@ protected:
 
     Type state;
     Buff buff_state;
+    int damage=10;
     int defense;
     int speed;
     int direction=0;

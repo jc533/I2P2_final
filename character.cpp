@@ -32,7 +32,7 @@ Character::Update(){
         Attack();
         break;
         case Type::DODGE:
-        if(!dodged){ 
+        if(!dodged){
             Dodge();
         }
         break;
@@ -85,7 +85,9 @@ Character::Count(int timer){
     return 0;
 }
 
-
+Circle* Character::get_attack_range(){
+    return weapon_range;
+}
 
 
 

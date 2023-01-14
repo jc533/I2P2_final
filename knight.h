@@ -22,6 +22,7 @@ public:
         attack_harm_point=10;
         type=1;//"Knight";
         attack_range = 200;
+        damage = 10;
     };
 };
 

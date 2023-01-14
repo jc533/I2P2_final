@@ -22,6 +22,7 @@ public:
         attack_harm_point=5;
         type=0;//"ninja";
         attack_range = 100;
+        damage = 5;
     };
 };
 

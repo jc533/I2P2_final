@@ -27,12 +27,12 @@ public:
     void Move(Character*);
     // functions that return informations of monster
     int  getDir() { return direction; }
-    bool  Subtract_HP(int);
+    bool Subtract_HP(Character*);
     // update whole attack set
-    // detect if tower needs to attack some monster
+
     bool DetectAttack(Character*);
     // process if some of attack in set touches monster
-    bool TriggerAttack();
+    bool TriggerAttack(Character*);
     bool Update(Character*);
 
 protected:
@@ -55,7 +55,7 @@ private:
     int counter;
     // animation image of current direction
     int sprite_pos;
-    int move_delay;
+    unsigned int move_delay;
     // set of animation images
     std::vector<ALLEGRO_BITMAP*> moveImg;
     //path on map
