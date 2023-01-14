@@ -40,8 +40,10 @@
 		</Compiler>
 		<Unit filename="Attack.cpp" />
 		<Unit filename="Attack.h" />
+		<Unit filename="Bomba.h" />
 		<Unit filename="Circle.cpp" />
 		<Unit filename="Circle.h" />
+		<Unit filename="End.h" />
 		<Unit filename="GameWindow.cpp" />
 		<Unit filename="GameWindow.h" />
 		<Unit filename="Item.h" />
@@ -56,8 +58,10 @@
 		<Unit filename="Poison.h" />
 		<Unit filename="Slider.cpp" />
 		<Unit filename="Slider.h" />
+		<Unit filename="Start.h" />
 		<Unit filename="Tower.cpp" />
 		<Unit filename="Tower.h" />
+		<Unit filename="Weapon.h" />
 		<Unit filename="assassin.h" />
 		<Unit filename="bomb.h" />
 		<Unit filename="character.cpp" />

@@ -60,10 +60,10 @@ public:
     bool mouse_hover(int, int, int, int);
     // detect if a tower will be constructed on road
     bool isOnRoad();
+    Character* create_player(std::string);
 
     //Tower* create_tower(int);
     Monster* create_monster();
-    Character* create_player(std::string);
 
 public:
     bool initial = true;
