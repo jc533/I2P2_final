@@ -26,7 +26,7 @@ Monster::Monster(int pos_x, int pos_y)
 
     sprite_pos = 0;
     counter = 0;
-    strncpy(class_name, "Wolf", 20);
+    //strncpy(class_name, "Wolf", 20);
 }
 
 Monster::~Monster()
@@ -90,11 +90,14 @@ Monster::Draw()
 
 bool
 Monster::Update(){
+    int target_x, target_y;
+    counter = (counter + 1) % draw_frequency;
+    if(counter == 0)
+        sprite_pos = (sprite_pos + 1) % direction_count[direction];
 
+    if(circle){
 
-
-
-
+    }
 
 
 
