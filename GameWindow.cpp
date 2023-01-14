@@ -191,12 +191,17 @@ GameWindow::game_run()
 }
 
 int
-GameWindow::game_update()
-{
-    unsigned int i, j;
+GameWindow::game_update(){
     Player->Update();
-    for(auto i: monsterSet)
-        i->Move(Player);
+    for(auto mon: monsterSet){
+        if(mon->TriggerAttack(Player)){
+            Player->Subtract_HP(mon->get_damage());
+        }
+        if(mon->DetectAttack(Player)){
+            mon->Subtract_HP(Player);
+        }
+        mon->Move(Player);
+    }
     return GAME_CONTINUE;
 }
 
@@ -370,7 +375,10 @@ GameWindow::process_event()
     }else if(key_state[ALLEGRO_KEY_S])Player->SetState(Type::MOVE,DOWN);
     else if(key_state[ALLEGRO_KEY_A])Player->SetState(Type::MOVE,LEFT);
     else if(key_state[ALLEGRO_KEY_D])Player->SetState(Type::MOVE,RIGHT);
-    else if(key_state[ALLEGRO_KEY_E])Player->SetState(Type::ATTACK);
+    else if(key_state[ALLEGRO_KEY_E]){
+            Player->SetState(Type::ATTACK);
+            //std::cout << "wtffffffffffffffff" << '\n';
+    }
 
 
 

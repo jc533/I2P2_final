@@ -1,10 +1,11 @@
 #include "character.h"
+#include <iostream>
 
-
-Character::Character(int pos_x = 0, int pos_y = 0,int range=100)
+Character::Character(int pos_x = 0, int pos_y = 0,int range = 50)
 {
     this->circle = new Circle(pos_x, pos_y, 70);
     this->weapon_range = new Circle(pos_x, pos_y, range);
+    std::cout << range << '\n';
 }
 
 Character::~Character()
@@ -50,7 +51,8 @@ void
 Character::Move(){
     circle->x += speed * axis_x[direction];
     circle->y += speed * axis_y[direction];
-
+    weapon_range->x = circle->x;
+    weapon_range->y = circle->y;
 }
 void
 Character::Attack(){attacked=1;}
@@ -89,5 +91,8 @@ Circle* Character::get_attack_range(){
     return weapon_range;
 }
 
-
+void
+Character::Subtract_HP(int dmg){
+    health_point -= dmg;
+}
 

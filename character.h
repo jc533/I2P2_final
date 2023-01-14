@@ -55,6 +55,7 @@ protected:
 
     Type state;
     Buff buff_state;
+    int health_point;
     int damage=10;
     int defense;
     int speed;

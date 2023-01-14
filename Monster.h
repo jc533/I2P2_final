@@ -29,7 +29,7 @@ public:
     int  getDir() { return direction; }
     bool Subtract_HP(Character*);
     // update whole attack set
-
+    int get_damage() { return attack_harm_point; }
     bool DetectAttack(Character*);
     // process if some of attack in set touches monster
     bool TriggerAttack(Character*);

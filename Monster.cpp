@@ -169,10 +169,12 @@ Monster::TriggerAttack(Character *player){
 
 bool
 Monster::DetectAttack(Character *player){
+    //fprintf(stderr, "fuckkkk");
     if(player->GetState() == Type::ATTACK && Circle::isOverlap(player->get_attack_range(),this->getCircle())){
         fprintf(stderr, "wtf");
         return true;
     }
+
     return false;
 
 }
