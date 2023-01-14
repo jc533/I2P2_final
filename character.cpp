@@ -11,14 +11,37 @@ Character::~Character()
     delete circle;
 
     al_destroy_bitmap(img);
-    /*al_destroy_bitmap(attack_img);
-
-    for(auto&& child : this->attack_set) {
-        delete child;
-    }
-    this->attack_set.clear();*/
 }
 
+void
+Character::Update(){
+    switch(state){
+        case Type::MOVE:
+        Move();
+        break;
+        case Type::ATTACK:
+        Attack();
+        break;
+        case Type::DODGE:
+        Dodge();
+        break;
+        case Type::IDLE:
+        break;
+    }
+}
+
+void
+Character::Move(){
+    
+}
+void
+Character::Attack(){
+    
+}
+void
+Character::Dodge(){
+    
+}
 void
 Character::Draw(){
     
@@ -29,6 +52,12 @@ Character::Draw(){
     img = al_load_bitmap(filename);
     al_draw_bitmap(img, draw_x, draw_y, 0);
 }
+
+
+
+
+
+
 
 
 

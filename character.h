@@ -20,7 +20,7 @@ class Monster;
 class Character : public Object{
 public:
     Character(int, int);
-    ~Character();
+    virtual ~Character();
 
     // override virtual function "Object::Draw"
     void Draw();
@@ -29,10 +29,14 @@ public:
     // update whole attack set
     // if any attack goes out of the range of tower, delete it
     // process if some of attack in set touches monster
-    bool Update();
-    bool Move();
+    void Update();
+    void Move();
+    void Dodge();
+    void Attack();
+
     int Detect(Monster*);
-    bool Subtract_HP(int);
+    void Subtract_HP(int);
+    void Load_move();
 
     int getWidth() { return 40; }
     int getHeight() { return 40; }
@@ -42,14 +46,15 @@ public:
 
 protected:
 
-    enum class Type {ATTACK,DODGE,MOVE};
+    enum class Type {ATTACK,DODGE,MOVE,IDLE};
+    enum class Buff {Enlarge,Shrink,Invisible};
     Type state;
+    Buff buff_state;
     int defense;
     int speed;
     int direction;
     int direction_count[4];
-    int width;
-    int height;
+    int size=1;
     int pos[2];
     int type;
     int attack_frequency;
