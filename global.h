@@ -13,8 +13,8 @@
 
 #define window_width 1600
 #define window_height 900
-#define field_width 600
-#define field_height 600
+#define field_width 1600
+#define field_height 900
 
 #define Num_TowerType 5
 #define Num_MonsterType 4

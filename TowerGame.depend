@@ -1114,12 +1114,12 @@
 1673587202 source:c:\users\ethan\onedrive\documents\github\i2p2_final\circle.cpp
 	"Circle.h"
 
-1673676547 source:c:\users\ethan\onedrive\documents\github\i2p2_final\gamewindow.cpp
+1673690206 source:c:\users\ethan\onedrive\documents\github\i2p2_final\gamewindow.cpp
 	"GameWindow.h"
 	"global.h"
 	<iostream>
 
-1673666524 c:\users\ethan\onedrive\documents\github\i2p2_final\gamewindow.h
+1673689606 c:\users\ethan\onedrive\documents\github\i2p2_final\gamewindow.h
 	<allegro5/allegro_audio.h>
 	<allegro5/allegro_acodec.h>
 	<vector>
@@ -1132,6 +1132,7 @@
 	"Slider.h"
 	"knight.h"
 	"ninja.h"
+	"HUD.h"
 
 1673587202 c:\users\ethan\onedrive\documents\github\i2p2_final\allegro-x86_64-w64-mingw32-gcc-10.2.0-posix-seh-static-5.2.7.0\allegro\include\allegro5\allegro_acodec.h
 	"allegro5/allegro.h"
@@ -1156,7 +1157,7 @@
 	"allegro5/allegro.h"
 	"allegro5/allegro_font.h"
 
-1673676547 c:\users\ethan\onedrive\documents\github\i2p2_final\global.h
+1673690473 c:\users\ethan\onedrive\documents\github\i2p2_final\global.h
 	<allegro5/allegro_font.h>
 	<vector>
 	<string>
@@ -1174,7 +1175,7 @@
 1673587202 c:\users\ethan\onedrive\documents\github\i2p2_final\wolfknight.h
 	"Monster.h"
 
-1673676601 c:\users\ethan\onedrive\documents\github\i2p2_final\monster.h
+1673681809 c:\users\ethan\onedrive\documents\github\i2p2_final\monster.h
 	<stdio.h>
 	<string.h>
 	<allegro5/allegro.h>
@@ -1241,7 +1242,7 @@
 1673587202 source:c:\users\ethan\onedrive\documents\github\i2p2_final\menu.cpp
 	"Menu.h"
 
-1673665897 source:c:\users\ethan\onedrive\documents\github\i2p2_final\monster.cpp
+1673678356 source:c:\users\ethan\onedrive\documents\github\i2p2_final\monster.cpp
 	"Monster.h"
 
 1673587202 source:c:\users\ethan\onedrive\documents\github\i2p2_final\slider.cpp
@@ -1252,7 +1253,7 @@
 1673665897 source:c:\users\ethan\onedrive\documents\github\i2p2_final\tower.cpp
 	"Tower.h"
 
-1673674968 c:\users\ethan\onedrive\documents\github\i2p2_final\character.h
+1673686703 c:\users\ethan\onedrive\documents\github\i2p2_final\character.h
 	<stdio.h>
 	<string>
 	<vector>
@@ -1428,6 +1429,22 @@
 	"global.h"
 	"character.h"
 
-1673676547 source:c:\users\ethan\onedrive\documents\github\i2p2_final\character.cpp
+1673685119 source:c:\users\ethan\onedrive\documents\github\i2p2_final\character.cpp
+	"character.h"
+
+1673692064 source:c:\users\ethan\onedrive\documents\github\i2p2_final\hud.cpp
+	"HUD.h"
+
+1673690783 c:\users\ethan\onedrive\documents\github\i2p2_final\hud.h
+	<stdio.h>
+	<stdlib.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_primitives.h>
+	<vector>
+	"Object.h"
+	"Circle.h"
+	"global.h"
 	"character.h"
 

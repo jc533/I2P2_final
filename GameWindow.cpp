@@ -54,6 +54,7 @@ GameWindow::game_init()
 
     level = new LEVEL(1);
     menu = new Menu();
+    hud = new HUD();
     Player = create_player("knight");
 }
 
@@ -541,6 +542,6 @@ GameWindow::draw_running_map()
     al_draw_filled_rectangle(field_width, 0, window_width, window_height, al_map_rgb(100, 100, 100));
 
     menu->Draw();
-
+    hud->Draw();
     al_flip_display();
 }

@@ -13,6 +13,7 @@
 #include "Slider.h"
 #include "knight.h"
 #include "ninja.h"
+#include "HUD.h"
 
 #define GAME_INIT -1
 #define GAME_SETTING 0
@@ -64,6 +65,7 @@ public:
 
     //Tower* create_tower(int);
     Monster* create_monster();
+    HUD* hud;
 
 public:
     bool initial = true;
@@ -91,6 +93,7 @@ private:
 
     LEVEL *level = NULL;
     Menu *menu = NULL;
+
 
     std::vector<Monster*> monsterSet;
     Character *Player;
