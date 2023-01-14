@@ -21,7 +21,8 @@ public:
         speed=10;
         attack_frequency=10;
         attack_harm_point=5;
-        class_name="witch";
+        //class_name="witch";
+        strncpy(class_name, "Wolf", 20);
     };
 };
 

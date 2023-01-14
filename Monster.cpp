@@ -1,5 +1,5 @@
 #include "Monster.h"
-
+#include <iostream>
 const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
 
 // set counter frequency of drawing moving animation
@@ -14,7 +14,7 @@ Monster::Monster(int pos_x, int pos_y)
     // default direction is right
     direction = RIGHT;
 
-    circle = new Circle;
+    circle = new Circle(pos_x, pos_y, 20);
 
     //circle->x = (path.front() % 15) * grid_width + grid_width/2;
     //circle->y = (path.front() / 15) * grid_height + grid_height/2;
@@ -96,14 +96,14 @@ Monster::Update(Character *player){
     if(counter == 0)
         sprite_pos = (sprite_pos + 1) % direction_count[direction];
 
-    if(circle->r * circle->r *400 >= player_distance(player->get_player_pos(), circle)){
+    if(circle->r * circle->r *300 >= player_distance(player->get_player_pos(), circle)){
         return true;
     }
 
     return false;
 
 }
-bool
+void
 Monster::Move(Character *player)
 {
     int target_x, target_y;
@@ -116,20 +116,27 @@ Monster::Move(Character *player)
         target_x = player->get_player_pos()->x;
         target_y = player->get_player_pos()->y;
         if(abs(target_x - self_x) > abs(target_y - self_y) ){
-            if(target_x - self_x > 0)
+            if(target_x - self_x > 0){
                 direction = RIGHT;
-            else
-                direction = LEFT;
-        }
-        else{
-            if(target_y - self_y > 0){
-                direction = UP;
             }
-            else
-                direction = DOWN;
+
+
+            else{
+                direction = LEFT;
+            }
+
         }
+        else if(abs(target_x - self_x) < abs(target_y - self_y)){
+            if(target_y - self_y > 0){
+                direction = DOWN;
 
+            }
+            else{
+                direction = UP;
 
+            }
+
+        }
 
         circle->x += speed * axis_x[direction];
         circle->y += speed * axis_y[direction];
@@ -188,7 +195,7 @@ Monster::Move(Character *player)
     //circle->y += speed * axis_y[direction];
 
     // if not reaching end point, return false
-    return false;
+
 }
 
 /*bool

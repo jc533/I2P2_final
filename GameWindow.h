@@ -8,12 +8,17 @@
 #include <time.h>
 #include "Menu.h"
 #include "Level.h"
+#include "HUD.h"
 #include "Poison.h"
 #include "Attack.h"
 #include "Slider.h"
 #include "knight.h"
 #include "ninja.h"
-#include "HUD.h"
+#include "assassin.h"
+#include "bomb.h"
+#include "turret.h"
+#include "witch.h""
+#include "zombie.h"
 
 #define GAME_INIT -1
 #define GAME_SETTING 0
