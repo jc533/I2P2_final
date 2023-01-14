@@ -383,7 +383,7 @@ GameWindow::process_event()
     // offset for pause window
     int offsetX = field_width/2 - 200;
     int offsetY = field_height/2 - 200;
-
+    bool key_state[ALLEGRO_KEY_MAX];
     al_wait_for_event(event_queue, &event);
     redraw = false;
 
@@ -413,19 +413,6 @@ GameWindow::process_event()
     }
     else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
         return GAME_EXIT;
-    }
-    else if(event.type == ALLEGRO_EVENT_KEY_UP) {
-        fprintf(stderr,"up %d\n",event.keyboard.keycode);
-        switch(event.keyboard.keycode) {
-            case ALLEGRO_KEY_W:
-            case ALLEGRO_KEY_A:
-            case ALLEGRO_KEY_S:
-            case ALLEGRO_KEY_D:
-            case ALLEGRO_KEY_E:
-            case ALLEGRO_KEY_SPACE:
-            Player->SetState(Type::IDLE);
-            break;
-        }
     }else if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
         fprintf(stderr,"pressed %d\n",event.keyboard.keycode);
         switch(event.keyboard.keycode) {
@@ -450,26 +437,64 @@ GameWindow::process_event()
                     al_play_sample_instance(backgroundSound);
                 break;
             case ALLEGRO_KEY_W:
-                Player->SetState(Type::MOVE,UP);
+                key_state[ALLEGRO_KEY_W]=1;
                 break;
             case ALLEGRO_KEY_A:
-                Player->SetState(Type::MOVE,LEFT);
+                key_state[ALLEGRO_KEY_A]=1;
                 break;
             case ALLEGRO_KEY_S:
-                Player->SetState(Type::MOVE,DOWN);
+                key_state[ALLEGRO_KEY_S]=1;
                 break;
             case ALLEGRO_KEY_D:
-                Player->SetState(Type::MOVE,RIGHT);
+                key_state[ALLEGRO_KEY_D]=1;
                 break;
             case ALLEGRO_KEY_E:
-                Player->SetState(Type::ATTACK);
+                key_state[ALLEGRO_KEY_E]=1;
                 break;
             case ALLEGRO_KEY_SPACE:
-                Player->SetState(Type::DODGE);
+                if(!key_state[ALLEGRO_KEY_SPACE]){
+                    key_state[ALLEGRO_KEY_SPACE]=1;
+                    Player->SetState(Type::DODGE);
+                }
+                break;
+        }
+    }else if(event.type == ALLEGRO_EVENT_KEY_UP) {
+        fprintf(stderr,"up %d\n",event.keyboard.keycode);
+        switch(event.keyboard.keycode) {
+             case ALLEGRO_KEY_W:
+                key_state[ALLEGRO_KEY_W]=0;
+                Player->SetState(Type::IDLE);
+                break;
+            case ALLEGRO_KEY_A:
+                key_state[ALLEGRO_KEY_A]=0;
+                Player->SetState(Type::IDLE);
+                break;
+            case ALLEGRO_KEY_S:
+                key_state[ALLEGRO_KEY_S]=0;
+                Player->SetState(Type::IDLE);
+                break;
+            case ALLEGRO_KEY_D:
+                key_state[ALLEGRO_KEY_D]=0;
+                Player->SetState(Type::IDLE);
+                break;
+            case ALLEGRO_KEY_E:
+                key_state[ALLEGRO_KEY_E]=0;
+                Player->SetState(Type::IDLE);
+                break;
+            case ALLEGRO_KEY_SPACE:
+                key_state[ALLEGRO_KEY_SPACE]=0;
+                Player->SetState(Type::IDLE);
                 break;
         }
     }
+    if(key_state[ALLEGRO_KEY_W])Player->SetState(Type::MOVE,UP);
+    if(key_state[ALLEGRO_KEY_S])Player->SetState(Type::MOVE,DOWN);
+    if(key_state[ALLEGRO_KEY_A])Player->SetState(Type::MOVE,LEFT);
+    if(key_state[ALLEGRO_KEY_D])Player->SetState(Type::MOVE,RIGHT);
+    if(key_state[ALLEGRO_KEY_E])Player->SetState(Type::ATTACK);
 
+
+    
     if(redraw) {
         // update each object in game
         instruction = game_update();
