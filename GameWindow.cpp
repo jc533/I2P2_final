@@ -56,6 +56,7 @@ GameWindow::game_init()
     menu = new Menu();
     hud = new HUD();
     Player = create_player("knight");
+
 }
 
 bool
@@ -85,6 +86,7 @@ Monster*
 GameWindow::create_monster()
 {
     Monster *m = NULL;
+    m = new Assassin(500, 500);
     return m;
 }
 
@@ -193,7 +195,8 @@ GameWindow::game_update()
 {
     unsigned int i, j;
     Player->Update();
-
+    for(auto i: monsterSet)
+        i->Move(Player);
     return GAME_CONTINUE;
 }
 
@@ -268,11 +271,10 @@ GameWindow::process_event()
     al_wait_for_event(event_queue, &event);
     redraw = false;
 
+
     if(event.type == ALLEGRO_EVENT_TIMER) {
         if(event.timer.source == timer) {
             redraw = true;
-
-
 
             if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro)){
                 al_stop_timer(timer);
@@ -283,7 +285,6 @@ GameWindow::process_event()
         else {
             if(Monster_Pro_Count == 0) {
                 Monster *m = create_monster();
-
                 if(m != NULL)
                     monsterSet.push_back(m);
             }
@@ -405,5 +406,6 @@ GameWindow::draw_running_map()
     //al_draw_filled_rectangle(field_width, 0, window_width, window_height, al_map_rgb(100, 100, 100));
 
     hud->Draw();
+
     al_flip_display();
 }

@@ -46,6 +46,8 @@
 		<Unit filename="End.h" />
 		<Unit filename="GameWindow.cpp" />
 		<Unit filename="GameWindow.h" />
+		<Unit filename="HUD.cpp" />
+		<Unit filename="HUD.h" />
 		<Unit filename="Item.h" />
 		<Unit filename="Level.cpp" />
 		<Unit filename="Level.h" />
