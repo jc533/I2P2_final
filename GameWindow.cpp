@@ -83,10 +83,18 @@ GameWindow::create_player(std::string type){
 }
 
 Monster*
-GameWindow::create_monster()
-{
+GameWindow::create_monster(){
     Monster *m = NULL;
-    m = new Assassin(500, 500);
+    std::pair<int,int> original_pos;
+    if(level->MonsterNum[ASSASSIN]){
+        level->MonsterNum[ASSASSIN]--;
+        original_pos = level->MonsoterPos[ASSASSIN];
+        std::cout << original_pos.first << " " << original_pos.second <<'\n';
+        m = new Assassin(original_pos.first,original_pos.second);
+    }
+    else{
+        al_stop_timer(monster_pro);
+    }
     return m;
 }
 

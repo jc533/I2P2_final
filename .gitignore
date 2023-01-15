@@ -12,3 +12,4 @@ allegro.log
 bin/Debug/TowerGame.exe
 TowerGame.depend
 *.layout
+allegro.log
