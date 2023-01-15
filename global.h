@@ -16,8 +16,9 @@
 #define field_width 1600
 #define field_height 900
 
-#define Num_TowerType 5
+#define Num_ClassType 2
 #define Num_MonsterType 5
+#define Num_TowerType 5
 #define NumOfGrid (field_width / grid_width) * (field_height / grid_height)
 
 extern int TowerRadius[];

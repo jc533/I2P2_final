@@ -51,6 +51,8 @@
 		<Unit filename="Item.h" />
 		<Unit filename="Level.cpp" />
 		<Unit filename="Level.h" />
+		<Unit filename="LevelReward.cpp" />
+		<Unit filename="LevelReward.h" />
 		<Unit filename="Main.cpp" />
 		<Unit filename="Menu.cpp" />
 		<Unit filename="Menu.h" />
@@ -63,6 +65,8 @@
 		<Unit filename="Start.h" />
 		<Unit filename="Tower.cpp" />
 		<Unit filename="Tower.h" />
+		<Unit filename="UI.cpp" />
+		<Unit filename="UI.h" />
 		<Unit filename="Weapon.h" />
 		<Unit filename="assassin.h" />
 		<Unit filename="bomb.h" />

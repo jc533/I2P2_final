@@ -96,11 +96,19 @@ Monster::Update(Character *player){
     counter = (counter + 1) % draw_frequency;
     if(counter == 0)
         sprite_pos = (sprite_pos + 1) % direction_count[direction];
-    if(circle->r * circle->r *300 >= player_distance(player->get_player_pos(), circle) && circle->r * circle->r * 10 <= player_distance(player->get_player_pos(), circle)){
+    if(circle->r * circle->r * 300 >= player_distance(player->get_player_pos(), circle) && 10 <= player_distance(player->get_player_pos(), circle)){
         return true;
     }
     return false;
 
+}
+
+bool
+Monster::encircle(Character *player){
+    if(circle->r * circle->r *15 >= player_distance(player->get_player_pos(), circle) && circle->r * circle->r * 10 <= player_distance(player->get_player_pos(), circle)){
+        return true;
+    }
+    return false;
 }
 void
 Monster::Move(Character *player){
@@ -112,11 +120,18 @@ Monster::Move(Character *player){
     if(counter == 0)
         sprite_pos = (sprite_pos + 1) % direction_count[direction];
     if(Update(player)){
-        target_x = player->get_player_pos()->x;
-        target_y = player->get_player_pos()->y;
+        if(encircle(player)){
+            int theta = rand()%360;
+            target_x = player->get_player_pos()->x + cos(theta) * 10;
+            target_y = player->get_player_pos()->y + sin(theta) * 10;
+        }
+        else{
+            target_x = player->get_player_pos()->x;
+            target_y = player->get_player_pos()->y;
+        }
+        //target_x = player->get_player_pos()->x;
+        //target_y = player->get_player_pos()->y;
         move_delay ++;
-        circle->x += speed * axis_x[direction];
-        circle->y += speed * axis_y[direction];
         if(move_delay == 5){
             if(abs(target_x - self_x) > abs(target_y - self_y) ){
                 if(target_x - self_x > 0){
@@ -136,6 +151,8 @@ Monster::Move(Character *player){
             }
             move_delay %= 5;
         }
+        circle->x += speed * axis_x[direction];
+        circle->y += speed * axis_y[direction];
     }
 }
 /*void

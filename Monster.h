@@ -35,6 +35,7 @@ public:
     bool TriggerAttack(Character*);
     bool Update(Character*);
     bool is_dead();
+    bool encircle(Character*);
 protected:
     int direction_count[4];
     int HealthPoint;
