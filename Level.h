@@ -4,14 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <utility>
 #include <string>
 #include <vector>
 #include "global.h"
 
-typedef struct Node {
-    int h, g, f;
-    bool roadPoint;
-}Node;
 
 class LEVEL {
 public:
@@ -19,17 +16,13 @@ public:
     ~LEVEL();
 
     void setLevel(const int);
-    bool isRoad(int index) { return levelMap[index].roadPoint; }
     int getMonsterSpeed() { return MonsterSpeed; }
     int getLevel() { return level; }
-    //void search_destination();
-    std::vector<int> ReturnPath() { return road_grid; }
-
+    std::pair<int,int> MonsoterPos[Num_MonsterType];
     int MonsterNum[Num_MonsterType];
 
+
 private:
-    Node levelMap[NumOfGrid];
-    std::vector<int> road_grid;
     // current level number
     int level = 1;
     // maximum number of monster of a level

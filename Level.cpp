@@ -1,4 +1,5 @@
 #include "Level.h"
+#include <iostream>
 
 LEVEL::LEVEL(const int level) {
     char buffer[50];
@@ -6,13 +7,7 @@ LEVEL::LEVEL(const int level) {
     setLevel(level);
 }
 
-LEVEL::~LEVEL()
-{
-    for(int i=0;i < NumOfGrid;i++)
-    {
-        levelMap[i].roadPoint = false;
-    }
-}
+LEVEL::~LEVEL(){}
 
 void
 LEVEL::setLevel(const int level)
@@ -24,25 +19,22 @@ LEVEL::setLevel(const int level)
     file = fopen(buffer, "r");
 
     this->level = level;
-    this->road_grid.clear();
-
-    for(int i = 0; i < NumOfGrid; i++)
-    {
-        this->levelMap[i].roadPoint = false;
-    }
 
     fscanf(file, "%s", buffer);
     Monster_MAX = atoi(buffer);
 
-    for(int i=0; i < Num_MonsterType; i++)
-    {
+    for(int i=0; i < Num_MonsterType; i++){
         fscanf(file, "%s", buffer);
         MonsterNum[i] = atoi(buffer);
     }
-
-    while(fscanf(file, "%s", buffer) != EOF) {
-        this->levelMap[atoi(buffer)].roadPoint = true;
-        road_grid.push_back(atoi(buffer));
+    for(int i=0; i < Num_MonsterType; i++){
+        std::pair<int,int> tmp;
+        fscanf(file, "%s", buffer);
+        tmp.first = atoi(buffer);
+        fscanf(file, "%s", buffer);
+        tmp.second = atoi(buffer);
+        std::cout << "tmp " << tmp.first <<' ' << tmp.second << '\n'; 
+        MonsoterPos[i] = tmp;
     }
 
     fclose(file);

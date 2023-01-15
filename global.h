@@ -17,7 +17,7 @@
 #define field_height 900
 
 #define Num_TowerType 5
-#define Num_MonsterType 4
+#define Num_MonsterType 5
 #define NumOfGrid (field_width / grid_width) * (field_height / grid_height)
 
 extern int TowerRadius[];
@@ -29,6 +29,6 @@ extern int TowerHeight[];
 const int axis_x[] = {-1, 1, 0, 0};
 const int axis_y[] = {0, 0, -1, 1};
 enum {ARCANE = 0, ARCHER, CANON, POISON, STORM};
-enum {WOLF = 0, WOLFKNIGHT, DEMONNIJIA, CAVEMAN};
+enum {ASSASSIN = 0, ZOMBIE, WITCH, TURRET, BOMB};
 enum {LEFT=0, RIGHT, UP, DOWN};
 #endif // GLOBAL_H_INCLUDED
