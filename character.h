@@ -39,7 +39,7 @@ public:
     void SetState(Type,int dir=-1);
 
     int Detect(Monster*);
-    void Subtract_HP(int);
+    bool Subtract_HP(int);
     void Load_move();
 
     int getWidth() { return 40; }

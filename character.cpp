@@ -91,8 +91,10 @@ Circle* Character::get_attack_range(){
     return weapon_range;
 }
 
-void
+bool
 Character::Subtract_HP(int dmg){
     health_point -= dmg;
+    //std::cout << health_point << '\n';
+    return health_point<=0;
 }
 

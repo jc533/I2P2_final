@@ -6,6 +6,7 @@
 #include <string>
 #include <algorithm>
 #include <math.h>
+#include <iostream>
 
 #define font_size 12
 #define grid_width 40

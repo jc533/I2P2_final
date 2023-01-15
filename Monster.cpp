@@ -178,10 +178,7 @@ Monster::TriggerAttack(){
 
 bool
 Monster::TriggerAttack(Character *player){
-    if(Update(player)){
-        return true;
-    }
-    return false;
+    return Circle::isOverlap(player->getCircle(),new Circle(this->circle->x,this->circle->y,50));
 }
 
 bool

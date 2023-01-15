@@ -113,7 +113,16 @@ GameWindow::game_play()
     {
         msg = game_run();
     }
-
+    std::cout << "fuckkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" <<'\n';
+    switch (msg){
+    case GAME_NEXT_LEVEL:
+        level->setLevel(level->getLevel()+1);
+        game_reset();
+        game_begin();
+        break;
+    default:
+        break;
+    }
     show_err_msg(msg);
 }
 
@@ -204,7 +213,10 @@ GameWindow::game_update(){
     int i = 0;
     for(auto mon: monsterSet){
         if(mon->TriggerAttack(Player)){
-            Player->Subtract_HP(mon->get_damage());
+            if(Player->Subtract_HP(mon->get_damage())){
+                //std::cout << "You die" << '\n'; 
+                //return GAME_EXIT;
+            }
         }
         if(mon->DetectAttack(Player)){
             if(mon->Subtract_HP(Player)){
@@ -291,10 +303,11 @@ GameWindow::process_event()
     if(event.type == ALLEGRO_EVENT_TIMER) {
         if(event.timer.source == timer) {
             redraw = true;
-
+            std::cout << monsterSet.size() << '\n';
             if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro)){
                 al_stop_timer(timer);
-                return GAME_EXIT;
+                std::cout << "next" << '\n';
+                //return GAME_NEXT_LEVEL;
             }
 
         }
@@ -352,7 +365,6 @@ GameWindow::process_event()
                 break;
         }
     }else if(event.type == ALLEGRO_EVENT_KEY_UP) {
-        fprintf(stderr,"up %d\n",event.keyboard.keycode);
         switch(event.keyboard.keycode) {
              case ALLEGRO_KEY_W:
                 key_state[ALLEGRO_KEY_W]=0;
