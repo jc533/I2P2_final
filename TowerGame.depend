@@ -471,30 +471,33 @@
 1671246370 source:c:\users\yub612\desktop\final_bundle\final_project_package\towergame\ycy_revise_algif5\algif5\src\lzw.cpp
 	"algif.h"
 
-1672159288 source:c:\users\yub612\desktop\data\code\i2p2_final\circle.cpp
+1673711320 source:c:\users\yub612\desktop\data\code\i2p2_final\circle.cpp
 	"Circle.h"
 
 1672159288 c:\users\yub612\desktop\data\code\i2p2_final\circle.h
 
-1671209809 source:c:\users\yub612\desktop\data\code\i2p2_final\level.cpp
+1673768135 source:c:\users\yub612\desktop\data\code\i2p2_final\level.cpp
 	"Level.h"
+	<iostream>
 
-1672159288 c:\users\yub612\desktop\data\code\i2p2_final\level.h
+1673768135 c:\users\yub612\desktop\data\code\i2p2_final\level.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<utility>
 	<string>
 	<vector>
 	"global.h"
 
-1673692395 c:\users\yub612\desktop\data\code\i2p2_final\global.h
+1673770580 c:\users\yub612\desktop\data\code\i2p2_final\global.h
 	<allegro5/allegro_font.h>
 	<vector>
 	<string>
 	<algorithm>
 	<math.h>
+	<iostream>
 
-1671209809 source:c:\users\yub612\desktop\data\code\i2p2_final\menu.cpp
+1673806805 source:c:\users\yub612\desktop\data\code\i2p2_final\menu.cpp
 	"Menu.h"
 
 1672159288 c:\users\yub612\desktop\data\code\i2p2_final\menu.h
@@ -1297,20 +1300,22 @@
 1671244642 c:\users\yub612\desktop\data\code\i2p2_final\allegro-x86_64-w64-mingw32-gcc-10.2.0-posix-seh-static-5.2.7.0\allegro\include\allegro5\allegro_audio.h
 	"allegro5/allegro.h"
 
-1673700746 source:c:\users\yub612\desktop\data\code\i2p2_final\gamewindow.cpp
+1673807621 source:c:\users\yub612\desktop\data\code\i2p2_final\gamewindow.cpp
 	"GameWindow.h"
 	"global.h"
 	<iostream>
 
-1673699097 c:\users\yub612\desktop\data\code\i2p2_final\gamewindow.h
+1673806805 c:\users\yub612\desktop\data\code\i2p2_final\gamewindow.h
 	<allegro5/allegro_audio.h>
 	<allegro5/allegro_acodec.h>
 	<vector>
 	<list>
 	<time.h>
+	<utility>
 	"Menu.h"
 	"Level.h"
 	"HUD.h"
+	"UI.h"
 	"Poison.h"
 	"Attack.h"
 	"Slider.h"
@@ -1342,7 +1347,7 @@
 	"Monster.h"
 	"global.h"
 
-1673701449 c:\users\yub612\desktop\data\code\i2p2_final\monster.h
+1673769863 c:\users\yub612\desktop\data\code\i2p2_final\monster.h
 	<stdio.h>
 	<string.h>
 	<allegro5/allegro.h>
@@ -1353,7 +1358,7 @@
 	"global.h"
 	"character.h"
 
-1673706897 c:\users\yub612\desktop\data\code\i2p2_final\character.h
+1673770078 c:\users\yub612\desktop\data\code\i2p2_final\character.h
 	<stdio.h>
 	<string>
 	<vector>
@@ -1377,10 +1382,10 @@
 1672159288 source:c:\users\yub612\desktop\data\code\i2p2_final\global.cpp
 	"global.h"
 
-1673614376 source:c:\users\yub612\desktop\data\code\i2p2_final\main.cpp
+1673806805 source:c:\users\yub612\desktop\data\code\i2p2_final\main.cpp
 	"GameWindow.h"
 
-1673701449 source:c:\users\yub612\desktop\data\code\i2p2_final\monster.cpp
+1673770721 source:c:\users\yub612\desktop\data\code\i2p2_final\monster.cpp
 	"Monster.h"
 	<iostream>
 
@@ -1392,7 +1397,7 @@
 1673613507 source:c:\users\yub612\desktop\data\code\i2p2_final\tower.cpp
 	"Tower.h"
 
-1673701922 c:\users\yub612\desktop\data\code\i2p2_final\knight.h
+1673771839 c:\users\yub612\desktop\data\code\i2p2_final\knight.h
 	<stdio.h>
 	<string>
 	<allegro5/allegro.h>
@@ -1405,7 +1410,7 @@
 	"global.h"
 	"character.h"
 
-1673702361 c:\users\yub612\desktop\data\code\i2p2_final\ninja.h
+1673771840 c:\users\yub612\desktop\data\code\i2p2_final\ninja.h
 	<stdio.h>
 	<string>
 	<allegro5/allegro.h>
@@ -1418,8 +1423,9 @@
 	"global.h"
 	"character.h"
 
-1673706978 source:c:\users\yub612\desktop\data\code\i2p2_final\character.cpp
+1673771905 source:c:\users\yub612\desktop\data\code\i2p2_final\character.cpp
 	"character.h"
+	<iostream>
 
 1673772360 c:\users\ethan\onedrive\documents\github\i2p2_final\knight.h
 	<stdio.h>
@@ -1621,4 +1627,23 @@
 	"Circle.h"
 	"global.h"
 	"character.h"
+
+1673769863 source:c:\users\yub612\desktop\data\code\i2p2_final\levelreward.cpp
+
+1673769863 c:\users\yub612\desktop\data\code\i2p2_final\ui.h
+	<stdio.h>
+	<stdlib.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_primitives.h>
+	<vector>
+	"Object.h"
+	"Circle.h"
+	"global.h"
+	"character.h"
+
+1673806805 source:c:\users\yub612\desktop\data\code\i2p2_final\ui.cpp
+	"UI.h"
+	"Menu.h"
 

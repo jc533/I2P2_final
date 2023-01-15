@@ -116,16 +116,7 @@ GameWindow::game_play()
     {
         msg = game_run();
     }
-    std::cout << "fuckkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk\n" <<'\n';
-    switch (msg){
-    case GAME_NEXT_LEVEL:
-        level->setLevel(level->getLevel()+1);
-        game_reset();
-        game_begin();
-        break;
-    default:
-        break;
-    }
+    std::cout <<"bloody hell" <<'\n';
     show_err_msg(msg);
 }
 
@@ -203,13 +194,24 @@ GameWindow::game_begin()
 int
 GameWindow::game_run()
 {
-    int error = GAME_CONTINUE;
+    int msg = GAME_CONTINUE;
 
     if (!al_is_event_queue_empty(event_queue)) {
 
-        error = process_event();
+        msg = process_event();
     }
-    return error;
+    switch (msg){
+    case GAME_NEXT_LEVEL:
+        std::cout << "next" <<'\n';
+        level->setLevel(level->getLevel()+1);
+        game_reset();
+        game_begin();
+        break;
+    default:
+        //std::cout << msg << ' ' << GAME_NEXT_LEVEL <<'\n';
+        break;
+    }
+    return msg;
 }
 
 int
@@ -330,11 +332,11 @@ GameWindow::process_event()
     if(event.type == ALLEGRO_EVENT_TIMER) {
         if(event.timer.source == timer) {
             redraw = true;
-            std::cout << monsterSet.size() << '\n';
+            //std::cout << monsterSet.size() << '\n';
             if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro)){
                 al_stop_timer(timer);
-                std::cout << "next" << '\n';
-                //return GAME_NEXT_LEVEL;
+                std::cout << "go next" << '\n';
+                return GAME_NEXT_LEVEL;
             }
 
         }
@@ -350,7 +352,7 @@ GameWindow::process_event()
     else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
         return GAME_EXIT;
     }else if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
-        fprintf(stderr,"pressed %d\n",event.keyboard.keycode);
+        //fprintf(stderr,"pressed %d\n",event.keyboard.keycode);
         switch(event.keyboard.keycode) {
 
             case ALLEGRO_KEY_P:
