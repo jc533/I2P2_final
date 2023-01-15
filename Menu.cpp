@@ -38,7 +38,6 @@ Menu::Menu()
     {
         ALLEGRO_BITMAP *tower;
         sprintf(filename, "./Tower/%s_Menu.png", TowerClass[i]);
-
         tower = al_load_bitmap(filename);
         menu_tower.push_back(tower);
     }

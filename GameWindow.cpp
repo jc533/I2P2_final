@@ -12,7 +12,11 @@
 #define min(a, b) ((a) < (b)? (a) : (b))
 #define max(a, b) ((a) > (b)? (a) : (b))
 
-
+const int ThumbWidth = 600;
+const int ThumbHeight = 600;
+const int gapX = 100, gapY = 30;
+const int offsetX = 150, offsetY = 150;
+bool start = true;
 float Attack::volume = 1.0;
 
 void set_attack_volume(float volume)
@@ -55,18 +59,16 @@ GameWindow::game_init()
     level = new LEVEL(1);
     menu = new Menu();
     hud = new HUD();
-    Player = create_player("knight");
-
+    //game_start();
+    //draw_choose();
+    Player = create_player("ninja");
 }
 
 bool
-
-GameWindow::mouse_hover(int startx, int starty, int width, int height)
-{
+GameWindow::mouse_hover(int startx, int starty, int width, int height){
     if(mouse_x >= startx && mouse_x <= startx + width)
         if(mouse_y >= starty && mouse_y <= starty + height)
             return true;
-
     return false;
 }
 
@@ -107,6 +109,7 @@ GameWindow::game_play()
 
     msg = -1;
     game_reset();
+    //game_start();
     game_begin();
 
     while(msg != GAME_EXIT)
@@ -185,6 +188,8 @@ void
 GameWindow::game_begin()
 {
     printf(">>> Start Level[%d]\n", level->getLevel());
+    //draw_choose();
+
     draw_running_map();
 
     al_play_sample_instance(startSound);
@@ -214,7 +219,7 @@ GameWindow::game_update(){
     for(auto mon: monsterSet){
         if(mon->TriggerAttack(Player)){
             if(Player->Subtract_HP(mon->get_damage())){
-                //std::cout << "You die" << '\n'; 
+                //std::cout << "You die" << '\n';
                 //return GAME_EXIT;
             }
         }
@@ -227,7 +232,30 @@ GameWindow::game_update(){
     }
     return GAME_CONTINUE;
 }
+void
+GameWindow::game_start(){
+    al_clear_to_color(al_map_rgb(100, 100, 100));
+    ui = new UI();
+    draw_choose();
+    std::cout << "are you fucking running" << '\n';
+    while(true){
+        if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
+            if(event.mouse.button == 1) {
+                if(mouse_hover(offsetX, offsetY, offsetX+ThumbWidth, offsetY+ThumbHeight)) {
+                    Player = create_player("knight");
+                    break;
+                }
+                else if(mouse_hover(offsetX+ThumbWidth+gapX, offsetY+ThumbHeight+gapY, offsetX+ThumbWidth*2+gapX, offsetY+ThumbHeight*2+gapY)){
+                     Player = create_player("ninja");
+                     break;
+                }
 
+            }
+        }
+
+    }
+
+}
 void
 GameWindow::game_reset()
 {
@@ -284,6 +312,7 @@ GameWindow::game_destroy()
     delete menu;
     delete hud;
     delete Player;
+    delete ui;
 }
 
 int
@@ -298,8 +327,6 @@ GameWindow::process_event()
     static bool key_state[ALLEGRO_KEY_MAX];
     al_wait_for_event(event_queue, &event);
     redraw = false;
-
-
     if(event.type == ALLEGRO_EVENT_TIMER) {
         if(event.timer.source == timer) {
             redraw = true;
@@ -402,24 +429,18 @@ GameWindow::process_event()
             Player->SetState(Type::ATTACK);
             //std::cout << "wtffffffffffffffff" << '\n';
     }
-
-
-
     if(redraw) {
         // update each object in game
         instruction = game_update();
-
         // Re-draw map
         draw_running_map();
         redraw = false;
     }
-
     return instruction;
 }
 
 void
-GameWindow::draw_running_map()
-{
+GameWindow::draw_running_map(){
     unsigned int i, j;
 
     al_clear_to_color(al_map_rgb(100, 100, 100));
@@ -439,4 +460,9 @@ GameWindow::draw_running_map()
     hud->Draw();
 
     al_flip_display();
+}
+
+void
+GameWindow::draw_choose(){
+    ui->Draw();
 }

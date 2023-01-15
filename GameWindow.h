@@ -10,6 +10,7 @@
 #include "Menu.h"
 #include "Level.h"
 #include "HUD.h"
+#include "UI.h"
 #include "Poison.h"
 #include "Attack.h"
 #include "Slider.h"
@@ -20,6 +21,7 @@
 #include "turret.h"
 #include "witch.h"
 #include "zombie.h"
+
 
 #define GAME_INIT -1
 #define GAME_SETTING 0
@@ -57,10 +59,10 @@ public:
 
     void show_err_msg(int msg);
     void game_destroy();
-
+    void game_start();
     // each drawing scene function
     void draw_running_map();
-
+    void draw_choose();
     // process of updated event
     int process_event();
     // detect if mouse hovers over a rectangle
@@ -99,7 +101,7 @@ private:
 
     LEVEL *level = NULL;
     Menu *menu = NULL;
-
+    UI *ui = NULL;
 
     std::vector<Monster*> monsterSet;
     Character *Player;
