@@ -36,12 +36,16 @@ UI::MouseIn(int mouse_x, int mouse_y){
 
 UI::UI(){
     char filename[50];
-    for(int i=0;i<Num_ClassType; i++){
-        ALLEGRO_BITMAP *class_character;
-        sprintf(filename, "./Tower/%s_Menu.png", TowerClass[i]);
-        class_character = al_load_bitmap(filename);
-        class_ui.push_back(class_character);
-    }
+
+    ALLEGRO_BITMAP *class_character;
+    sprintf(filename, "./Knight/DOWN_0.png");
+    class_character = al_load_bitmap(filename);
+    class_ui.push_back(class_character);
+
+    sprintf(filename, "./Ninja/DOWN_0.png");
+    class_character = al_load_bitmap(filename);
+    class_ui.push_back(class_character);
+
     uiFont = al_load_ttf_font("pirulen.ttf", 24, 0); // load font
     uiLargeFont = al_load_ttf_font("pirulen.ttf", 40, 0);
 }
@@ -61,13 +65,14 @@ UI::Draw(){
         int pos_x = offsetX + (ThumbWidth + gapX) * (i % 2);
         int pos_y = offsetY + (ThumbHeight + gapY) * (i / 2);
 
-        al_draw_filled_rectangle(pos_x, pos_y, pos_x + ThumbWidth, pos_y + ThumbHeight, al_map_rgb(255, 255, 255));
+        //al_draw_filled_rectangle(pos_x, pos_y, pos_x + ThumbWidth, pos_y + ThumbHeight, al_map_rgb(255, 255, 255));
         if(i == character_type)
             al_draw_rectangle(pos_x, pos_y, pos_x + ThumbWidth, pos_y + ThumbHeight, al_map_rgb(255, 0, 0), 0);
         else
             al_draw_rectangle(pos_x, pos_y, pos_x + ThumbWidth, pos_y + ThumbHeight, al_map_rgb(255, 255, 255), 0);
-        al_draw_scaled_bitmap(class_ui[i], pos_x, pos_y, al_get_bitmap_width(class_ui[i]), al_get_bitmap_height(class_ui[i]), pos_x, pos_y, ThumbWidth, ThumbHeight, 0);
-        al_draw_bitmap(class_ui[i], pos_x, pos_y, 0);
+        //al_draw_bitmap(class_ui[i], pos_x, pos_y, 0);
+        al_draw_scaled_bitmap(class_ui[i], 0, 0, al_get_bitmap_width(class_ui[i]), al_get_bitmap_height(class_ui[i]), pos_x, pos_y+100, 600, 600, 0);
+
         al_draw_text(uiLargeFont, WHITE, 800, 800, 1, "Left click for knight   Right click for ninja");
     }
 
