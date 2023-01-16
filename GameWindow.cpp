@@ -216,22 +216,25 @@ GameWindow::game_run(){
 
 int
 GameWindow::game_update(){
-    Player->Update();
     int i = 0;
-    for(auto mon: monsterSet){
-        if(mon->TriggerAttack(Player)){
-            if(Player->Subtract_HP(mon->get_damage())){
-                //std::cout << "You die" << '\n';
-                //return GAME_EXIT;
+    if(Player){
+        Player->Update();
+        for(auto mon: monsterSet){
+            if(mon->TriggerAttack(Player)){
+                if(Player->Subtract_HP(mon->get_damage())){
+                    //std::cout << "You die" << '\n';
+                    //return GAME_EXIT;
+                }
             }
-        }
-        if(mon->DetectAttack(Player)){
-            if(mon->Subtract_HP(Player)){
-                monsterSet.erase(monsterSet.begin() + i++);
+            if(mon->DetectAttack(Player)){
+                if(mon->Subtract_HP(Player)){
+                    monsterSet.erase(monsterSet.begin() + i++);
+                }
             }
+            mon->Move(Player);
         }
-        mon->Move(Player);
     }
+
     return GAME_CONTINUE;
 }
 /*void
@@ -311,7 +314,9 @@ GameWindow::process_event()
         if(event.timer.source == timer) {
             redraw = true;
             //std::cout << monsterSet.size() << '\n';
-            if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro)){
+            //std::cout << "are you in" << '\n';
+            //std::cout << !al_get_timer_started(monster_pro) << '\n';
+            if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro) && !start){
                 al_stop_timer(timer);
                 std::cout << "go next" << '\n';
                 return GAME_NEXT_LEVEL;
@@ -426,10 +431,12 @@ GameWindow::process_event()
     }
     if(redraw) {
         // update each object in game
+        draw_running_map();
         instruction = game_update();
         // Re-draw map
-        draw_running_map();
+
         redraw = false;
+        //std::cout << "are you in" << '\n';
         //std::cout << "hi" << '\n';
     }
     return instruction;
