@@ -74,7 +74,7 @@ public:
 
     //Tower* create_tower(int);
     Monster* create_monster();
-    HUD* hud;
+    HUD* hud = NULL;
 
 public:
     bool initial = true;
@@ -103,6 +103,7 @@ private:
     LEVEL *level = NULL;
     Menu *menu = NULL;
     UI *ui = NULL;
+    //HUD *hud = NULL;
 
     std::vector<Monster*> monsterSet;
     Character *Player;

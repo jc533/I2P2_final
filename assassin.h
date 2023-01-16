@@ -16,6 +16,7 @@ public:
         speed=5;
         attack_frequency=10;
         attack_harm_point=5;
+        attack_range = 40;
         strncpy(class_name, "Wolf", 20);
         Load_Move();
     };

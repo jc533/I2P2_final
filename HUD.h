@@ -15,11 +15,10 @@
 
 class HUD : public Object{
 public:
-    HUD();
-    ~HUD();
-
+    HUD() ;
+    virtual ~HUD();
     void Draw();
-    void update(Character*);
+    void update();
     void reset();
 
 private:

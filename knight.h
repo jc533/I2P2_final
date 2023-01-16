@@ -18,12 +18,12 @@ public:
     Knight(int pos_x, int pos_y):Character(pos_x,pos_y,200){
         defense=10;
         speed=5;
-        attack_frequency=600;
+        attack_frequency=75;
         type=1;//"Knight";
-        attack_range = 200;
+        attack_range = 75;
         attack_harm_point=10;
         health_point = 100;
-        //base_health = health_point;
+        base_health = health_point;
     };
 };
 

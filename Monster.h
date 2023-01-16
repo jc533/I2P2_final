@@ -23,19 +23,23 @@ public:
     // Load bitmaps of animation image into container "moveImg"
     void  Load_Move();
     // Update monster position per frame
-    // And detect if it reaches end point but not destroyed
+
     void Move(Character*);
     // functions that return informations of monster
     int  getDir() { return direction; }
     bool Subtract_HP(Character*);
     // update whole attack set
     int get_damage() { return attack_harm_point; }
+    int get_range() {return attack_range; }
+    int get_attack_delay() { return attack_frequency;}
     bool DetectAttack(Character*);
     // process if some of attack in set touches monster
     bool TriggerAttack(Character*);
     bool Update(Character*);
     bool is_dead();
     bool encircle(Character*);
+    bool Count(int);
+
 protected:
     int direction_count[4];
     int HealthPoint;
@@ -43,6 +47,7 @@ protected:
     int defense;
     int attack_frequency;
     int attack_harm_point;
+    int attack_range;
     //int worth = 10;
     //int score = 100;
     char class_name[20];
@@ -54,9 +59,11 @@ private:
     int end_x, end_y;
     // animation counter
     int counter;
+    int attack_counter;
     // animation image of current direction
     int sprite_pos;
     unsigned int move_delay;
+    unsigned int attack_delay;
     // set of animation images
     std::vector<ALLEGRO_BITMAP*> moveImg;
     //path on map

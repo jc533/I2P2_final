@@ -92,7 +92,7 @@ GameWindow::create_monster(){
     if(level->MonsterNum[ASSASSIN]){
         level->MonsterNum[ASSASSIN]--;
         original_pos = level->MonsoterPos[ASSASSIN];
-        std::cout << original_pos.first << " " << original_pos.second <<'\n';
+        //std::cout << original_pos.first << " " << original_pos.second <<'\n';
         m = new Assassin(original_pos.first,original_pos.second);
     }
     else{
@@ -220,12 +220,6 @@ GameWindow::game_update(){
     if(Player){
         Player->Update();
         for(auto mon: monsterSet){
-            if(mon->TriggerAttack(Player)){
-                if(Player->Subtract_HP(mon->get_damage())){
-                    //std::cout << "You die" << '\n';
-                    //return GAME_EXIT;
-                }
-            }
             if(mon->DetectAttack(Player)){
                 if(mon->Subtract_HP(Player)){
                     //std::cout << "die die die" << '\n';
@@ -233,6 +227,17 @@ GameWindow::game_update(){
                 }
             }
             mon->Move(Player);
+            if(mon->get_attack_delay()){
+                if(mon->TriggerAttack(Player)){
+                    if(Player->Subtract_HP(mon->get_damage())){
+                        std::cout << "You die" << '\n';
+                        return GAME_EXIT;
+                    }
+                }
+
+            }
+
+
         }
     }
 
@@ -450,7 +455,7 @@ GameWindow::draw_running_map(){
         //std::cout << "choose! you fool!\n";
         al_clear_to_color(al_map_rgb(100, 100, 100));
         draw_choose();
-        std::cout << "are you fucking running" << '\n';
+        //std::cout << "are you fucking running" << '\n';
     }
     else{
         //std::cout << "why the fuck is there no player" << '\n';

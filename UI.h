@@ -27,7 +27,7 @@ private:
     std::vector<ALLEGRO_BITMAP*> class_ui;
     int character_type = -1;
     ALLEGRO_FONT *uiFont;
-
+    ALLEGRO_FONT *uiLargeFont;
 
 
 

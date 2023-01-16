@@ -46,8 +46,8 @@ public:
     int getHeight() { return 40; }
     Type GetState(){ return state;}
     int get_damage(){return damage;}
-    int get_helth(){return health_point;}
-    //int get_health() {return base_health;}
+    int get_health(){return health_point;}
+    int get_base_health() {return base_health;}
     Circle* get_player_pos();
     Circle* get_attack_range();
     // show selected tower image on cursor position
@@ -57,7 +57,7 @@ protected:
 
     Type state;
     Buff buff_state;
-    //static int base_health;
+    int base_health;
     int health_point;
     int damage=10;
     int defense;

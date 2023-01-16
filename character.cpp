@@ -24,24 +24,24 @@ Character::Update(){
     if(Count(attack_frequency)){
         attacked = 0;
     }
-    std::cout << attack_frequency<<'\n';
+    //std::cout << attack_frequency<<'\n';
     if(!attacked){
-    switch(state){
-        case Type::MOVE:
-        Move();
-        break;
-        case Type::ATTACK:
-        if(!attacked)
-        Attack();
-        break;
-        case Type::DODGE:
-        if(!dodged){
-            Dodge();
+        switch(state){
+            case Type::MOVE:
+            Move();
+            break;
+            case Type::ATTACK:
+            if(!attacked)
+            Attack();
+            break;
+            case Type::DODGE:
+            if(!dodged){
+                Dodge();
+            }
+            break;
+            case Type::IDLE:
+            break;
         }
-        break;
-        case Type::IDLE:
-        break;
-    }
     }
 }
 void
@@ -60,7 +60,7 @@ Character::Move(){
 void
 Character::Attack(){
     attacked=1;
-    std::cout << "shuuuu boooom !" <<'\n'; 
+    std::cout << "shuuuu boooom !" <<'\n';
     SetState(Type::IDLE);
 }
 
