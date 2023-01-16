@@ -42,23 +42,26 @@ public:
     bool Subtract_HP(int);
     void Load_Move();
     int GetType() {return type;}
-    int getWidth() { return 40; }
-    int getHeight() { return 40; }
+    //int getWidth() { return 40; }
+    //int getHeight() { return 40; }
     Type GetState(){ return state;}
-    double get_damage(){return damage;}
+    double get_damage(){return attack_harm_point;}
     double get_health(){return health_point;}
     double get_base_health() {return base_health;}
+    void add_buff(int dmg=0, int def=0){
+        attack_harm_point += dmg;
+        defense += def;
+    }
     Circle* get_player_pos();
     Circle* get_attack_range();
     // show selected tower image on cursor position
     //static void SelectedTower(int, int, int);
 
 protected:
-    Type state;
-    Buff buff_state;
+    Type state=Type::IDLE;
+    //Buff buff_state;
     double base_health;
     double health_point;
-    double damage=10;
     double defense;
     int speed;
     int direction=0;
