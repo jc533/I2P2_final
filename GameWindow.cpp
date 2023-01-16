@@ -306,8 +306,8 @@ GameWindow::game_destroy()
     al_destroy_timer(timer);
     al_destroy_timer(monster_pro);
 
-    for(int i=0;i<5; i++)
-        al_destroy_bitmap(tower[i]);
+    /*for(int i=0;i<5; i++)
+        al_destroy_bitmap(tower[i]);*/
 
     al_destroy_bitmap(icon);
     for(auto img:background)
@@ -416,6 +416,9 @@ GameWindow::process_event()
                 break;
             case ALLEGRO_KEY_SPACE:
                 key_state[ALLEGRO_KEY_SPACE]=1;
+                break;
+            case ALLEGRO_KEY_Q:
+                monsterSet.clear();
                 break;
         }
     }else if(event.type == ALLEGRO_EVENT_KEY_UP) {
