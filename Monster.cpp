@@ -34,17 +34,13 @@ Monster::Monster(int pos_x, int pos_y)
 Monster::~Monster()
 {
 
-    for(unsigned int i=0; i<moveImg.size(); i++)
-    {
+    for(unsigned int i=0; i<moveImg.size(); i++){
         ALLEGRO_BITMAP *img = moveImg[i];
-
         moveImg.erase(moveImg.begin() + i);
-
         i--;
         al_destroy_bitmap(img);
     }
     moveImg.clear();
-
     delete circle;
 }
 
@@ -52,13 +48,10 @@ void Monster::Load_Move()
 {
     char buffer[50];
 
-    for(int i=0; i < 4; i++)
-    {
-        for(int j=0; j<direction_count[i]; j++)
-        {
+    for(int i=0; i < 4; i++){
+        for(int j=0; j<direction_count[i]; j++){
             ALLEGRO_BITMAP *img;
             sprintf(buffer, "./%s/%s_%d.png", class_name, direction_name[i], j);
-
             img = al_load_bitmap(buffer);
             if(img)
                 moveImg.push_back(img);
@@ -76,19 +69,15 @@ void
 Monster::Draw(){
     int w, h;
     int offset = 0;
-
     // calculate the number of pictures before current direction
     for(int i=0; i<direction; i++)
         offset += direction_count[i];
 
     if(!moveImg[offset + sprite_pos])
         return;
-
     // get height and width of sprite bitmap
     w = al_get_bitmap_width(moveImg[offset + sprite_pos]);
     h = al_get_bitmap_height(moveImg[offset + sprite_pos]);
-
-
     // draw bitmap align grid edge
     al_draw_bitmap(moveImg[offset + sprite_pos], circle->x - w/2, circle->y - (h - grid_height/2), 0);
 
@@ -191,6 +180,7 @@ Monster::TriggerAttack(Character *player){
     attack_counter++;
     if(Count(attack_frequency)){
         if(attack_counter >= attack_delay && Circle::isOverlap(player->getCircle(),new Circle(this->circle->x,this->circle->y,get_range()))){
+
             al_draw_circle(circle->x, circle->y, get_range(), al_map_rgba(255, 255, 255, 0), 0);
 
             return true;

@@ -140,7 +140,7 @@ Character::Subtract_HP(int dmg){
 void Character::Load_Move(){
     char buffer[50];
 
-    for(int i=0; i < 3; i++){
+    for(int i=0; i < 4; i++){
         for(int j=0; j<direction_count[i]; j++){
             ALLEGRO_BITMAP *img;
             sprintf(buffer, "./%s/%s_%d.png", class_name, direction_name[i], j);
