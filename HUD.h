@@ -15,19 +15,20 @@
 
 class HUD : public Object{
 public:
-    HUD() ;
+    HUD();
     virtual ~HUD();
     void Draw();
-    void update();
+    void Update(Character*);
     void reset();
-
+    double HealthPoint;
 private:
-    int HealthPoint;
+    //int HealthPoint;
     int item_timer;
-    int boss_health;
+    double base_health;
     std::vector<ALLEGRO_BITMAP*> hud;
     ALLEGRO_FONT *hudFont;
     int type;
+    int Enemies;
 };
 
 #endif // HUD_H_INCLUDED

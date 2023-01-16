@@ -92,7 +92,7 @@ Monster::Draw(){
 
     // draw bitmap align grid edge
     al_draw_bitmap(moveImg[offset + sprite_pos], circle->x - w/2, circle->y - (h - grid_height/2), 0);
-
+    al_draw_circle(circle->x, circle->y, get_range(), al_map_rgba(255, 255, 255, 0), 0);
     //al_draw_filled_circle(circle->x, circle->y, circle->r, al_map_rgba(196, 79, 79, 200));
 }
 
@@ -103,7 +103,7 @@ Monster::Update(Character *player){
     if(counter == 0)
         sprite_pos = (sprite_pos + 1) % direction_count[direction];
     if(get_range() * get_range() * 500 >= player_distance(player->get_player_pos(), circle) && get_range() * get_range() *10 <= player_distance(player->get_player_pos(), circle)){
-        std::cout << get_range() << " " << get_range() <<'\n';
+        //std::cout << get_range() << " " << get_range() <<'\n';
         return true;
     }
     return false;

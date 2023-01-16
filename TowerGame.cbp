@@ -60,7 +60,6 @@
 		<Unit filename="Monster.h" />
 		<Unit filename="Object.h" />
 		<Unit filename="Poison.h" />
-		<Unit filename="Slider.cpp" />
 		<Unit filename="Slider.h" />
 		<Unit filename="Start.h" />
 		<Unit filename="Tower.cpp" />

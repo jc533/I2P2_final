@@ -236,8 +236,6 @@ GameWindow::game_update(){
                 }
 
             }
-
-
         }
     }
 
@@ -465,6 +463,7 @@ GameWindow::draw_running_map(){
 
         al_clear_to_color(al_map_rgb(100, 100, 100));
         al_draw_bitmap(background, 0, 0, 0);
+        hud->Update(Player);
         hud->Draw();
         Player->Draw();
         for(i=0; i<monsterSet.size(); i++){
