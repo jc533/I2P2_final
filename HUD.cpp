@@ -1,4 +1,5 @@
 #include "HUD.h"
+#include "character.h"
 
 
 
@@ -22,7 +23,7 @@ void HUD::Draw(){
     al_draw_filled_rectangle(298, 18, 300, 62, al_map_rgb(255, 255, 255));
     al_draw_filled_rectangle(1300, 18, 1302, 62, al_map_rgb(255, 255, 255));
 
-    al_draw_filled_rectangle(150, 820, 450, 830, al_map_rgb(160, 0, 0));
+    al_draw_filled_rectangle(150, 820,1 * 300 + 150, 830, al_map_rgb(160, 0, 0));
 
     //al_draw_filled_rectangle(1350, 20, 1500, 60, al_map_rgb(255, 255, 255));
     char buffer[50];

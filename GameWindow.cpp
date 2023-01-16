@@ -228,7 +228,7 @@ GameWindow::game_update(){
             }
             if(mon->DetectAttack(Player)){
                 if(mon->Subtract_HP(Player)){
-                    std::cout << "die die die" << '\n';
+                    //std::cout << "die die die" << '\n';
                     monsterSet.erase(monsterSet.begin() + i++);
                 }
             }

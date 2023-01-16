@@ -23,6 +23,7 @@ public:
         attack_range = 200;
         attack_harm_point=10;
         health_point = 100;
+        //base_health = health_point;
     };
 };
 
