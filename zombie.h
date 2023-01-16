@@ -22,6 +22,7 @@ public:
         attack_frequency=150000;
         attack_harm_point=3;
         attack_range = 10;
+
         //class_name="zombie";
         strncpy(class_name, "Wolf", 20);
         Load_Move();
