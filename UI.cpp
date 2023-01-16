@@ -46,8 +46,8 @@ UI::UI(){
     class_character = al_load_bitmap(filename);
     class_ui.push_back(class_character);
 
-    uiFont = al_load_ttf_font("pirulen.ttf", 24, 0); // load font
-    uiLargeFont = al_load_ttf_font("pirulen.ttf", 40, 0);
+    uiFont = al_load_ttf_font("Anton-Regular.ttf", 24, 0); // load font
+    uiLargeFont = al_load_ttf_font("Orbitron-Black.ttf", 60, 0);
 }
 
 UI::~UI(){
