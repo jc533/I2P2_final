@@ -110,7 +110,7 @@ GameWindow::game_play()
 
     msg = -1;
     game_reset();
-    //game_start();
+    game_start();
     //game_begin();
 
     while(msg != GAME_EXIT)
@@ -177,8 +177,7 @@ GameWindow::GameWindow()
 }
 
 void
-GameWindow::game_begin()
-{
+GameWindow::game_begin(){
     printf(">>> Start Level[%d]\n", level->getLevel());
     draw_running_map();
 
@@ -189,10 +188,14 @@ GameWindow::game_begin()
     al_start_timer(timer);
     al_start_timer(monster_pro);
 }
+void
+GameWindow::game_start(){
+    draw_running_map();
+    al_start_timer(timer);
+}
 
 int
 GameWindow::game_run(){
-    game_begin();
     int msg = GAME_CONTINUE;
     if (!al_is_event_queue_empty(event_queue)) {
         msg = process_event();
@@ -231,12 +234,12 @@ GameWindow::game_update(){
     }
     return GAME_CONTINUE;
 }
-void
+/*void
 GameWindow::game_start(){
     al_clear_to_color(al_map_rgb(100, 100, 100));
     draw_choose();
     std::cout << "are you fucking running" << '\n';
-}
+}*/
 void
 GameWindow::game_reset(){
     // reset game and begin
@@ -330,11 +333,13 @@ GameWindow::process_event()
             std::cout << "im in" << '\n';
             Player = create_player("knight");
             start = false;
+            game_begin();
         }
         else if(event.mouse.button == 2){
             Player = create_player("ninja");
             start = false;
             std::cout << "hiiiiiii" << '\n';
+            game_begin();
         }
     }
     else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
@@ -433,8 +438,12 @@ GameWindow::process_event()
 void
 GameWindow::draw_running_map(){
     unsigned int i, j;
-    if(!Player)
-        game_start();
+    if(!Player){
+        std::cout << "choose! you fool!\n";
+        al_clear_to_color(al_map_rgb(100, 100, 100));
+        draw_choose();
+        std::cout << "are you fucking running" << '\n';
+    }
     else{
         Player->Draw();
         al_clear_to_color(al_map_rgb(100, 100, 100));
