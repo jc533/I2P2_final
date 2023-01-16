@@ -94,6 +94,23 @@ GameWindow::create_monster(){
         original_pos = level->MonsoterPos[ASSASSIN];
         //std::cout << original_pos.first << " " << original_pos.second <<'\n';
         m = new Assassin(original_pos.first,original_pos.second);
+    }else if(level->MonsterNum[ZOMBIE]){
+        level->MonsterNum[ZOMBIE]--;
+        original_pos = level->MonsoterPos[ZOMBIE];
+        //std::cout << original_pos.first << " " << original_pos.second <<'\n';
+        m = new Zombie(original_pos.first,original_pos.second);
+    }
+    else if(level->MonsterNum[WITCH]){
+        level->MonsterNum[WITCH]--;
+        original_pos = level->MonsoterPos[WITCH];
+        //std::cout << original_pos.first << " " << original_pos.second <<'\n';
+        m = new Witch(original_pos.first,original_pos.second);
+    }
+    else if(level->MonsterNum[BOMB]){
+        level->MonsterNum[BOMB]--;
+        original_pos = level->MonsoterPos[BOMB];
+        //std::cout << original_pos.first << " " << original_pos.second <<'\n';
+        m = new Bomb(original_pos.first,original_pos.second);
     }
     else{
         al_stop_timer(monster_pro);

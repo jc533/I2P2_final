@@ -24,7 +24,7 @@ public:
         attack_range = 10;
 
         //class_name="zombie";
-        strncpy(class_name, "Wolf", 20);
+        strncpy(class_name, "Zombie", 20);
         Load_Move();
     };
 };

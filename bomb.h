@@ -22,7 +22,7 @@ public:
         attack_frequency=10;
         attack_harm_point = 50;
         //class_name="bomb";
-        strncpy(class_name, "Wolf", 20);
+        strncpy(class_name, "Wallbreaker", 20);
         Load_Move();
     };
 };

@@ -40,7 +40,7 @@ public:
 
     int Detect(Monster*);
     bool Subtract_HP(int);
-    void Load_move();
+    void Load_Move();
 
     int getWidth() { return 40; }
     int getHeight() { return 40; }
@@ -72,6 +72,7 @@ protected:
     bool dodged=0;
     bool attacked=0;
     unsigned int counter;
+    char class_name[20];
     int attack_range=40;
     //int attack_counter;
     int attack_harm_point;

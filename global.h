@@ -30,6 +30,7 @@ extern int TowerHeight[];
 
 const int axis_x[] = {-1, 1, 0, 0};
 const int axis_y[] = {0, 0, -1, 1};
+const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
 enum {ARCANE = 0, ARCHER, CANON, POISON, STORM};
 enum {ASSASSIN = 0, ZOMBIE, WITCH, TURRET, BOMB};
 enum {LEFT=0, RIGHT, UP, DOWN};

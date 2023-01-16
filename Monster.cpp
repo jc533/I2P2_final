@@ -1,6 +1,5 @@
 #include "Monster.h"
 #include <iostream>
-const char direction_name[][10] = {"LEFT", "RIGHT", "UP", "DOWN"};
 
 // set counter frequency of drawing moving animation
 const int draw_frequency = 10;

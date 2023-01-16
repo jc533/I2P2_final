@@ -23,7 +23,7 @@ public:
         attack_harm_point=2;
         attack_range = 200;
         //class_name="witch";
-        strncpy(class_name, "Wolf", 20);
+        strncpy(class_name, "Witch", 20);
         Load_Move();
     };
 };
