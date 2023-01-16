@@ -18,11 +18,13 @@ class Zombie : public Monster{
 public:
     Zombie(int pos_x, int pos_y):Monster(pos_x,pos_y){
         defense=5;
-        speed=10;
-        attack_frequency=10;
-        attack_harm_point=5;
+        speed=3;
+        attack_frequency=150000;
+        attack_harm_point=3;
+        attack_range = 10;
         //class_name="zombie";
         strncpy(class_name, "Wolf", 20);
+        Load_Move();
     };
 };
 

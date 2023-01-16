@@ -101,7 +101,7 @@ Circle* Character::get_attack_range(){
 
 bool
 Character::Subtract_HP(int dmg){
-    health_point -= dmg;
+    health_point -= dmg * (defense / (defense + 15.0));
     //std::cout << health_point << '\n';
     return health_point<=0;
 }

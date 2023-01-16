@@ -18,11 +18,13 @@ class Witch : public Monster{
 public:
     Witch(int pos_x, int pos_y):Monster(pos_x,pos_y){
         defense=5;
-        speed=10;
-        attack_frequency=10;
-        attack_harm_point=5;
+        speed=2;
+        attack_frequency=200000;
+        attack_harm_point=2;
+        attack_range = 200;
         //class_name="witch";
         strncpy(class_name, "Wolf", 20);
+        Load_Move();
     };
 };
 
