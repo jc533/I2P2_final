@@ -69,6 +69,7 @@ public:
     bool mouse_hover(int, int, int, int);
     // detect if a tower will be constructed on road
     bool isOnRoad();
+
     Character* create_player(std::string);
 
     //Tower* create_tower(int);
@@ -113,6 +114,7 @@ private:
     int mouse_x, mouse_y;
     int selectedTower = -1, lastClicked = -1;
 
+    bool start = true;
     bool redraw = false;
     bool mute = false;
 };

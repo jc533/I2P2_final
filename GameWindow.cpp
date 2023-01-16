@@ -6,7 +6,7 @@
 #define BLACK al_map_rgb(0, 0, 0)
 #define ORANGE_LIGHT al_map_rgb(255, 196, 87)
 #define ORANGE_DARK al_map_rgb(255, 142, 71)
-#define PURPLE al_map_rgb(149, 128, 255)
+#define PURPLE al_map_rgb(149, 128, 255)ddd
 #define BLUE al_map_rgb(77, 129, 179)
 
 #define min(a, b) ((a) < (b)? (a) : (b))
@@ -59,9 +59,10 @@ GameWindow::game_init()
     level = new LEVEL(1);
     menu = new Menu();
     hud = new HUD();
+    ui = new UI();
     //game_start();
     //draw_choose();
-    Player = create_player("ninja");
+    Player = NULL;
 }
 
 bool
@@ -110,7 +111,7 @@ GameWindow::game_play()
     msg = -1;
     game_reset();
     //game_start();
-    game_begin();
+    //game_begin();
 
     while(msg != GAME_EXIT)
     {
@@ -179,8 +180,6 @@ void
 GameWindow::game_begin()
 {
     printf(">>> Start Level[%d]\n", level->getLevel());
-    //draw_choose();
-
     draw_running_map();
 
     al_play_sample_instance(startSound);
@@ -192,12 +191,10 @@ GameWindow::game_begin()
 }
 
 int
-GameWindow::game_run()
-{
+GameWindow::game_run(){
+    game_begin();
     int msg = GAME_CONTINUE;
-
     if (!al_is_event_queue_empty(event_queue)) {
-
         msg = process_event();
     }
     switch (msg){
@@ -237,38 +234,17 @@ GameWindow::game_update(){
 void
 GameWindow::game_start(){
     al_clear_to_color(al_map_rgb(100, 100, 100));
-    ui = new UI();
     draw_choose();
     std::cout << "are you fucking running" << '\n';
-    while(true){
-        if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-            if(event.mouse.button == 1) {
-                if(mouse_hover(offsetX, offsetY, offsetX+ThumbWidth, offsetY+ThumbHeight)) {
-                    Player = create_player("knight");
-                    break;
-                }
-                else if(mouse_hover(offsetX+ThumbWidth+gapX, offsetY+ThumbHeight+gapY, offsetX+ThumbWidth*2+gapX, offsetY+ThumbHeight*2+gapY)){
-                     Player = create_player("ninja");
-                     break;
-                }
-
-            }
-        }
-
-    }
-
 }
 void
-GameWindow::game_reset()
-{
+GameWindow::game_reset(){
     // reset game and begin
     /*for(auto&& child : towerSet) {
         delete child;
     }*/
     //towerSet.clear();
     monsterSet.clear();
-
-
     selectedTower = -1;
     lastClicked = -1;
     Coin_Inc_Count = 0;
@@ -290,7 +266,6 @@ void
 GameWindow::game_destroy()
 {
     game_reset();
-
     al_destroy_display(display);
     al_destroy_event_queue(event_queue);
     al_destroy_font(font);
@@ -322,7 +297,6 @@ GameWindow::process_event()
 {
     int i;
     int instruction = GAME_CONTINUE;
-
     // offset for pause window
     int offsetX = field_width/2 - 200;
     int offsetY = field_height/2 - 200;
@@ -330,6 +304,7 @@ GameWindow::process_event()
     al_wait_for_event(event_queue, &event);
     redraw = false;
     if(event.type == ALLEGRO_EVENT_TIMER) {
+        std::cout << "its time to stop" << '\n';
         if(event.timer.source == timer) {
             redraw = true;
             //std::cout << monsterSet.size() << '\n';
@@ -347,6 +322,19 @@ GameWindow::process_event()
                     monsterSet.push_back(m);
             }
             Monster_Pro_Count = (Monster_Pro_Count + 1) % level->getMonsterSpeed();
+        }
+    }
+    else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN && start) {
+        redraw = true;
+        if(event.mouse.button == 1) {
+            std::cout << "im in" << '\n';
+            Player = create_player("knight");
+            start = false;
+        }
+        else if(event.mouse.button == 2){
+            Player = create_player("ninja");
+            start = false;
+            std::cout << "hiiiiiii" << '\n';
         }
     }
     else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
@@ -437,6 +425,7 @@ GameWindow::process_event()
         // Re-draw map
         draw_running_map();
         redraw = false;
+        //std::cout << "hi" << '\n';
     }
     return instruction;
 }
@@ -444,22 +433,22 @@ GameWindow::process_event()
 void
 GameWindow::draw_running_map(){
     unsigned int i, j;
-
-    al_clear_to_color(al_map_rgb(100, 100, 100));
-    al_draw_bitmap(background, 0, 0, 0);
-
-    for(i=0; i<monsterSet.size(); i++)
-    {
-        monsterSet[i]->Draw();
+    if(!Player)
+        game_start();
+    else{
+        Player->Draw();
+        al_clear_to_color(al_map_rgb(100, 100, 100));
+        al_draw_bitmap(background, 0, 0, 0);
+        hud->Draw();
+        for(i=0; i<monsterSet.size(); i++){
+            monsterSet[i]->Draw();
+        }
     }
 
-    Player->Draw();
     /*for(std::list<Tower*>::iterator it = towerSet.begin(); it != towerSet.end(); it++)
         (*it)->Draw();*/
-
     //al_draw_filled_rectangle(field_width, 0, window_width, window_height, al_map_rgb(100, 100, 100));
 
-    hud->Draw();
 
     al_flip_display();
 }

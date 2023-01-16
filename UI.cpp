@@ -48,7 +48,7 @@ UI::~UI(){
 
 void
 UI::Draw(){
-
+    //al_draw_filled_rectangle(100, 100, 700, 700, al_map_rgb(255, 255, 255));
     char buffer[50];
     for(int i = 0; i < Num_ClassType; i++){
         int pos_x = offsetX + (ThumbWidth + gapX) * (i % 2);
