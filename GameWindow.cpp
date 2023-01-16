@@ -307,14 +307,16 @@ GameWindow::game_destroy()
 int
 GameWindow::process_event()
 {
-    int i;
+
     int instruction = GAME_CONTINUE;
     // offset for pause window
-    int offsetX = field_width/2 - 200;
-    int offsetY = field_height/2 - 200;
+    //int offsetX = field_width/2 - 200;
+    //int offsetY = field_height/2 - 200;
     static bool key_state[ALLEGRO_KEY_MAX];
     al_wait_for_event(event_queue, &event);
     redraw = false;
+
+
     if(event.type == ALLEGRO_EVENT_TIMER) {
         //std::cout << "its time to stop" << '\n';
         if(event.timer.source == timer) {
@@ -450,7 +452,7 @@ GameWindow::process_event()
 
 void
 GameWindow::draw_running_map(){
-    unsigned int i, j;
+    unsigned int i;
     if(!Player){
         //std::cout << "choose! you fool!\n";
         al_clear_to_color(al_map_rgb(100, 100, 100));

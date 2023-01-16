@@ -16,7 +16,7 @@ Monster::Monster(int pos_x, int pos_y)
     direction = RIGHT;
 
     circle = new Circle(pos_x, pos_y, get_range());
-
+    //std::cout << get_range();
     //circle->x = (path.front() % 15) * grid_width + grid_width/2;
     //circle->y = (path.front() / 15) * grid_height + grid_height/2;
     //circle->r = grid_width/2;
@@ -98,11 +98,12 @@ Monster::Draw(){
 
 bool
 Monster::Update(Character *player){
-    int target_x, target_y;
+    //int target_x, target_y;
     counter = (counter + 1) % draw_frequency;
     if(counter == 0)
         sprite_pos = (sprite_pos + 1) % direction_count[direction];
-    if(circle->r * circle->r * 400 >= player_distance(player->get_player_pos(), circle) && circle->r * circle->r *10 <= player_distance(player->get_player_pos(), circle)){
+    if(get_range() * get_range() * 500 >= player_distance(player->get_player_pos(), circle) && get_range() * get_range() *10 <= player_distance(player->get_player_pos(), circle)){
+        std::cout << get_range() << " " << get_range() <<'\n';
         return true;
     }
     return false;
@@ -111,7 +112,7 @@ Monster::Update(Character *player){
 
 bool
 Monster::encircle(Character *player){
-    if(circle->r * circle->r *15 >= player_distance(player->get_player_pos(), circle) && get_range() * get_range() *10 <= player_distance(player->get_player_pos(), circle)){
+    if(get_range() * get_range() *15 >= player_distance(player->get_player_pos(), circle) && get_range() * get_range() *10 <= player_distance(player->get_player_pos(), circle)){
         return true;
     }
     return false;
@@ -126,7 +127,9 @@ Monster::Move(Character *player){
     counter = (counter + 1) % draw_frequency;
     if(counter == 0)
         sprite_pos = (sprite_pos + 1) % direction_count[direction];
+    //std::cout << "chase" << '\n';
     if(Update(player)){
+
         /*if(encircle(player)){
             int theta = rand()%360;
             target_x = player->get_player_pos()->x + cos(theta) * circle->r;

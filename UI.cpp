@@ -1,5 +1,5 @@
 #include "UI.h"
-#include "Menu.h"
+
 #define WHITE al_map_rgb(255, 255, 255)
 #define BLACK al_map_rgb(0, 0, 0)
 #define ORANGE_LIGHT al_map_rgb(255, 196, 87)
