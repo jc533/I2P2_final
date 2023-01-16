@@ -5,10 +5,10 @@ Character::Character(int pos_x = 0, int pos_y = 0,int range = 50)
 {
     this->circle = new Circle(pos_x, pos_y, 70);
     this->weapon_range = new Circle(pos_x, pos_y, range);
-    direction_count[LEFT] = 1;
-    direction_count[RIGHT] = 1;
-    direction_count[UP] = 1;
-    direction_count[DOWN] = 1;
+    direction_count[LEFT] = 3;
+    direction_count[RIGHT] = 3;
+    direction_count[UP] = 3;
+    direction_count[DOWN] = 3;
 
     std::cout << range << '\n';
 }
@@ -95,21 +95,25 @@ Character::Draw(){
 
     int w, h;
     int offset = 0;
+    int sprite_pos=0;
     // calculate the number of pictures before current direction
     for(int i=0; i<direction; i++)
         offset += direction_count[i];
-
-    if(!moveImg[offset])
+    if(attacked){
+        sprite_pos=1;
+        if(counter%10<=5&&counter%10>=0)sprite_pos=2;
+    }
+    if(!moveImg[offset+sprite_pos])
         return;
-
+    //std::cout << sprite_pos+offset << '\n';
     // get height and width of sprite bitmap
-    w = al_get_bitmap_width(moveImg[offset]);
-    h = al_get_bitmap_height(moveImg[offset]);
+    w = al_get_bitmap_width(moveImg[offset+sprite_pos]);
+    h = al_get_bitmap_height(moveImg[offset+sprite_pos]);
     int draw_x = circle->x - (w/2);
     int draw_y = circle->y - (h - (w/2));
 
     // draw bitmap align grid edge
-    al_draw_bitmap(moveImg[offset], draw_x ,draw_y, 0);
+    al_draw_bitmap(moveImg[offset+sprite_pos], draw_x ,draw_y, 0);
 
     //al_draw_filled_circle(circle->x, circle->y, circle->r, al_map_rgba(196, 79, 79, 200));
 }
@@ -144,7 +148,7 @@ void Character::Load_Move(){
         for(int j=0; j<direction_count[i]; j++){
             ALLEGRO_BITMAP *img;
             sprintf(buffer, "./%s/%s_%d.png", class_name, direction_name[i], j);
-
+            std::coussssssst << buffer << " " << moveImg.size()<<'\n';
             img = al_load_bitmap(buffer);
             if(img)
                 moveImg.push_back(img);
