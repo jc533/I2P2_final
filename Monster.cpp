@@ -92,7 +92,7 @@ Monster::Draw(){
 
     // draw bitmap align grid edge
     al_draw_bitmap(moveImg[offset + sprite_pos], circle->x - w/2, circle->y - (h - grid_height/2), 0);
-    al_draw_circle(circle->x, circle->y, get_range(), al_map_rgba(255, 255, 255, 0), 0);
+
     //al_draw_filled_circle(circle->x, circle->y, circle->r, al_map_rgba(196, 79, 79, 200));
 }
 
@@ -188,9 +188,10 @@ Monster::TriggerAttack(){
 
 bool
 Monster::TriggerAttack(Character *player){
-    if(attack_counter >= attack_delay){
+    if(attack_counter >= attack_delay && Circle::isOverlap(player->getCircle(),new Circle(this->circle->x,this->circle->y,get_range()))){
         attack_counter = 0;
-        return Circle::isOverlap(player->getCircle(),new Circle(this->circle->x,this->circle->y,get_range()));
+        al_draw_circle(circle->x, circle->y, get_range(), al_map_rgba(255, 255, 255, 0), 0);
+        return true;
     }
     else
         return false;
