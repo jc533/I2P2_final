@@ -5,14 +5,26 @@ Character::Character(int pos_x = 0, int pos_y = 0,int range = 50)
 {
     this->circle = new Circle(pos_x, pos_y, 70);
     this->weapon_range = new Circle(pos_x, pos_y, range);
+    direction_count[LEFT] = 1;
+    direction_count[RIGHT] = 1;
+    direction_count[UP] = 1;
+    direction_count[DOWN] = 1;
+
     std::cout << range << '\n';
 }
 
 Character::~Character()
 {
-    delete circle;
+    for(unsigned int i=0; i<moveImg.size(); i++){
+        ALLEGRO_BITMAP *img = moveImg[i];
 
-    al_destroy_bitmap(img);
+        moveImg.erase(moveImg.begin() + i);
+
+        i--;
+        al_destroy_bitmap(img);
+    }
+    moveImg.clear();
+    delete circle;
 }
 
 void
@@ -74,13 +86,32 @@ Character::Dodge(){
 void
 Character::Draw(){
 
-    int draw_x = circle->x - (TowerWidth[this->type]/2);
-    int draw_y = circle->y - (TowerHeight[this->type] - (TowerWidth[this->type]/2));
-    char filename[50];
+    /*char filename[50];
     sprintf(filename, "./Tower/%s.png", TowerClass[this->type]);
     //std::cout << filename << '\n';
     img = al_load_bitmap(filename);
-    al_draw_bitmap(img, draw_x, draw_y, 0);
+    al_draw_bitmap(img, draw_x, draw_y, 0);*/
+
+
+    int w, h;
+    int offset = 0;
+    // calculate the number of pictures before current direction
+    for(int i=0; i<direction; i++)
+        offset += direction_count[i];
+
+    if(!moveImg[offset])
+        return;
+
+    // get height and width of sprite bitmap
+    w = al_get_bitmap_width(moveImg[offset]);
+    h = al_get_bitmap_height(moveImg[offset]);
+    int draw_x = circle->x - (w/2);
+    int draw_y = circle->y - (h - (w/2));
+
+    // draw bitmap align grid edge
+    al_draw_bitmap(moveImg[offset], draw_x ,draw_y, 0);
+
+    //al_draw_filled_circle(circle->x, circle->y, circle->r, al_map_rgba(196, 79, 79, 200));
 }
 
 
@@ -106,14 +137,11 @@ Character::Subtract_HP(int dmg){
     return health_point<=0;
 }
 
-void Character::Load_Move()
-{
+void Character::Load_Move(){
     char buffer[50];
 
-    for(int i=0; i < 3; i++)
-    {
-        for(int j=0; j<direction_count[i]; j++)
-        {
+    for(int i=0; i < 3; i++){
+        for(int j=0; j<direction_count[i]; j++){
             ALLEGRO_BITMAP *img;
             sprintf(buffer, "./%s/%s_%d.png", class_name, direction_name[i], j);
 

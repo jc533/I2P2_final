@@ -19,11 +19,12 @@ public:
         defense=5;
         speed=10;
         attack_frequency=45;
-        type=0;//"ninja";
         attack_range = 50;
         health_point = 50;
         attack_harm_point=5;
         base_health = health_point;
+        strncpy(class_name, "Ninja", 20);
+        Load_Move();
     };
 };
 

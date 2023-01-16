@@ -74,12 +74,13 @@ protected:
     unsigned int counter;
     char class_name[20];
     int attack_range=40;
+
     //int attack_counter;
     int attack_harm_point;
     Circle *weapon_range;
     //ALLEGRO_BITMAP *attack_img;
     // information of tower
-    ALLEGRO_BITMAP* img;
+    //ALLEGRO_BITMAP* img;
     std::vector<ALLEGRO_BITMAP*> moveImg;
 
 };

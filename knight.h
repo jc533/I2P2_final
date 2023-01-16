@@ -19,11 +19,12 @@ public:
         defense=10;
         speed=5;
         attack_frequency=75;
-        type=1;//"Knight";
         attack_range = 75;
         attack_harm_point=10;
         health_point = 100;
         base_health = health_point;
+        strncpy(class_name, "Knight", 20);
+        Load_Move();
     };
 };
 
