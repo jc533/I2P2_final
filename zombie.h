@@ -19,7 +19,7 @@ public:
     Zombie(int pos_x, int pos_y):Monster(pos_x,pos_y){
         defense=5;
         speed=3;
-        attack_frequency=150000;
+        attack_frequency=180;
         attack_harm_point=3;
         attack_range = 10;
 

@@ -19,7 +19,7 @@ public:
     Bomb(int pos_x, int pos_y):Monster(pos_x,pos_y){
         defense=5;
         speed=10;
-        attack_frequency=10;
+        attack_frequency=100;
         attack_harm_point = 50;
         //class_name="bomb";
         strncpy(class_name, "Wallbreaker", 20);

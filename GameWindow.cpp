@@ -330,8 +330,6 @@ GameWindow::process_event()
     static bool key_state[ALLEGRO_KEY_MAX];
     al_wait_for_event(event_queue, &event);
     redraw = false;
-
-
     if(event.type == ALLEGRO_EVENT_TIMER) {
         //std::cout << "its time to stop" << '\n';
         if(event.timer.source == timer) {

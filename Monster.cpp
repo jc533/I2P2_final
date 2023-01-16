@@ -118,7 +118,8 @@ Monster::encircle(Character *player){
 }
 void
 Monster::Move(Character *player){
-    attack_counter++;
+
+
     int target_x, target_y;
     int self_x, self_y;
     self_x = circle->x;
@@ -187,11 +188,15 @@ Monster::TriggerAttack(){
 
 bool
 Monster::TriggerAttack(Character *player){
-    if(attack_counter >= attack_delay && Circle::isOverlap(player->getCircle(),new Circle(this->circle->x,this->circle->y,get_range()))){
-        attack_counter = 0;
-        al_draw_circle(circle->x, circle->y, get_range(), al_map_rgba(255, 255, 255, 0), 0);
-        return true;
+    attack_counter++;
+    if(Count(attack_frequency)){
+        if(attack_counter >= attack_delay && Circle::isOverlap(player->getCircle(),new Circle(this->circle->x,this->circle->y,get_range()))){
+            al_draw_circle(circle->x, circle->y, get_range(), al_map_rgba(255, 255, 255, 0), 0);
+
+            return true;
+        }
     }
+
     else
         return false;
 }
@@ -210,4 +215,5 @@ Monster::Subtract_HP(Character *player){
     HealthPoint -= player->get_damage();
     return (HealthPoint <= 0);
 }
+
 
