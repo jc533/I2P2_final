@@ -29,6 +29,7 @@ private:
     ALLEGRO_FONT *hudFont;
     int type;
     int Enemies;
+    std::vector<ALLEGRO_BITMAP*> selected_ui;
 };
 
 #endif // HUD_H_INCLUDED

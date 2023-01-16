@@ -23,6 +23,7 @@ public:
         health_point = 50;
         attack_harm_point=5;
         base_health = health_point;
+        type = 1;
         strncpy(class_name, "Ninja", 20);
         Load_Move();
     };

@@ -41,7 +41,7 @@ public:
     int Detect(Monster*);
     bool Subtract_HP(int);
     void Load_Move();
-
+    int GetType() {return type;}
     int getWidth() { return 40; }
     int getHeight() { return 40; }
     Type GetState(){ return state;}
@@ -54,7 +54,6 @@ public:
     //static void SelectedTower(int, int, int);
 
 protected:
-
     Type state;
     Buff buff_state;
     double base_health;

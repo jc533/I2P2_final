@@ -23,6 +23,7 @@ public:
         attack_harm_point=10;
         health_point = 100;
         base_health = health_point;
+        type = 0;
         strncpy(class_name, "Knight", 20);
         Load_Move();
     };
