@@ -18,7 +18,7 @@ public:
     Ninja(int pos_x, int pos_y):Character(pos_x,pos_y,200){
         defense=5;
         speed=10;
-        attack_frequency=1;
+        attack_frequency=600;
         type=0;//"ninja";
         attack_range = 200;
         health_point = 50;

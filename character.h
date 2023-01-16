@@ -46,6 +46,7 @@ public:
     int getHeight() { return 40; }
     Type GetState(){ return state;}
     int get_damage(){return damage;}
+    int get_helth(){return health_point;}
     //int get_health() {return base_health;}
     Circle* get_player_pos();
     Circle* get_attack_range();
@@ -66,7 +67,7 @@ protected:
     int size=1;
     int pos[2];
     int type;
-    int attack_frequency=60;
+    int attack_frequency;
     int dodge_fequency=60;
     bool dodged=0;
     bool attacked=0;

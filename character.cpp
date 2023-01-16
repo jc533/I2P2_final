@@ -24,6 +24,8 @@ Character::Update(){
     if(Count(attack_frequency)){
         attacked = 0;
     }
+    std::cout << attack_frequency<<'\n';
+    if(!attacked){
     switch(state){
         case Type::MOVE:
         Move();
@@ -40,6 +42,7 @@ Character::Update(){
         case Type::IDLE:
         break;
     }
+    }
 }
 void
 Character::SetState(Type next_state,int dir){
@@ -55,7 +58,11 @@ Character::Move(){
     weapon_range->y = circle->y;
 }
 void
-Character::Attack(){attacked=1;}
+Character::Attack(){
+    attacked=1;
+    std::cout << "shuuuu boooom !" <<'\n'; 
+    SetState(Type::IDLE);
+}
 
 void
 Character::Dodge(){
