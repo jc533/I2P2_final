@@ -148,7 +148,7 @@ void Character::Load_Move(){
         for(int j=0; j<direction_count[i]; j++){
             ALLEGRO_BITMAP *img;
             sprintf(buffer, "./%s/%s_%d.png", class_name, direction_name[i], j);
-            std::coussssssst << buffer << " " << moveImg.size()<<'\n';
+            std::cout << buffer << " " << moveImg.size()<<'\n';
             img = al_load_bitmap(buffer);
             if(img)
                 moveImg.push_back(img);

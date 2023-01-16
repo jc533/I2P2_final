@@ -35,12 +35,16 @@ GameWindow::game_init()
     char buffer[50];
 
     icon = al_load_bitmap("./icon.png");
-    background = al_load_bitmap("./StartBackground.jpg");
+    //background = al_load_bitmap("./StartBackground.jpg");
 
-    for(int i = 0; i < Num_TowerType; i++)
-    {
-        sprintf(buffer, "./Tower/%s.png", TowerClass[i]);
-        tower[i] = al_load_bitmap(buffer);
+
+    for(int i = 1; i < 5; i++){
+        ALLEGRO_BITMAP *img;
+        sprintf(buffer, "./Background/background_%d.jpg", i);
+        //std::cout << buffer << " " << moveImg.size()<<'\n';
+        img = al_load_bitmap(buffer);
+        if(img)
+            background.push_back(img);
     }
 
     al_set_display_icon(display, icon);
@@ -306,7 +310,9 @@ GameWindow::game_destroy()
         al_destroy_bitmap(tower[i]);
 
     al_destroy_bitmap(icon);
-    al_destroy_bitmap(background);
+    for(auto img:background)
+        al_destroy_bitmap(img);
+    background.clear();
 
     al_destroy_sample(sample);
     al_destroy_sample_instance(startSound);
@@ -477,7 +483,8 @@ GameWindow::draw_running_map(){
         //std::cout << Player->get_damage() << '\n';
 
         al_clear_to_color(al_map_rgb(100, 100, 100));
-        al_draw_bitmap(background, 0, 0, 0);
+        int i = level->getLevel(); 
+        al_draw_bitmap(background[i-1], 0, 0, 0);
         hud->Update(Player);
         hud->Draw();
         Player->Draw();
