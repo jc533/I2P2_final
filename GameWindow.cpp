@@ -228,6 +228,7 @@ GameWindow::game_update(){
             }
             if(mon->DetectAttack(Player)){
                 if(mon->Subtract_HP(Player)){
+                    std::cout << "die die die" << '\n';
                     monsterSet.erase(monsterSet.begin() + i++);
                 }
             }
@@ -310,7 +311,7 @@ GameWindow::process_event()
     al_wait_for_event(event_queue, &event);
     redraw = false;
     if(event.type == ALLEGRO_EVENT_TIMER) {
-        std::cout << "its time to stop" << '\n';
+        //std::cout << "its time to stop" << '\n';
         if(event.timer.source == timer) {
             redraw = true;
             //std::cout << monsterSet.size() << '\n';
@@ -318,7 +319,7 @@ GameWindow::process_event()
             //std::cout << !al_get_timer_started(monster_pro) << '\n';
             if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro) && !start){
                 al_stop_timer(timer);
-                std::cout << "go next" << '\n';
+                //std::cout << "go next" << '\n';
                 return GAME_NEXT_LEVEL;
             }
 
@@ -335,7 +336,7 @@ GameWindow::process_event()
     else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN && start) {
         redraw = true;
         if(event.mouse.button == 1) {
-            std::cout << "im in" << '\n';
+            //std::cout << "im in" << '\n';
             Player = create_player("knight");
             start = false;
             game_begin();
@@ -343,7 +344,7 @@ GameWindow::process_event()
         else if(event.mouse.button == 2){
             Player = create_player("ninja");
             start = false;
-            std::cout << "hiiiiiii" << '\n';
+            //std::cout << "hiiiiiii" << '\n';
             game_begin();
         }
     }
@@ -446,16 +447,19 @@ void
 GameWindow::draw_running_map(){
     unsigned int i, j;
     if(!Player){
-        std::cout << "choose! you fool!\n";
+        //std::cout << "choose! you fool!\n";
         al_clear_to_color(al_map_rgb(100, 100, 100));
         draw_choose();
         std::cout << "are you fucking running" << '\n';
     }
     else{
-        Player->Draw();
+        //std::cout << "why the fuck is there no player" << '\n';
+        //std::cout << Player->get_damage() << '\n';
+
         al_clear_to_color(al_map_rgb(100, 100, 100));
         al_draw_bitmap(background, 0, 0, 0);
         hud->Draw();
+        Player->Draw();
         for(i=0; i<monsterSet.size(); i++){
             monsterSet[i]->Draw();
         }
