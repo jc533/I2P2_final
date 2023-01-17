@@ -17,24 +17,14 @@ const int ThumbHeight = 600;
 const int gapX = 100, gapY = 30;
 const int offsetX = 150, offsetY = 150;
 bool start = true;
-float Attack::volume = 1.0;
 
-void set_attack_volume(float volume)
-{
-    Attack::volume = volume;
-}
-
-bool compare(Tower *t1, Tower *t2)
-{
-    return (t1->getY() <= t2->getY());
-}
 
 void
 GameWindow::game_init()
 {
     char buffer[50];
 
-    icon = al_load_bitmap("./icon.png");
+    icon = al_load_bitmap("./icon1.png");
     //background = al_load_bitmap("./StartBackground.jpg");
 
 
@@ -260,15 +250,11 @@ GameWindow::game_update(){
             mon->Move(Player);
             if(mon->get_attack_delay()){
                 if(mon->TriggerAttack(Player)){
-
                     if(Player->Subtract_HP(mon->get_damage())){
                         //std::cout << "You die" << '\n';
                         return GAME_FAIL;
                     }
-                    if(strcmp(mon->get_class_name(), "Wallbreaker"))
-                        monsterSet.erase(monsterSet.begin() + i);
                 }
-
             }
             i++;
         }
@@ -309,9 +295,6 @@ GameWindow::game_destroy()
     al_destroy_timer(timer);
     al_destroy_timer(monster_pro);
 
-    /*for(int i=0;i<5; i++)
-        al_destroy_bitmap(tower[i]);*/
-
     al_destroy_bitmap(icon);
     for(auto img:background)
         al_destroy_bitmap(img);
@@ -330,22 +313,15 @@ GameWindow::game_destroy()
 int
 GameWindow::process_event(){
     int instruction = GAME_CONTINUE;
-    // offset for pause window
-    //int offsetX = field_width/2 - 200;
-    //int offsetY = field_height/2 - 200;
+
     static bool key_state[ALLEGRO_KEY_MAX];
     al_wait_for_event(event_queue, &event);
     redraw = false;
     if(event.type == ALLEGRO_EVENT_TIMER) {
-        //std::cout << "its time to stop" << '\n';
         if(event.timer.source == timer) {
             redraw = true;
-            //std::cout << monsterSet.size() << '\n';
-            //std::cout << "are you in" << '\n';
-            //std::cout << !al_get_timer_started(monster_pro) << '\n';
             if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro) && !start){
                 al_stop_timer(timer);
-                //std::cout << "go next" << '\n';
                 return GAME_LEVEL_FINISH;
             }
         }

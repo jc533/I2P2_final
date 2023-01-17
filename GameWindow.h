@@ -11,14 +11,11 @@
 #include "Level.h"
 #include "HUD.h"
 #include "UI.h"
-#include "Poison.h"
-#include "Attack.h"
-#include "Slider.h"
+
 #include "knight.h"
 #include "ninja.h"
 #include "assassin.h"
 #include "bomb.h"
-#include "turret.h"
 #include "witch.h"
 #include "zombie.h"
 
@@ -107,7 +104,6 @@ private:
 
     std::vector<Monster*> monsterSet;
     Character *Player;
-    std::list<Tower*> towerSet;
     std::string role;
 
     int Monster_Pro_Count = 0;

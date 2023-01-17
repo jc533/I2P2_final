@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="TowerGame" />
+		<Option title="EscapetheDungeon" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -60,7 +60,6 @@
 		<Unit filename="global.h" />
 		<Unit filename="knight.h" />
 		<Unit filename="ninja.h" />
-		<Unit filename="turret.h" />
 		<Unit filename="witch.h" />
 		<Unit filename="zombie.h" />
 		<Extensions>
