@@ -1,7 +1,7 @@
 #include "HUD.h"
 #include "character.h"
+#include "Level.h"
 
-class Character;
 
 HUD::HUD(){
     double HealthPoint = 0;
@@ -23,11 +23,9 @@ HUD::~HUD(){
     al_destroy_font(hudFont);
 }
 
-
-
 void HUD::Draw(){
 
-    al_draw_filled_rectangle(300, 20, 1300, 60, al_map_rgb(139, 0, 0));
+    al_draw_filled_rectangle(300, 20, 300 + Enemies / total_enemies * 1000, 60, al_map_rgb(139, 0, 0));
     al_draw_rectangle(300, 20, 1300, 60, al_map_rgb(255, 255, 255), 3);
     al_draw_rectangle(150, 820, 450, 830, al_map_rgb(255, 255, 255), 3);
     al_draw_filled_rectangle(150, 820, (HealthPoint / base_health) * 300 + 150, 830, al_map_rgb(160, 0, 0));
@@ -46,9 +44,11 @@ void HUD::Draw(){
 }
 
 void
-HUD::Update(Character *player){
+HUD::Update(Character *player, int left, LEVEL *level){
     HealthPoint = player->get_health();
     base_health = player->get_base_health();
     type = player->GetType();
+    total_enemies = level->get_Monster_Max();
+    Enemies = left;
     //std::cout << HealthPoint / base_health << '\n';
 }

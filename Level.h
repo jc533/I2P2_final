@@ -18,9 +18,9 @@ public:
     void setLevel(const int);
     int getMonsterSpeed() { return MonsterSpeed; }
     int getLevel() { return level; }
-    std::pair<int,int> MonsoterPos[Num_MonsterType];
+    std::pair<int,int> MonsterPos[Num_MonsterType];
     int MonsterNum[Num_MonsterType];
-
+    int get_Monster_Max(){return Monster_MAX;}
 
 private:
     // current level number

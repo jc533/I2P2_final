@@ -55,7 +55,7 @@ GameWindow::game_init()
     al_set_sample_instance_playmode(startSound, ALLEGRO_PLAYMODE_ONCE);
     al_attach_sample_instance_to_mixer(startSound, al_get_default_mixer());
 
-    sample = al_load_sample("BackgroundMusic.ogg");
+    sample = al_load_sample("Backgroundmusic1.ogg");
     backgroundSound = al_create_sample_instance(sample);
     al_set_sample_instance_playmode(backgroundSound, ALLEGRO_PLAYMODE_ONCE);
     al_attach_sample_instance_to_mixer(backgroundSound, al_get_default_mixer());
@@ -95,26 +95,26 @@ GameWindow::create_monster(){
     std::pair<int,int> original_pos;
     if(level->MonsterNum[ASSASSIN]){
         level->MonsterNum[ASSASSIN]--;
-        original_pos = level->MonsoterPos[ASSASSIN];
+        original_pos = level->MonsterPos[ASSASSIN];
         //std::cout << original_pos.first << " " << original_pos.second <<'\n';
-        m = new Assassin(original_pos.first,original_pos.second);
+        m = new Assassin(original_pos.first + (rand() % 100),original_pos.second + (rand() % 100));
     }else if(level->MonsterNum[ZOMBIE]){
         level->MonsterNum[ZOMBIE]--;
-        original_pos = level->MonsoterPos[ZOMBIE];
+        original_pos = level->MonsterPos[ZOMBIE];
         //std::cout << original_pos.first << " " << original_pos.second <<'\n';
-        m = new Zombie(original_pos.first,original_pos.second);
+        m = new Zombie(original_pos.first + (rand() % 100), original_pos.second + (rand() % 100));
     }
     else if(level->MonsterNum[WITCH]){
         level->MonsterNum[WITCH]--;
-        original_pos = level->MonsoterPos[WITCH];
+        original_pos = level->MonsterPos[WITCH];
         //std::cout << original_pos.first << " " << original_pos.second <<'\n';
-        m = new Witch(original_pos.first,original_pos.second);
+        m = new Witch(original_pos.first + (rand() % 100), original_pos.second + (rand() % 100));
     }
     else if(level->MonsterNum[BOMB]){
         level->MonsterNum[BOMB]--;
-        original_pos = level->MonsoterPos[BOMB];
+        original_pos = level->MonsterPos[BOMB];
         //std::cout << original_pos.first << " " << original_pos.second <<'\n';
-        m = new Bomb(original_pos.first,original_pos.second);
+        m = new Bomb(original_pos.first + (rand() % 100), original_pos.second + (rand() % 100));
     }
     else{
         al_stop_timer(monster_pro);
@@ -126,9 +126,7 @@ void
 GameWindow::game_play()
 {
     int msg;
-
     srand(time(NULL));
-
     msg = -1;
     game_reset();
     game_start();
@@ -163,13 +161,10 @@ GameWindow::GameWindow()
 
     display = al_create_display(window_width, window_height);
     event_queue = al_create_event_queue();
-
     timer = al_create_timer(1.0 / FPS);
     monster_pro = al_create_timer(1.0 / FPS);
-
     if(timer == NULL || monster_pro == NULL)
         show_err_msg(-1);
-
     if (display == NULL || event_queue == NULL)
         show_err_msg(-1);
 
@@ -246,29 +241,29 @@ GameWindow::game_run(){
 
 int
 GameWindow::game_update(){
-    int i = 0;
-    if(Player){
-        Player->Update();
-        for(auto mon: monsterSet){
-            if(mon->DetectAttack(Player)){
-                if(mon->Subtract_HP(Player)){
-                    //std::cout << "die die die" << '\n';
-                    monsterSet.erase(monsterSet.begin() + i++);
-                }
-            }
-            mon->Move(Player);
-            if(mon->get_attack_delay()){
-                if(mon->TriggerAttack(Player)){
-                    if(Player->Subtract_HP(mon->get_damage())){
-                        std::cout << "You die" << '\n';
-                        return GAME_FAIL;
+    for(int i = 0; i < monsterSet.size(); i++){
+        if(Player){
+            Player->Update();
+            for(auto mon: monsterSet){
+                if(mon->DetectAttack(Player)){
+                    if(mon->Subtract_HP(Player)){
+                        //std::cout << "die die die" << '\n';
+                        monsterSet.erase(monsterSet.begin() + i);
                     }
                 }
+                mon->Move(Player);
+                if(mon->get_attack_delay()){
+                    if(mon->TriggerAttack(Player)){
+                        if(Player->Subtract_HP(mon->get_damage())){
+                            std::cout << "You die" << '\n';
+                            return GAME_FAIL;
+                        }
+                    }
 
+                }
             }
         }
     }
-
     return GAME_CONTINUE;
 }
 /*void
@@ -287,7 +282,7 @@ GameWindow::game_reset(){
     monsterSet.clear();
     selectedTower = -1;
     lastClicked = -1;
-    Coin_Inc_Count = 0;
+
     Monster_Pro_Count = 0;
     mute = false;
     redraw = false;
@@ -335,9 +330,7 @@ GameWindow::game_destroy()
 }
 
 int
-GameWindow::process_event()
-{
-
+GameWindow::process_event(){
     int instruction = GAME_CONTINUE;
     // offset for pause window
     //int offsetX = field_width/2 - 200;
@@ -357,7 +350,6 @@ GameWindow::process_event()
                 //std::cout << "go next" << '\n';
                 return GAME_LEVEL_FINISH;
             }
-
         }
         else {
             if(Monster_Pro_Count == 0) {
@@ -385,6 +377,7 @@ GameWindow::process_event()
             }
         }
         if(end){
+            //std::cout << "ended" << '\n';
             if(event.mouse.button == 1) {
                 //std::cout << "im in" << '\n';
                 Player = NULL;
@@ -406,10 +399,10 @@ GameWindow::process_event()
         if(can_choose){
             switch(event.keyboard.keycode) {
                 case ALLEGRO_KEY_1:
-                    Player->add_buff(10,0);
+                    Player->add_buff(1,0);
                     return GAME_NEXT_LEVEL;
                 case ALLEGRO_KEY_2:
-                    Player->add_buff(0,10);
+                    Player->add_buff(0,1);
                     return GAME_NEXT_LEVEL;
                 case ALLEGRO_KEY_3:
                     Player->resore_health(10);
@@ -500,10 +493,10 @@ GameWindow::process_event()
     }
     if(redraw) {
         // update each object in game
-        draw_running_map();
+
         instruction = game_update();
         // Re-draw map
-
+        draw_running_map();
         redraw = false;
         //std::cout << "are you in" << '\n';
         //std::cout << "hi" << '\n';
@@ -529,9 +522,9 @@ GameWindow::draw_running_map(){
         //std::cout << Player->get_damage() << '\n';
 
         al_clear_to_color(al_map_rgb(100, 100, 100));
-        int i = level->getLevel(); 
+        int i = level->getLevel();
         al_draw_bitmap(background[i-1], 0, 0, 0);
-        hud->Update(Player);
+        hud->Update(Player, monsterSet.size(), level);
         hud->Draw();
         Player->Draw();
         for(i=0; i<monsterSet.size(); i++){

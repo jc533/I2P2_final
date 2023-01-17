@@ -112,10 +112,10 @@ Character::Draw(){
     int draw_x = circle->x - (w/2);
     int draw_y = circle->y - (h - (w/2));
 
-    // draw bitmap align grid edge
-    al_draw_bitmap(moveImg[offset+sprite_pos], draw_x ,draw_y, 0);
 
-    //al_draw_filled_circle(circle->x, circle->y, circle->r, al_map_rgba(196, 79, 79, 200));
+    al_draw_scaled_bitmap(moveImg[offset+sprite_pos], 0, 0, w, h, draw_x, draw_y, w * 2, h * 2, 0);
+
+
 }
 
 
@@ -148,7 +148,7 @@ void Character::Load_Move(){
         for(int j=0; j<direction_count[i]; j++){
             ALLEGRO_BITMAP *img;
             sprintf(buffer, "./%s/%s_%d.png", class_name, direction_name[i], j);
-            std::cout << buffer << " " << moveImg.size()<<'\n';
+            //std::cout << buffer << " " << moveImg.size()<<'\n';
             img = al_load_bitmap(buffer);
             if(img)
                 moveImg.push_back(img);

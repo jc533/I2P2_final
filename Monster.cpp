@@ -15,6 +15,9 @@ Monster::Monster(int pos_x, int pos_y)
     direction = RIGHT;
 
     circle = new Circle(pos_x, pos_y, get_range());
+    circle->x = pos_x;
+    circle->y = pos_y;
+    circle->r = get_range();
     //std::cout << get_range();
     //circle->x = (path.front() % 15) * grid_width + grid_width/2;
     //circle->y = (path.front() / 15) * grid_height + grid_height/2;
@@ -79,7 +82,7 @@ Monster::Draw(){
     w = al_get_bitmap_width(moveImg[offset + sprite_pos]);
     h = al_get_bitmap_height(moveImg[offset + sprite_pos]);
     // draw bitmap align grid edge
-    al_draw_bitmap(moveImg[offset + sprite_pos], circle->x - w/2, circle->y - (h - grid_height/2), 0);
+    al_draw_scaled_bitmap(moveImg[offset + sprite_pos], 0, 0, w, h, circle->x - w/2, circle->y - h/2, w * 2, h * 2, 0);
 
     //al_draw_filled_circle(circle->x, circle->y, circle->r, al_map_rgba(196, 79, 79, 200));
 }

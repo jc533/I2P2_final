@@ -12,13 +12,14 @@
 #include "Circle.h"
 #include "global.h"
 #include "character.h"
+#include "Level.h"
 
 class HUD : public Object{
 public:
     HUD();
     virtual ~HUD();
     void Draw();
-    void Update(Character*);
+    void Update(Character*, int left, LEVEL*);
     void reset();
     double HealthPoint;
 private:
@@ -29,6 +30,7 @@ private:
     ALLEGRO_FONT *hudFont;
     int type;
     int Enemies;
+    double total_enemies;
     std::vector<ALLEGRO_BITMAP*> selected_ui;
 };
 

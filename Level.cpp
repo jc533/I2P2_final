@@ -33,8 +33,8 @@ LEVEL::setLevel(const int level)
         tmp.first = atoi(buffer);
         fscanf(file, "%s", buffer);
         tmp.second = atoi(buffer);
-        std::cout << "tmp " << tmp.first <<' ' << tmp.second << '\n'; 
-        MonsoterPos[i] = tmp;
+        std::cout << "tmp " << tmp.first <<' ' << tmp.second << '\n';
+        MonsterPos[i] = tmp;
     }
 
     fclose(file);
