@@ -97,24 +97,24 @@ GameWindow::create_monster(){
         level->MonsterNum[ASSASSIN]--;
         original_pos = level->MonsterPos[ASSASSIN];
         //std::cout << original_pos.first << " " << original_pos.second <<'\n';
-        m = new Assassin(original_pos.first + (rand() % 100),original_pos.second + (rand() % 100));
+        m = new Assassin(original_pos.first + (rand() % 200),original_pos.second + (rand() % 100));
     }else if(level->MonsterNum[ZOMBIE]){
         level->MonsterNum[ZOMBIE]--;
         original_pos = level->MonsterPos[ZOMBIE];
         //std::cout << original_pos.first << " " << original_pos.second <<'\n';
-        m = new Zombie(original_pos.first + (rand() % 100), original_pos.second + (rand() % 100));
+        m = new Zombie(original_pos.first + (rand() % 200), original_pos.second + (rand() % 100));
     }
     else if(level->MonsterNum[WITCH]){
         level->MonsterNum[WITCH]--;
         original_pos = level->MonsterPos[WITCH];
         //std::cout << original_pos.first << " " << original_pos.second <<'\n';
-        m = new Witch(original_pos.first + (rand() % 100), original_pos.second + (rand() % 100));
+        m = new Witch(original_pos.first + (rand() % 200), original_pos.second + (rand() % 100));
     }
     else if(level->MonsterNum[BOMB]){
         level->MonsterNum[BOMB]--;
         original_pos = level->MonsterPos[BOMB];
         //std::cout << original_pos.first << " " << original_pos.second <<'\n';
-        m = new Bomb(original_pos.first + (rand() % 100), original_pos.second + (rand() % 100));
+        m = new Bomb(original_pos.first + (rand() % 200), original_pos.second + (rand() % 100));
     }
     else{
         al_stop_timer(monster_pro);
@@ -404,14 +404,18 @@ GameWindow::process_event(){
         //fprintf(stderr,"pressed %d\n",event.keyboard.keycode);
         if(can_choose){
             std::cout << can_choose << '\n';
+            draw_running_map();
             switch(event.keyboard.keycode) {
                 case ALLEGRO_KEY_1:
+
                     Player->add_buff(1,0);
                     return GAME_NEXT_LEVEL;
                 case ALLEGRO_KEY_2:
+
                     Player->add_buff(0,1);
                     return GAME_NEXT_LEVEL;
                 case ALLEGRO_KEY_3:
+
                     Player->resore_health(10);
                     return GAME_NEXT_LEVEL;
 

@@ -57,12 +57,12 @@ HUD::Update(Character *player, int left, LEVEL *level){
 void HUD::Level_reward(){
     al_draw_text(LargehudFont, al_map_rgb(255, 255, 255), 800, 300, 1, "Level cleared");
     al_draw_text(LargehudFont, al_map_rgb(255, 255, 255), 800, 400, 1, "Press 1 to add damage buff");
-    al_draw_text(LargehudFont, al_map_rgb(255, 255, 255), 800, 500, 1, "Press 1 to add defense buff");
-    al_draw_text(LargehudFont, al_map_rgb(255, 255, 255), 800, 600, 1, "Press 1 to restore health");
+    al_draw_text(LargehudFont, al_map_rgb(255, 255, 255), 800, 500, 1, "Press 2 to add defense buff");
+    al_draw_text(LargehudFont, al_map_rgb(255, 255, 255), 800, 600, 1, "Press 3 to restore health");
 }
 
 void HUD::win(){
-    al_clear_to_color(al_map_rgb(221, 221, 221));
+    al_clear_to_color(al_map_rgb(219, 219, 219));
     al_draw_text(LargehudFont, al_map_rgb(255, 255, 255), 800, 500, 1, "YOU WIN");
-
+    al_draw_text(LargehudFont, al_map_rgb(255, 255, 255), 800, 600, 1, "Left click to restart    Right click to exit");
 }
