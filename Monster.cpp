@@ -110,8 +110,6 @@ Monster::encircle(Character *player){
 }
 void
 Monster::Move(Character *player){
-
-
     int target_x, target_y;
     int self_x, self_y;
     self_x = circle->x;

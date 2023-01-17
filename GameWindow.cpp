@@ -246,29 +246,29 @@ GameWindow::game_update(){
     if(end && can_choose && win){
 
     }
-    for(int i = 0; i < monsterSet.size(); i++){
-        if(Player){
-            Player->Update();
-            for(auto mon: monsterSet){
-                if(mon->DetectAttack(Player)){
-                    if(mon->Subtract_HP(Player)){
-                        //std::cout << "die die die" << '\n';
-                        monsterSet.erase(monsterSet.begin() + i);
+    unsigned int i = 0;
+    if(Player){
+        Player->Update();
+        for(auto mon: monsterSet){
+            if(mon->DetectAttack(Player)){
+                if(mon->Subtract_HP(Player)){
+                    //std::cout << "die die die" << '\n';
+                    monsterSet.erase(monsterSet.begin() + i++);
+                }
+            }
+            mon->Move(Player);
+            if(mon->get_attack_delay()){
+                if(mon->TriggerAttack(Player)){
+                    if(Player->Subtract_HP(mon->get_damage())){
+                        //std::cout << "You die" << '\n';
+                        return GAME_FAIL;
                     }
                 }
-                mon->Move(Player);
-                if(mon->get_attack_delay()){
-                    if(mon->TriggerAttack(Player)){
-                        if(Player->Subtract_HP(mon->get_damage())){
-                            //std::cout << "You die" << '\n';
-                            return GAME_FAIL;
-                        }
-                    }
 
-                }
             }
         }
     }
+
     return GAME_CONTINUE;
 }
 /*void
