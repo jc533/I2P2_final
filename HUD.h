@@ -23,12 +23,14 @@ public:
     void reset();
     double HealthPoint;
     void Level_reward();
+    void win();
 private:
     //int HealthPoint;
     int item_timer;
     double base_health;
     std::vector<ALLEGRO_BITMAP*> hud;
     ALLEGRO_FONT *hudFont;
+    ALLEGRO_FONT *LargehudFont;
     int type;
     int Enemies;
     double total_enemies;

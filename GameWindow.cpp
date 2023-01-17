@@ -38,7 +38,7 @@ GameWindow::game_init()
     //background = al_load_bitmap("./StartBackground.jpg");
 
 
-    for(int i = 1; i < 5; i++){
+    for(int i = 1; i <= 5; i++){
         ALLEGRO_BITMAP *img;
         sprintf(buffer, "./Background/background_%d.jpg", i);
         //std::cout << buffer << " " << moveImg.size()<<'\n';
@@ -230,8 +230,10 @@ GameWindow::game_run(){
         break;
     case GAME_LEVEL_FINISH:
         can_choose = true;
+        break;
     case GAME_FAIL:
         end = true;
+        break;
     default:
         //std::cout << msg << ' ' << GAME_NEXT_LEVEL <<'\n';
         break;
@@ -241,6 +243,9 @@ GameWindow::game_run(){
 
 int
 GameWindow::game_update(){
+    if(end && can_choose && win){
+
+    }
     for(int i = 0; i < monsterSet.size(); i++){
         if(Player){
             Player->Update();
@@ -376,13 +381,14 @@ GameWindow::process_event(){
                 game_begin();
             }
         }
-        if(end){
+        if(end||win){
             //std::cout << "ended" << '\n';
             if(event.mouse.button == 1) {
                 //std::cout << "im in" << '\n';
                 Player = NULL;
                 start = true;
                 end = false;
+                win = false;
                 game_reset();
                 game_begin();
                 level->setLevel(1);
@@ -397,7 +403,7 @@ GameWindow::process_event(){
     }else if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
         //fprintf(stderr,"pressed %d\n",event.keyboard.keycode);
         if(can_choose){
-            hud->Level_reward();
+            std::cout << can_choose << '\n';
             switch(event.keyboard.keycode) {
                 case ALLEGRO_KEY_1:
                     Player->add_buff(1,0);
@@ -410,6 +416,7 @@ GameWindow::process_event(){
                     return GAME_NEXT_LEVEL;
 
             }
+
         }
         switch(event.keyboard.keycode) {
 
@@ -508,10 +515,15 @@ GameWindow::process_event(){
 void
 GameWindow::draw_running_map(){
     unsigned int i;
+    //std::cout<< can_choose << '\n';
     if(win){
         // win ui
+
+        hud->win();
     }else if(can_choose){
         // choose ui
+        std::cout << "where reward" << '\n';
+        hud->Level_reward();
     }else if(!Player){
         //std::cout << "choose! you fool!\n";
         al_clear_to_color(al_map_rgb(100, 100, 100));
