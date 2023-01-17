@@ -232,6 +232,8 @@ GameWindow::game_run(){
         game_reset();
         game_begin();
         break;
+    case GAME_LEVEL_FINISH:
+        can_choose = true;
     case GAME_FAIL:
         end = true;
     default:
@@ -352,7 +354,7 @@ GameWindow::process_event()
             if(monsterSet.size() == 0 && !al_get_timer_started(monster_pro) && !start){
                 al_stop_timer(timer);
                 //std::cout << "go next" << '\n';
-                return GAME_NEXT_LEVEL;
+                return GAME_LEVEL_FINISH;
             }
 
         }
@@ -400,6 +402,20 @@ GameWindow::process_event()
         return GAME_EXIT;
     }else if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
         //fprintf(stderr,"pressed %d\n",event.keyboard.keycode);
+        if(can_choose){
+            switch(event.keyboard.keycode) {
+                case ALLEGRO_KEY_1:
+                    Player->add_buff(10,0);
+                    return GAME_NEXT_LEVEL;
+                case ALLEGRO_KEY_2:
+                    Player->add_buff(0,10);
+                    return GAME_NEXT_LEVEL;
+                case ALLEGRO_KEY_3:
+                    Player->resore_health(10);
+                    return GAME_NEXT_LEVEL;
+
+            }
+        }
         switch(event.keyboard.keycode) {
 
             case ALLEGRO_KEY_P:

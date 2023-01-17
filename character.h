@@ -52,6 +52,14 @@ public:
         attack_harm_point += dmg;
         defense += def;
     }
+    void resore_health(int num){
+        if(health_point<base_health){
+            health_point+=num;
+            if(health_point>base_health){
+                health_point = base_health;
+            }
+        }
+    }
     Circle* get_player_pos();
     Circle* get_attack_range();
     // show selected tower image on cursor position

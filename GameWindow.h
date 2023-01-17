@@ -32,6 +32,7 @@
 #define GAME_TERMINATE 5
 #define GAME_NEXT_LEVEL 6
 #define GAME_EXIT 7
+#define GAME_LEVEL_FINISH 8
 
 // clock rate
 const float FPS = 60;
@@ -121,6 +122,7 @@ private:
     bool mute = false;
     bool win=false;
     bool end=false;
+    bool can_choose = false;
 };
 
 
