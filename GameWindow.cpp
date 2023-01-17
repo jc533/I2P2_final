@@ -255,7 +255,7 @@ GameWindow::game_update(){
                 if(mon->get_attack_delay()){
                     if(mon->TriggerAttack(Player)){
                         if(Player->Subtract_HP(mon->get_damage())){
-                            std::cout << "You die" << '\n';
+                            //std::cout << "You die" << '\n';
                             return GAME_FAIL;
                         }
                     }
@@ -397,6 +397,7 @@ GameWindow::process_event(){
     }else if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
         //fprintf(stderr,"pressed %d\n",event.keyboard.keycode);
         if(can_choose){
+            hud->Level_reward();
             switch(event.keyboard.keycode) {
                 case ALLEGRO_KEY_1:
                     Player->add_buff(1,0);

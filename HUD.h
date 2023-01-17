@@ -22,6 +22,7 @@ public:
     void Update(Character*, int left, LEVEL*);
     void reset();
     double HealthPoint;
+    void Level_reward();
 private:
     //int HealthPoint;
     int item_timer;

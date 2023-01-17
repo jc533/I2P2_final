@@ -52,3 +52,9 @@ HUD::Update(Character *player, int left, LEVEL *level){
     Enemies = left;
     //std::cout << HealthPoint / base_health << '\n';
 }
+
+void HUD::Level_reward(){
+    al_draw_text(hudFont, al_map_rgb(255, 255, 255), 800, 500, 1, "Level cleared");
+
+
+}
