@@ -223,6 +223,7 @@ GameWindow::game_run(){
     }
     switch (msg){
     case GAME_NEXT_LEVEL:
+        can_choose = false;
         if(level->getLevel()==5){
             win = true;
             break;
@@ -513,7 +514,11 @@ GameWindow::process_event()
 void
 GameWindow::draw_running_map(){
     unsigned int i;
-    if(!Player){
+    if(win){
+        // win ui
+    }else if(can_choose){
+        // choose ui
+    }else if(!Player){
         //std::cout << "choose! you fool!\n";
         al_clear_to_color(al_map_rgb(100, 100, 100));
         draw_choose();
