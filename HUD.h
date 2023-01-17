@@ -24,6 +24,7 @@ public:
     double HealthPoint;
     void Level_reward();
     void win();
+    void lose();
 private:
     //int HealthPoint;
     int item_timer;

@@ -66,3 +66,9 @@ void HUD::win(){
     al_draw_text(LargehudFont, al_map_rgb(255, 255, 255), 800, 500, 1, "YOU WIN");
     al_draw_text(LargehudFont, al_map_rgb(255, 255, 255), 800, 600, 1, "Left click to restart    Right click to exit");
 }
+
+void HUD::lose(){
+    al_clear_to_color(al_map_rgb(219, 219, 219));
+    al_draw_text(LargehudFont, al_map_rgb(255, 255, 255), 800, 500, 1, "YOU LOSE");
+    al_draw_text(LargehudFont, al_map_rgb(255, 255, 255), 800, 600, 1, "Left click to restart    Right click to exit");
+}

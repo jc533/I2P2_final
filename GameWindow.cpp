@@ -351,7 +351,7 @@ GameWindow::process_event(){
             }
         }
         if(end||win){
-            //std::cout << "ended" << '\n';
+            draw_running_map();
             if(event.mouse.button == 1) {
                 //std::cout << "im in" << '\n';
                 Player = NULL;
@@ -490,10 +490,12 @@ GameWindow::draw_running_map(){
     unsigned int i;
     //std::cout<< can_choose << '\n';
     if(win){
-        // win ui
 
         hud->win();
-    }else if(can_choose){
+    }else if(end){
+        hud->lose();
+    }
+    else if(can_choose){
         // choose ui
         std::cout << "where reward" << '\n';
         hud->Level_reward();
