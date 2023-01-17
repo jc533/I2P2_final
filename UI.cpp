@@ -47,7 +47,7 @@ UI::UI(){
     class_ui.push_back(class_character);
 
     uiFont = al_load_ttf_font("Anton-Regular.ttf", 24, 0); // load font
-    uiLargeFont = al_load_ttf_font("Orbitron-Black.ttf", 60, 0);
+    uiLargeFont = al_load_ttf_font("Orbitron-Black.ttf", 50, 0);
 }
 
 UI::~UI(){
@@ -67,13 +67,13 @@ UI::Draw(){
 
         //al_draw_filled_rectangle(pos_x, pos_y, pos_x + ThumbWidth, pos_y + ThumbHeight, al_map_rgb(255, 255, 255));
         if(i == character_type)
-            al_draw_rectangle(pos_x, pos_y, pos_x + ThumbWidth, pos_y + ThumbHeight, al_map_rgb(255, 0, 0), 0);
+            al_draw_rectangle(pos_x, pos_y, pos_x + ThumbWidth, pos_y + ThumbHeight, al_map_rgb(255, 0, 0), 2);
         else
-            al_draw_rectangle(pos_x, pos_y, pos_x + ThumbWidth, pos_y + ThumbHeight, al_map_rgb(255, 255, 255), 0);
+            al_draw_rectangle(pos_x, pos_y, pos_x + ThumbWidth, pos_y + ThumbHeight, al_map_rgb(255, 255, 255), 2);
         //al_draw_bitmap(class_ui[i], pos_x, pos_y, 0);
         al_draw_scaled_bitmap(class_ui[i], 0, 0, al_get_bitmap_width(class_ui[i]), al_get_bitmap_height(class_ui[i]), pos_x, pos_y+100, 600, 600, 0);
 
-        al_draw_text(uiLargeFont, WHITE, 800, 800, 1, "Left click for knight   Right click for ninja");
+        al_draw_text(uiLargeFont, WHITE, 790, 800, 1, "Left click for knight          Right click for ninja");
     }
 
 

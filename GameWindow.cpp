@@ -61,7 +61,7 @@ GameWindow::game_init()
     al_attach_sample_instance_to_mixer(backgroundSound, al_get_default_mixer());
 
     level = new LEVEL(1);
-    menu = new Menu();
+
     hud = new HUD();
     ui = new UI();
     //game_start();
@@ -250,40 +250,35 @@ GameWindow::game_update(){
     if(Player){
         Player->Update();
         for(auto mon: monsterSet){
+
             if(mon->DetectAttack(Player)){
                 if(mon->Subtract_HP(Player)){
                     //std::cout << "die die die" << '\n';
-                    monsterSet.erase(monsterSet.begin() + i++);
+                    monsterSet.erase(monsterSet.begin() + i);
                 }
             }
             mon->Move(Player);
             if(mon->get_attack_delay()){
                 if(mon->TriggerAttack(Player)){
+
                     if(Player->Subtract_HP(mon->get_damage())){
                         //std::cout << "You die" << '\n';
                         return GAME_FAIL;
                     }
+                    if(strcmp(mon->get_class_name(), "Wallbreaker"))
+                        monsterSet.erase(monsterSet.begin() + i);
                 }
 
             }
+            i++;
         }
     }
 
     return GAME_CONTINUE;
 }
-/*void
-GameWindow::game_start(){
-    al_clear_to_color(al_map_rgb(100, 100, 100));
-    draw_choose();
-    std::cout << "are you fucking running" << '\n';
-}*/
+
 void
 GameWindow::game_reset(){
-    // reset game and begin
-    /*for(auto&& child : towerSet) {
-        delete child;
-    }*/
-    //towerSet.clear();
     monsterSet.clear();
     selectedTower = -1;
     lastClicked = -1;
@@ -291,7 +286,6 @@ GameWindow::game_reset(){
     Monster_Pro_Count = 0;
     mute = false;
     redraw = false;
-    menu->Reset();
 
     // stop sample instance
     al_stop_sample_instance(backgroundSound);
@@ -328,7 +322,6 @@ GameWindow::game_destroy()
     al_destroy_sample_instance(backgroundSound);
 
     delete level;
-    delete menu;
     delete hud;
     delete Player;
     delete ui;

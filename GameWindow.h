@@ -7,7 +7,7 @@
 #include <list>
 #include <time.h>
 #include <utility>
-#include "Menu.h"
+
 #include "Level.h"
 #include "HUD.h"
 #include "UI.h"
@@ -76,10 +76,8 @@ public:
     //Tower* create_tower(int);
     Monster* create_monster();
     HUD* hud = NULL;
-
 public:
     bool initial = true;
-
 private:
     ALLEGRO_BITMAP *icon;
     ALLEGRO_BITMAP *tower[Num_TowerType];
@@ -103,7 +101,7 @@ private:
     ALLEGRO_SAMPLE_INSTANCE *backgroundSound = NULL;
 
     LEVEL *level = NULL;
-    Menu *menu = NULL;
+
     UI *ui = NULL;
     //HUD *hud = NULL;
 

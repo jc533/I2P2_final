@@ -39,7 +39,7 @@ public:
     bool is_dead();
     bool encircle(Character*);
     bool Count(int);
-
+    char * get_class_name(){return class_name;}
 protected:
     int direction_count[4];
     int HealthPoint;

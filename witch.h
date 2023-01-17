@@ -18,7 +18,7 @@ class Witch : public Monster{
 public:
     Witch(int pos_x, int pos_y):Monster(pos_x,pos_y){
         defense=5;
-        speed=2;
+        speed=1;
         attack_frequency= 240;
         attack_harm_point=2;
         attack_range = 200;

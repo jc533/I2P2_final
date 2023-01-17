@@ -75,7 +75,6 @@ Monster::Draw(){
     // calculate the number of pictures before current direction
     for(int i=0; i<direction; i++)
         offset += direction_count[i];
-
     if(!moveImg[offset + sprite_pos])
         return;
     // get height and width of sprite bitmap
@@ -179,11 +178,10 @@ Monster::TriggerAttack(){
 bool
 Monster::TriggerAttack(Character *player){
     attack_counter++;
+
     if(Count(attack_frequency)){
         if(attack_counter >= attack_delay && Circle::isOverlap(player->getCircle(),new Circle(this->circle->x,this->circle->y,get_range()))){
-
             al_draw_circle(circle->x, circle->y, get_range(), al_map_rgba(255, 255, 255, 0), 0);
-
             return true;
         }
     }
