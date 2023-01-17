@@ -119,6 +119,8 @@ private:
     bool start = true;
     bool redraw = false;
     bool mute = false;
+    bool win=false;
+    bool end=false;
 };
 
 

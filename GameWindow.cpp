@@ -223,11 +223,17 @@ GameWindow::game_run(){
     }
     switch (msg){
     case GAME_NEXT_LEVEL:
+        if(level->getLevel()==5){
+            win = true;
+            break;
+        }
         std::cout << "next" <<'\n';
         level->setLevel(level->getLevel()+1);
         game_reset();
         game_begin();
         break;
+    case GAME_FAIL:
+        end = true;
     default:
         //std::cout << msg << ' ' << GAME_NEXT_LEVEL <<'\n';
         break;
@@ -252,7 +258,7 @@ GameWindow::game_update(){
                 if(mon->TriggerAttack(Player)){
                     if(Player->Subtract_HP(mon->get_damage())){
                         std::cout << "You die" << '\n';
-                        return GAME_EXIT;
+                        return GAME_FAIL;
                     }
                 }
 
@@ -359,19 +365,35 @@ GameWindow::process_event()
             Monster_Pro_Count = (Monster_Pro_Count + 1) % level->getMonsterSpeed();
         }
     }
-    else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN && start) {
-        redraw = true;
-        if(event.mouse.button == 1) {
-            //std::cout << "im in" << '\n';
-            Player = create_player("knight");
-            start = false;
-            game_begin();
+    else if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
+        if(start){
+            redraw = true;
+            if(event.mouse.button == 1) {
+                //std::cout << "im in" << '\n';
+                Player = create_player("knight");
+                start = false;
+                game_begin();
+            }
+            else if(event.mouse.button == 2){
+                Player = create_player("ninja");
+                start = false;
+                //std::cout << "hiiiiiii" << '\n';
+                game_begin();
+            }
         }
-        else if(event.mouse.button == 2){
-            Player = create_player("ninja");
-            start = false;
-            //std::cout << "hiiiiiii" << '\n';
-            game_begin();
+        if(end){
+            if(event.mouse.button == 1) {
+                //std::cout << "im in" << '\n';
+                Player = NULL;
+                start = true;
+                end = false;
+                game_reset();
+                game_begin();
+                level->setLevel(1);
+            }
+            else if(event.mouse.button == 2){
+                return GAME_EXIT;
+            }
         }
     }
     else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
