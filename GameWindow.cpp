@@ -351,6 +351,9 @@ GameWindow::process_event(){
             }
         }
         if(end||win){
+            if(win){
+                draw_running_map();
+            }
             draw_running_map();
             if(event.mouse.button == 1) {
                 //std::cout << "im in" << '\n';
@@ -489,11 +492,11 @@ void
 GameWindow::draw_running_map(){
     unsigned int i;
     //std::cout<< can_choose << '\n';
-    if(win){
-
-        hud->win();
-    }else if(end){
+    if(end){
         hud->lose();
+    }
+    else if(win){
+        hud->win();
     }
     else if(can_choose){
         // choose ui
